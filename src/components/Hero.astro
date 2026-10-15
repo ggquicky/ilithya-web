@@ -1,0 +1,766 @@
+---
+interface Props {
+  appUrl?: string;
+}
+
+const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
+---
+
+<section class="hero-section">
+  <div class="container">
+    <div class="hero-badge-wrapper">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span class="badge-text">Ilithya Workflow 2.0 • Enterprise Lifecycle Automation</span>
+        <span class="badge-arrow">→</span>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <h1 class="hero-headline">
+        Intelligent PDF Approvals & Signatures for <span class="gradient-text">Modern Enterprise</span>
+      </h1>
+      <p class="hero-subline">
+        Eliminate document bottlenecks with Ilithya Workflow. Automate multi-stage approval chains, visual digital stamping, SLA escalation alarms, and automatic 30-day cloud archival — fully isolated and multi-tenant.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary btn-lg" id="hero-cta-primary">
+          <span>Start Free 14-Day Trial</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+        <a href="#workflow" class="btn btn-secondary btn-lg" id="hero-cta-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <span>Explore Interactive Demo</span>
+        </a>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="trust-strip">
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>Enterprise RLS Security</span>
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <span>Real-time SLA Alarms</span>
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+          </svg>
+          <span>Automated 30-Day Storage Offload</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Hero Preview Window -->
+    <div class="hero-preview-wrapper" id="workflow">
+      <div class="preview-glow"></div>
+      <div class="preview-card">
+        <!-- Mock Browser / App Chrome Bar -->
+        <div class="card-header">
+          <div class="window-dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="card-title-bar">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <span>home.ilithya.app / workflow / #IW-80492</span>
+          </div>
+          <div class="header-status">
+            <span class="status-indicator"></span>
+            <span>Live Sync</span>
+          </div>
+        </div>
+
+        <!-- Workflow Details Header -->
+        <div class="document-summary">
+          <div class="doc-icon-wrapper">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+              <polyline points="14 2 14 8 20 8"/>
+            </svg>
+          </div>
+          <div class="doc-meta">
+            <div class="doc-title-row">
+              <h2 class="doc-title">Master_Services_Agreement_v3.4.pdf</h2>
+              <span class="pill pill-blue">In Process</span>
+              <span class="pill pill-sla">SLA: 04h 12m Remaining</span>
+            </div>
+            <p class="doc-sub">Tenant: Acme Global Corp • Requester: Sarah Connor (Operations) • 4 Pages</p>
+          </div>
+        </div>
+
+        <!-- Multi-Stage Stepper Track -->
+        <div class="workflow-stepper">
+          <div class="step-card completed">
+            <div class="step-number">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div class="step-info">
+              <span class="step-role">Requester</span>
+              <span class="step-name">Submitted</span>
+              <span class="step-time">Today, 09:14 AM</span>
+            </div>
+          </div>
+
+          <div class="step-connector completed"></div>
+
+          <div class="step-card completed">
+            <div class="step-number">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div class="step-info">
+              <span class="step-role">Legal Supervisor</span>
+              <span class="step-name">Approved & Stamped</span>
+              <span class="step-time">Today, 11:28 AM</span>
+            </div>
+          </div>
+
+          <div class="step-connector active"></div>
+
+          <div class="step-card active">
+            <div class="step-number">
+              <span class="pulse-ring"></span>
+              3
+            </div>
+            <div class="step-info">
+              <span class="step-role">CFO Approval</span>
+              <span class="step-name">Pending Decision</span>
+              <span class="step-time">Assigned to M. Vance</span>
+            </div>
+          </div>
+
+          <div class="step-connector"></div>
+
+          <div class="step-card pending">
+            <div class="step-number">4</div>
+            <div class="step-info">
+              <span class="step-role">Cloud Archival</span>
+              <span class="step-name">Google Drive / OneDrive</span>
+              <span class="step-time">30-Day Auto Offload</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Document Preview Canvas Simulation with Visual Stamp -->
+        <div class="preview-canvas-wrapper">
+          <div class="canvas-sheet">
+            <div class="sheet-skeleton-header">
+              <div class="skeleton-bar long"></div>
+              <div class="skeleton-bar medium"></div>
+            </div>
+            <div class="sheet-skeleton-body">
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line short"></div>
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line half"></div>
+            </div>
+
+            <!-- Digital Stamp Overlay Mockup -->
+            <div class="digital-stamp">
+              <div class="stamp-border">
+                <div class="stamp-header">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>ILITHYA VERIFIED APPROVAL</span>
+                </div>
+                <div class="stamp-body">
+                  <div class="stamp-line"><strong>OFFICER:</strong> J. Henderson (LEGAL)</div>
+                  <div class="stamp-line"><strong>STAMP ID:</strong> #IW-STMP-2026-9941</div>
+                  <div class="stamp-line"><strong>TIMESTAMP:</strong> 2026-10-14 11:28:40 UTC</div>
+                  <div class="stamp-hash">SHA256: 7e8f190a4bb...8c2</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Audit Log Feed Sidebar -->
+          <div class="audit-feed">
+            <div class="audit-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+              <span>Live Audit Stream</span>
+            </div>
+            <div class="audit-items">
+              <div class="audit-entry">
+                <span class="entry-time">11:28:40</span>
+                <p>Digital seal anchored at [X: 420, Y: 110] page 4.</p>
+              </div>
+              <div class="audit-entry">
+                <span class="entry-time">11:25:02</span>
+                <p>Legal supervisor reviewed document checksum.</p>
+              </div>
+              <div class="audit-entry">
+                <span class="entry-time">09:14:18</span>
+                <p>Document uploaded and normalized to standard PDF.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    padding-top: 4.5rem;
+    padding-bottom: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-badge-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem 1rem;
+    background-color: var(--bg-surface-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.4);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+    cursor: default;
+  }
+
+  .hero-badge:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-1px);
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--color-primary);
+  }
+
+  .badge-text {
+    color: var(--text-main);
+  }
+
+  .badge-arrow {
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .hero-content {
+    text-align: center;
+    max-width: 860px;
+    margin-inline: auto;
+    margin-bottom: 3.5rem;
+  }
+
+  .hero-headline {
+    font-size: clamp(2.35rem, 5.5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #137fec 0%, #38bdf8 50%, #818cf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-subline {
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 2.25rem;
+    max-width: 720px;
+    margin-inline: auto;
+  }
+
+  .hero-ctas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.75rem;
+  }
+
+  .btn-lg {
+    padding: 0.875rem 1.75rem;
+    font-size: 1.05rem;
+    border-radius: var(--radius-md);
+  }
+
+  .trust-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .trust-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--color-primary);
+  }
+
+  .trust-divider {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--border-color);
+  }
+
+  /* Preview Window Container */
+  .hero-preview-wrapper {
+    position: relative;
+    max-width: 1040px;
+    margin-inline: auto;
+    margin-top: 1.5rem;
+  }
+
+  .preview-glow {
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(circle at center, rgba(19, 127, 236, 0.22) 0%, rgba(19, 127, 236, 0) 70%);
+    filter: blur(40px);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .preview-card {
+    position: relative;
+    z-index: 1;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+  }
+
+  .card-header {
+    background: var(--bg-surface-elevated);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.85rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .window-dots {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+  }
+
+  .dot.red { background: #ff5f56; }
+  .dot.yellow { background: #ffbd2e; }
+  .dot.green { background: #27c93f; }
+
+  .card-title-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    font-family: monospace;
+    color: var(--text-dim);
+    background: var(--bg-main);
+    padding: 0.25rem 0.85rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+  }
+
+  .header-status {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: var(--accent-green);
+    font-weight: 600;
+  }
+
+  .status-indicator {
+    width: 6px;
+    height: 6px;
+    background-color: var(--accent-green);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent-green);
+  }
+
+  /* Document Summary Header */
+  .document-summary {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--bg-surface);
+  }
+
+  .doc-icon-wrapper {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid rgba(19, 127, 236, 0.25);
+  }
+
+  .doc-meta {
+    flex: 1;
+  }
+
+  .doc-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.25rem;
+  }
+
+  .doc-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  .pill {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-full);
+  }
+
+  .pill-blue {
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    border: 1px solid rgba(19, 127, 236, 0.3);
+  }
+
+  .pill-sla {
+    background: var(--accent-amber-bg);
+    color: var(--accent-amber);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+
+  .doc-sub {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+  }
+
+  /* Stepper */
+  .workflow-stepper {
+    display: flex;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-subtle);
+    border-bottom: 1px solid var(--border-color);
+    overflow-x: auto;
+    gap: 0.75rem;
+  }
+
+  .step-card {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex-shrink: 0;
+  }
+
+  .step-number {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    position: relative;
+    border: 1px solid var(--border-color);
+    background: var(--bg-surface);
+    color: var(--text-dim);
+  }
+
+  .step-card.completed .step-number {
+    background: var(--accent-green);
+    color: #ffffff;
+    border-color: var(--accent-green);
+  }
+
+  .step-card.active .step-number {
+    background: var(--color-primary);
+    color: #ffffff;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 12px var(--color-primary);
+  }
+
+  .pulse-ring {
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 2px solid var(--color-primary);
+    animation: pulse 2s infinite ease-out;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.4); opacity: 0; }
+  }
+
+  .step-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .step-role {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .step-name {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  .step-time {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+  }
+
+  .step-connector {
+    flex: 1;
+    min-width: 24px;
+    height: 2px;
+    background: var(--border-color);
+  }
+
+  .step-connector.completed {
+    background: var(--accent-green);
+  }
+
+  .step-connector.active {
+    background: linear-gradient(to right, var(--accent-green), var(--color-primary));
+  }
+
+  /* Canvas preview */
+  .preview-canvas-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    background: var(--bg-main);
+  }
+
+  .canvas-sheet {
+    padding: 2.5rem;
+    background: #0f141d;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-height: 280px;
+  }
+
+  .sheet-skeleton-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .skeleton-bar {
+    height: 12px;
+    background: #1e2c3c;
+    border-radius: 4px;
+  }
+
+  .skeleton-bar.long { width: 65%; }
+  .skeleton-bar.medium { width: 40%; }
+
+  .sheet-skeleton-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .skeleton-line {
+    height: 8px;
+    background: #172230;
+    border-radius: 4px;
+    width: 90%;
+  }
+
+  .skeleton-line.short { width: 50%; }
+  .skeleton-line.half { width: 75%; }
+
+  .digital-stamp {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    transform: rotate(-3deg);
+    background: rgba(16, 25, 34, 0.94);
+    border: 2px dashed #10b981;
+    border-radius: var(--radius-sm);
+    padding: 0.65rem 0.95rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    color: #10b981;
+    font-family: monospace;
+    font-size: 0.7rem;
+    user-select: none;
+    max-width: 240px;
+  }
+
+  .stamp-header {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    border-bottom: 1px dashed rgba(16, 185, 129, 0.4);
+    padding-bottom: 0.35rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .stamp-line {
+    line-height: 1.4;
+    color: #cbd5e1;
+  }
+
+  .stamp-hash {
+    margin-top: 0.25rem;
+    color: #64748b;
+    font-size: 0.65rem;
+  }
+
+  /* Live Audit feed */
+  .audit-feed {
+    border-left: 1px solid var(--border-color);
+    background: var(--bg-surface);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .audit-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .audit-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .audit-entry {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    padding-left: 0.65rem;
+    border-left: 2px solid var(--border-color);
+  }
+
+  .audit-entry:first-child {
+    border-left-color: var(--color-primary);
+  }
+
+  .entry-time {
+    font-family: monospace;
+    color: var(--text-dim);
+    display: block;
+    font-size: 0.6875rem;
+  }
+
+  .audit-entry p {
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+  }
+
+  @media (max-width: 900px) {
+    .preview-canvas-wrapper {
+      grid-template-columns: 1fr;
+    }
+
+    .audit-feed {
+      border-left: none;
+      border-top: 1px solid var(--border-color);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-section {
+      padding-top: 2.5rem;
+    }
+
+    .document-summary {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .digital-stamp {
+      position: static;
+      margin-top: 1rem;
+      transform: none;
+    }
+  }
+</style>

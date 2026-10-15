@@ -1,0 +1,209 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="brand-logo" aria-label="Ilithya Workflow Home">
+          <img src="/brand/darkLogo.png" alt="Ilithya Workflow" class="footer-logo-img" />
+        </a>
+        <p class="brand-slogan">
+          Enterprise multi-tenant document workflows with coordinate-accurate digital signature stamps, SLA automation, and cloud offloading.
+        </p>
+        <div class="system-status">
+          <span class="status-pulse"></span>
+          <span>All Services Operational • 99.98% Uptime</span>
+        </div>
+      </div>
+
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4 class="col-title">Product</h4>
+          <ul class="col-links">
+            <li><a href="#features">Digital Stamping</a></li>
+            <li><a href="#features">Multi-Stage Approvals</a></li>
+            <li><a href="#features">SLA Engine</a></li>
+            <li><a href="#features">30-Day Cloud Archival</a></li>
+            <li><a href="#workflow">Interactive Demo</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="col-title">Security & RBAC</h4>
+          <ul class="col-links">
+            <li><a href="#compliance">PostgreSQL RLS</a></li>
+            <li><a href="#compliance">Audit Trail Fingerprints</a></li>
+            <li><a href="#compliance">Google & Microsoft OAuth</a></li>
+            <li><a href="#compliance">SOC 2 Type II Readiness</a></li>
+            <li><a href="#compliance">Data Privacy & GDPR</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="col-title">Connect</h4>
+          <ul class="col-links">
+            <li><a href="#contact">Contact Sales</a></li>
+            <li><a href="#contact">Request Pilot</a></li>
+            <li><a href="mailto:support@ilithyaworkflow.com">Engineering Support</a></li>
+            <li><a href="#contact">Partner Inquiries</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="copyright">
+        &copy; {currentYear} Ilithya Workflow Inc. All rights reserved. Designed for Jorge Morales & Enterprise Operations.
+      </p>
+      <div class="legal-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Security Disclosure</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border-color);
+    padding-top: 5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.25fr 2fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    user-select: none;
+    text-decoration: none;
+  }
+
+  .footer-logo-img {
+    height: 52px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 2px 8px rgba(19, 127, 236, 0.25));
+  }
+
+  .brand-slogan {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 320px;
+  }
+
+  .system-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-full);
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    width: fit-content;
+  }
+
+  .status-pulse {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--accent-green);
+    box-shadow: 0 0 6px var(--accent-green);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .col-title {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-main);
+    margin-bottom: 1.25rem;
+  }
+
+  .col-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .col-links a {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    transition: color 0.15s ease;
+  }
+
+  .col-links a:hover {
+    color: var(--color-primary);
+  }
+
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.8125rem;
+    color: var(--text-dim);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .legal-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .legal-links a:hover {
+    color: var(--text-main);
+  }
+
+  @media (max-width: 860px) {
+    .footer-top {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .footer-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 540px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

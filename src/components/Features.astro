@@ -1,0 +1,348 @@
+---
+const features = [
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>`,
+    title: "Visual PDF Stamping & Seals",
+    desc: "Anchor digital signatures, cryptographic supervisor seals, dynamic QR codes, and timestamps to exact PDF coordinates with millimeter precision.",
+    tag: "Core Engine",
+    accent: "blue"
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+    title: "Automated SLA Escalation",
+    desc: "Set per-stage SLA thresholds. Automated warning flags and escalation notifications notify team supervisors before approval deadlines lapse.",
+    tag: "Automated",
+    accent: "amber"
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+    title: "Multi-Tenant RLS Security",
+    desc: "Enterprise-grade database isolation with PostgreSQL Row-Level Security. Every tenant's documents, audit trails, and users are strictly partitioned.",
+    tag: "Compliance",
+    accent: "green"
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>`,
+    title: "30-Day Auto Storage Offload",
+    desc: "Keep hot storage lightweight and cost-efficient. Completed workflows automatically offload to Google Drive or OneDrive while preserving permanent metadata.",
+    tag: "Archival",
+    accent: "purple"
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+    title: "Role-Based Governance (RBAC)",
+    desc: "Granular access controls for Global Admins, Company Admins, Department Supervisors, and Requesters with strict state transitions.",
+    tag: "Governance",
+    accent: "blue"
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>`,
+    title: "Immutable Audit Trails",
+    desc: "Every view, signature placement, approval, and rejection is permanently recorded with user ID, IP address, and SHA-256 document fingerprint.",
+    tag: "Audit Ready",
+    accent: "green"
+  }
+];
+---
+
+<section class="features-section" id="features">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-tag">Enterprise Capabilities</span>
+      <h2 class="section-title">Built for Speed. Hardened for Compliance.</h2>
+      <p class="section-desc">
+        Everything your organization needs to orchestrate document sign-offs with zero manual chaos, zero lost paperwork, and absolute audit compliance.
+      </p>
+    </div>
+
+    <div class="features-grid">
+      {features.map((feature) => (
+        <div class={`feature-card accent-${feature.accent}`}>
+          <div class="feature-card-glow"></div>
+          <div class="feature-header">
+            <div class="feature-icon" set:html={feature.icon}></div>
+            <span class="feature-badge">{feature.tag}</span>
+          </div>
+          <h3 class="feature-title">{feature.title}</h3>
+          <p class="feature-desc">{feature.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Feature Spotlight Banner -->
+    <div class="spotlight-card">
+      <div class="spotlight-content">
+        <span class="section-tag">Zero Cloud Bloat</span>
+        <h3 class="spotlight-title">Automatic 30-Day Archival Pipeline</h3>
+        <p class="spotlight-desc">
+          Stop paying high monthly premiums for hot SaaS storage. Ilithya Workflow automatically offloads completed approval packets directly into your corporate Google Drive or Microsoft OneDrive repository.
+        </p>
+        <ul class="spotlight-list">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Retain 100% of audit logs and verification hashes forever</span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Direct OAuth integration with Google Workspace & Office 365</span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Automated daily cron verification ensures zero data loss</span>
+          </li>
+        </ul>
+      </div>
+      <div class="spotlight-visual">
+        <div class="flow-box">
+          <div class="flow-node">
+            <span class="flow-pill">Ilithya Workflow Hot Cache</span>
+            <span class="flow-caption">30 Days Active</span>
+          </div>
+          <div class="flow-arrow">
+            <span>Automated Cron</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+          <div class="flow-node highlight">
+            <span class="flow-pill">Corporate Cloud</span>
+            <span class="flow-caption">Permanent Archive</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .features-section {
+    padding-block: 6rem;
+    position: relative;
+    border-top: 1px solid var(--border-color);
+    background: linear-gradient(180deg, var(--bg-main) 0%, var(--bg-surface) 100%);
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .section-header {
+    margin-bottom: 4rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .feature-card {
+    position: relative;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+    overflow: hidden;
+  }
+
+  .feature-card-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: radial-gradient(circle at 50% 0%, var(--color-primary-glow) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(19, 127, 236, 0.45);
+    box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.5), 0 0 24px -4px var(--color-primary-glow);
+  }
+
+  .feature-card:hover .feature-card-glow {
+    opacity: 1;
+  }
+
+  .feature-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    border: 1px solid rgba(19, 127, 236, 0.25);
+  }
+
+  .feature-card.accent-amber .feature-icon {
+    background: var(--accent-amber-bg);
+    color: var(--accent-amber);
+    border-color: rgba(245, 158, 11, 0.25);
+  }
+
+  .feature-card.accent-green .feature-icon {
+    background: var(--accent-green-bg);
+    color: var(--accent-green);
+    border-color: rgba(16, 185, 129, 0.25);
+  }
+
+  .feature-card.accent-purple .feature-icon {
+    background: var(--accent-purple-bg);
+    color: var(--accent-purple);
+    border-color: rgba(139, 92, 246, 0.25);
+  }
+
+  .feature-badge {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    color: var(--text-dim);
+  }
+
+  .feature-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text-main);
+  }
+
+  .feature-desc {
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* Spotlight Card */
+  .spotlight-card {
+    background: radial-gradient(circle at 80% 50%, rgba(19, 127, 236, 0.12) 0%, transparent 60%), var(--bg-surface-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 2.5rem;
+    align-items: center;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .spotlight-title {
+    font-size: 1.85rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .spotlight-desc {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+  }
+
+  .spotlight-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .spotlight-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9375rem;
+    color: var(--text-main);
+  }
+
+  .spotlight-list svg {
+    color: var(--accent-green);
+    flex-shrink: 0;
+  }
+
+  .spotlight-visual {
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .flow-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    width: 100%;
+  }
+
+  .flow-node {
+    width: 100%;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    text-align: center;
+  }
+
+  .flow-node.highlight {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 16px -2px var(--color-primary-glow);
+  }
+
+  .flow-pill {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  .flow-caption {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .flow-arrow svg {
+    transform: rotate(90deg);
+  }
+
+  @media (max-width: 900px) {
+    .spotlight-card {
+      grid-template-columns: 1fr;
+      padding: 2rem;
+    }
+  }
+</style>

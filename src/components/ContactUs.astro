@@ -1,0 +1,551 @@
+---
+---
+
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-tag">Direct Access</span>
+      <h2 class="section-title">Ready to Streamline Your Approvals?</h2>
+      <p class="section-desc">
+        Connect with our solutions architects to set up a personalized pilot, request security compliance documentation, or inquire about custom volume pricing.
+      </p>
+    </div>
+
+    <div class="contact-wrapper">
+      <!-- Contact Info & Highlights -->
+      <div class="contact-info-panel">
+        <div class="info-card">
+          <div class="info-badge">
+            <span class="dot-live"></span>
+            <span>Enterprise Desk</span>
+          </div>
+          <h3 class="info-heading">Talk to an Ilithya Workflow Specialist</h3>
+          <p class="info-text">
+            Get an interactive walkthrough of custom approval chains, multi-tenant RBAC setups, and automated cloud archival.
+          </p>
+
+          <div class="contact-channels">
+            <div class="channel-item">
+              <div class="channel-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </div>
+              <div class="channel-meta">
+                <span class="channel-label">Direct Inquiries</span>
+                <a href="mailto:sales@@ilithya.app" class="channel-val">sales@@ilithya.app</a>
+              </div>
+            </div>
+
+            <div class="channel-item">
+              <div class="channel-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <div class="channel-meta">
+                <span class="channel-label">Security & Compliance</span>
+                <span class="channel-val">SOC2 Type II & GDPR Ready</span>
+              </div>
+            </div>
+
+            <div class="channel-item">
+              <div class="channel-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <div class="channel-meta">
+                <span class="channel-label">SLA Response Guarantee</span>
+                <span class="channel-val">&lt; 2-hour response on business days</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote-card">
+          <p class="quote-text">
+            "Ilithya Workflow replaced weeks of back-and-forth email signature chasing with automated 4-hour approvals and instant audit logs."
+          </p>
+          <div class="quote-author">
+            <div class="avatar-placeholder">JM</div>
+            <div>
+              <div class="author-name">Jorge Morales</div>
+              <div class="author-role">VP of Operations, Global Logistics</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Accessible Interactive Contact Form -->
+      <div class="contact-form-panel">
+        <form class="contact-form" id="contact-form" method="POST" action="#">
+          <!-- Honeypot anti-spam field -->
+          <div class="visually-hidden">
+            <label for="bot-field">Do not fill this out if you are human</label>
+            <input type="text" id="bot-field" name="bot-field" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="full-name" class="form-label">Full Name <span class="required">*</span></label>
+              <input 
+                type="text" 
+                id="full-name" 
+                name="name" 
+                class="form-input" 
+                placeholder="Alex Morgan" 
+                autocomplete="name" 
+                required 
+                minlength="2"
+              />
+            </div>
+            <div class="form-group">
+              <label for="work-email" class="form-label">Work Email <span class="required">*</span></label>
+              <input 
+                type="email" 
+                id="work-email" 
+                name="email" 
+                class="form-input" 
+                placeholder="alex@company.com" 
+                autocomplete="email" 
+                required 
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="company-name" class="form-label">Company Name <span class="required">*</span></label>
+              <input 
+                type="text" 
+                id="company-name" 
+                name="company" 
+                class="form-input" 
+                placeholder="Organization" 
+                autocomplete="organization" 
+                required 
+              />
+            </div>
+            <div class="form-group">
+              <label for="team-size" class="form-label">Document Volume / Month</label>
+              <div class="select-wrapper">
+                <select id="team-size" name="volume" class="form-select">
+                  <option value="1-50">1 - 50 documents</option>
+                  <option value="50-250">50 - 250 documents</option>
+                  <option value="250-1000">250 - 1,000 documents</option>
+                  <option value="1000+">1,000+ documents (Enterprise)</option>
+                </select>
+                <div class="select-arrow">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message" class="form-label">Tell us about your approval workflow</label>
+            <textarea 
+              id="message" 
+              name="message" 
+              class="form-textarea" 
+              rows="4" 
+              placeholder="E.g., We have 4 approval stations for supplier invoices requiring legal and finance signatures..."
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-submit" id="submit-btn">
+            <span id="btn-text">Submit Request</span>
+            <svg id="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+
+          <p class="form-disclaimer">
+            🔒 We respect your privacy. No spam. You will be contacted strictly by our product engineering team.
+          </p>
+
+          <!-- Success Alert Banner -->
+          <div class="form-alert success" id="form-success" hidden role="alert">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <div>
+              <strong>Thank you for contacting Ilithya Workflow!</strong>
+              <p>Your request has been received. A solutions specialist will reach out within 2 hours.</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const submitBtn = document.getElementById('submit-btn');
+  const btnText = document.getElementById('btn-text');
+  const successBanner = document.getElementById('form-success');
+  const honeypot = document.getElementById('bot-field') as HTMLInputElement | null;
+
+  if (form && submitBtn && btnText && successBanner) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Check honeypot
+      if (honeypot && honeypot.value.trim() !== '') {
+        return; // Bot detected, silent discard
+      }
+
+      // Simulate loading state
+      btnText.textContent = 'Submitting...';
+      submitBtn.setAttribute('disabled', 'true');
+
+      setTimeout(() => {
+        btnText.textContent = 'Request Sent!';
+        successBanner.hidden = false;
+        form.reset();
+        submitBtn.removeAttribute('disabled');
+      }, 700);
+    });
+  }
+</script>
+
+<style>
+  .contact-section {
+    padding-block: 6rem;
+    position: relative;
+    background: var(--bg-main);
+    border-top: 1px solid var(--border-color);
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .section-header {
+    margin-bottom: 4rem;
+  }
+
+  .contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+    gap: 3rem;
+    align-items: flex-start;
+  }
+
+  /* Info Panel */
+  .contact-info-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .info-card {
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: 2.25rem;
+  }
+
+  .info-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent-green);
+    background: var(--accent-green-bg);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-full);
+    margin-bottom: 1.25rem;
+  }
+
+  .dot-live {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--accent-green);
+    box-shadow: 0 0 8px var(--accent-green);
+  }
+
+  .info-heading {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+  }
+
+  .info-text {
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .contact-channels {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .channel-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .channel-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid rgba(19, 127, 236, 0.2);
+  }
+
+  .channel-meta {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .channel-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-dim);
+  }
+
+  .channel-val {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  a.channel-val:hover {
+    color: var(--color-primary);
+  }
+
+  /* Quote Card */
+  .quote-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+  }
+
+  .quote-text {
+    font-size: 0.9375rem;
+    font-style: italic;
+    color: var(--text-main);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .quote-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .avatar-placeholder {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #137fec, #6366f1);
+    color: #ffffff;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .author-name {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  .author-role {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  /* Contact Form Panel */
+  .contact-form-panel {
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: 2.75rem;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    clip-path: inset(50%);
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    white-space: nowrap;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  .required {
+    color: var(--accent-red);
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    color: var(--text-main);
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    min-height: 46px;
+  }
+
+  .form-input::placeholder,
+  .form-textarea::placeholder {
+    color: var(--text-dim);
+  }
+
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-light);
+    outline: none;
+  }
+
+  .select-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .form-select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    padding-right: 2.5rem;
+  }
+
+  .select-arrow {
+    position: absolute;
+    right: 1rem;
+    pointer-events: none;
+    color: var(--text-dim);
+    display: flex;
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 110px;
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 0.95rem;
+    font-size: 1rem;
+  }
+
+  .form-disclaimer {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .form-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .form-alert.success {
+    background: var(--accent-green-bg);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: var(--accent-green);
+  }
+
+  .form-alert strong {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.15rem;
+  }
+
+  .form-alert p {
+    color: var(--text-main);
+    font-size: 0.8125rem;
+    margin: 0;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 900px) {
+    .contact-wrapper {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-form-panel {
+      padding: 1.5rem;
+    }
+  }
+</style>
