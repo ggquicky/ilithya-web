@@ -1,4 +1,9 @@
 ---
+interface Props {
+  recipientEmail?: string;
+}
+
+const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
 ---
 
 <section class="contact-section" id="contact">
@@ -34,7 +39,7 @@
               </div>
               <div class="channel-meta">
                 <span class="channel-label">Direct Inquiries</span>
-                <a href="mailto:sales@@ilithya.app" class="channel-val">sales@@ilithya.app</a>
+                <a href={`mailto:${recipientEmail}`} class="channel-val">{recipientEmail}</a>
               </div>
             </div>
 
@@ -79,14 +84,24 @@
         </div>
       </div>
 
-      <!-- Accessible Interactive Contact Form -->
+      <!-- Accessible Interactive Contact Form with Direct Email Delivery -->
       <div class="contact-form-panel">
-        <form class="contact-form" id="contact-form" method="POST" action="#">
-          <!-- Honeypot anti-spam field -->
+        <form 
+          class="contact-form" 
+          id="contact-form" 
+          method="POST" 
+          action={`https://formsubmit.co/ajax/${recipientEmail}`}
+        >
+          <!-- Anti-spam Honeypot -->
           <div class="visually-hidden">
             <label for="bot-field">Do not fill this out if you are human</label>
-            <input type="text" id="bot-field" name="bot-field" tabindex="-1" autocomplete="off" />
+            <input type="text" id="bot-field" name="_honey" tabindex="-1" autocomplete="off" />
           </div>
+
+          <!-- FormSubmit Configuration Fields -->
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_subject" id="form-subject" value="New Ilithya Workflow Lead Inquiry" />
 
           <div class="form-row">
             <div class="form-group">
@@ -124,7 +139,7 @@
                 id="company-name" 
                 name="company" 
                 class="form-input" 
-                placeholder="Organization" 
+                placeholder="Acme Corp" 
                 autocomplete="organization" 
                 required 
               />
@@ -167,7 +182,7 @@
           </button>
 
           <p class="form-disclaimer">
-            🔒 We respect your privacy. No spam. You will be contacted strictly by our product engineering team.
+            🔒 We respect your privacy. Submissions are delivered directly to executive leadership ({recipientEmail}).
           </p>
 
           <!-- Success Alert Banner -->
@@ -177,7 +192,33 @@
             </svg>
             <div>
               <strong>Thank you for contacting Ilithya Workflow!</strong>
-              <p>Your request has been received. A solutions specialist will reach out within 2 hours.</p>
+              <p>Your inquiry has been emailed directly to leadership ({recipientEmail}). A workflow specialist will reach out shortly.</p>
+            </div>
+          </div>
+
+          <!-- Activation Required Alert Banner -->
+          <div class="form-alert info" id="form-activation" hidden role="alert">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <div>
+              <strong>Action Required for {recipientEmail}</strong>
+              <p>An initial confirmation email was sent to <strong>{recipientEmail}</strong>. Please check your inbox and click <em>"Activate Form"</em> to start receiving leads automatically!</p>
+            </div>
+          </div>
+
+          <!-- Error Alert Banner -->
+          <div class="form-alert error" id="form-error" hidden role="alert">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <div>
+              <strong>Submission error</strong>
+              <p>Unable to send message right now. Please reach out directly to <a href={`mailto:${recipientEmail}`} class="underline-link">{recipientEmail}</a>.</p>
             </div>
           </div>
         </form>
@@ -188,30 +229,98 @@
 
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
-  const submitBtn = document.getElementById('submit-btn');
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
   const btnText = document.getElementById('btn-text');
+  const btnIcon = document.getElementById('btn-icon');
   const successBanner = document.getElementById('form-success');
+  const activationBanner = document.getElementById('form-activation');
+  const errorBanner = document.getElementById('form-error');
   const honeypot = document.getElementById('bot-field') as HTMLInputElement | null;
+  const subjectInput = document.getElementById('form-subject') as HTMLInputElement | null;
 
-  if (form && submitBtn && btnText && successBanner) {
-    form.addEventListener('submit', (e) => {
+  if (form && submitBtn && btnText) {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // Check honeypot
+      // Anti-spam honeypot defense
       if (honeypot && honeypot.value.trim() !== '') {
-        return; // Bot detected, silent discard
+        return; // Bot detected, silent reject
       }
 
-      // Simulate loading state
-      btnText.textContent = 'Submitting...';
-      submitBtn.setAttribute('disabled', 'true');
+      const formData = new FormData(form);
+      const name = (formData.get('name') as string)?.trim() || 'Prospect';
+      const company = (formData.get('company') as string)?.trim() || 'Enterprise';
+      const email = (formData.get('email') as string)?.trim() || '';
 
-      setTimeout(() => {
-        btnText.textContent = 'Request Sent!';
-        successBanner.hidden = false;
-        form.reset();
+      // Set dynamic subject & reply-to headers
+      if (subjectInput) {
+        subjectInput.value = `[Ilithya Lead] ${name} from ${company}`;
+      }
+      formData.set('_subject', `[Ilithya Lead] ${name} from ${company}`);
+      formData.set('_replyto', email);
+
+      // Reset all banners before submission
+      if (errorBanner) errorBanner.hidden = true;
+      if (successBanner) successBanner.hidden = true;
+      if (activationBanner) activationBanner.hidden = true;
+
+      // Loading state
+      submitBtn.setAttribute('disabled', 'true');
+      btnText.textContent = 'Sending Message...';
+      if (btnIcon) btnIcon.style.display = 'none';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+          },
+          body: formData,
+        });
+
+        const data = await response.json().catch(() => null);
+
+        // Check for first-time activation message in payload
+        if (data && typeof data.message === 'string' && data.message.toLowerCase().includes('activat')) {
+          btnText.textContent = 'Activation Required';
+          if (errorBanner) errorBanner.hidden = true;
+          if (successBanner) successBanner.hidden = true;
+          if (activationBanner) activationBanner.hidden = false;
+          form.reset();
+          return;
+        }
+
+        if (response.ok && (!data || data.success === 'true' || data.success === true)) {
+          btnText.textContent = 'Sent Successfully!';
+          if (errorBanner) errorBanner.hidden = true;
+          if (activationBanner) activationBanner.hidden = true;
+          if (successBanner) successBanner.hidden = false;
+          form.reset();
+        } else {
+          throw new Error(data?.message || 'Submission error');
+        }
+      } catch (err: any) {
+        console.error('Contact form submission response:', err);
+        const errMsg = String(err?.message || '').toLowerCase();
+        
+        if (errMsg.includes('activat')) {
+          btnText.textContent = 'Activation Sent';
+          if (errorBanner) errorBanner.hidden = true;
+          if (successBanner) successBanner.hidden = true;
+          if (activationBanner) activationBanner.hidden = false;
+          form.reset();
+        } else {
+          if (successBanner) successBanner.hidden = true;
+          if (activationBanner) activationBanner.hidden = true;
+          if (errorBanner) errorBanner.hidden = false;
+        }
+      } finally {
         submitBtn.removeAttribute('disabled');
-      }, 700);
+        setTimeout(() => {
+          btnText.textContent = 'Submit Request';
+          if (btnIcon) btnIcon.style.display = 'inline';
+        }, 5000);
+      }
     });
   }
 </script>
@@ -500,6 +609,7 @@
     line-height: 1.4;
   }
 
+  .form-alert[hidden] { display: none !important; }
   .form-alert {
     display: flex;
     align-items: flex-start;
@@ -516,6 +626,18 @@
     color: var(--accent-green);
   }
 
+  .form-alert.info {
+    background: rgba(19, 127, 236, 0.15);
+    border: 1px solid rgba(19, 127, 236, 0.4);
+    color: #38bdf8;
+  }
+
+  .form-alert.error {
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: var(--accent-red);
+  }
+
   .form-alert strong {
     display: block;
     font-weight: 700;
@@ -526,6 +648,11 @@
     color: var(--text-main);
     font-size: 0.8125rem;
     margin: 0;
+  }
+
+  .underline-link {
+    color: var(--color-primary);
+    text-decoration: underline;
   }
 
   @keyframes fadeIn {

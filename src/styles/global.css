@@ -244,3 +244,8 @@ select:focus-visible {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-dim);
 }
+
+[hidden] {
+  display: none !important;
+}
+
