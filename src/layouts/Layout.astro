@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import PilotModal from '../components/PilotModal.astro';
-import { getLocalizedPath, type Language } from '../i18n/ui';
+import { getLocalizedPath, languages, type Language } from '../i18n/ui';
 
 interface Props {
   title?: string;
@@ -25,10 +25,17 @@ const currentPath = Astro.url.pathname;
 const canonicalURL = new URL(currentPath, siteUrl);
 const ogImageURL = new URL(ogImage, siteUrl);
 
-const esPath = getLocalizedPath(currentPath, 'es');
-const enPath = getLocalizedPath(currentPath, 'en');
-const esCanonicalURL = new URL(esPath, siteUrl);
-const enCanonicalURL = new URL(enPath, siteUrl);
+const localeMap: Record<Language, string> = {
+  es: 'es_LA',
+  en: 'en_US',
+  it: 'it_IT',
+  pt: 'pt_BR'
+};
+
+const altLangs = (Object.keys(languages) as Language[]).map(code => ({
+  code,
+  url: new URL(getLocalizedPath(currentPath, code), siteUrl)
+}));
 
 // Structured Data (JSON-LD) for Google Rich Snippets
 const structuredData = {
@@ -98,9 +105,10 @@ const structuredData = {
     
     <!-- Canonical & Alternate Hreflang URLs -->
     <link rel="canonical" href={canonicalURL} />
-    <link rel="alternate" hreflang="es" href={esCanonicalURL} />
-    <link rel="alternate" hreflang="en" href={enCanonicalURL} />
-    <link rel="alternate" hreflang="x-default" href={esCanonicalURL} />
+    {altLangs.map(alt => (
+      <link rel="alternate" hreflang={alt.code} href={alt.url} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={new URL(getLocalizedPath(currentPath, 'es'), siteUrl)} />
 
     <!-- Search Engine Directives -->
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -114,8 +122,7 @@ const structuredData = {
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
     <meta property="og:image:alt" content="Ilithya Workflow Platform" />
-    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'es_LA'} />
-    <meta property="og:locale:alternate" content={lang === 'en' ? 'es_LA' : 'en_US'} />
+    <meta property="og:locale" content={localeMap[lang] || 'es_LA'} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />

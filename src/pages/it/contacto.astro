@@ -1,0 +1,97 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import ContactUs from '../../components/ContactUs.astro';
+import Footer from '../../components/Footer.astro';
+import { getTranslations } from '../../i18n/ui';
+
+const t = getTranslations('it');
+---
+
+<Layout 
+  title={t.meta.contact.title}
+  description={t.meta.contact.description}
+  lang="it"
+>
+  <Header lang="it" />
+
+  <main>
+    <!-- Page Intro Header -->
+    <section class="page-intro-header">
+      <div class="container text-center">
+        <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+          <a href="/it/">{t.nav.home}</a>
+          <span class="bc-sep">/</span>
+          <span class="bc-current">{t.nav.contact}</span>
+        </nav>
+        <span class="section-tag">{t.meta.contact.tag}</span>
+        <h1 class="page-intro-title">{t.meta.contact.heading}</h1>
+        <p class="page-intro-desc">
+          {t.meta.contact.intro}
+        </p>
+      </div>
+    </section>
+
+    <!-- Full Contact Us Panel -->
+    <ContactUs lang="it" />
+  </main>
+
+  <Footer lang="it" />
+</Layout>
+
+<style>
+  .page-intro-header {
+    padding-top: 4.5rem;
+    padding-bottom: 2.5rem;
+    background: radial-gradient(ellipse at top, rgba(19, 127, 236, 0.12) 0%, transparent 70%);
+    position: relative;
+  }
+
+  .breadcrumb-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--text-dim);
+    margin-bottom: 1.25rem;
+  }
+
+  .breadcrumb-nav a {
+    color: var(--text-muted);
+    transition: color 0.15s ease;
+  }
+
+  .breadcrumb-nav a:hover {
+    color: var(--color-primary);
+  }
+
+  .bc-sep {
+    opacity: 0.4;
+  }
+
+  .bc-current {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .page-intro-title {
+    font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    letter-spacing: -0.03em;
+  }
+
+  .page-intro-desc {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 720px;
+    margin-inline: auto;
+    line-height: 1.6;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+</style>

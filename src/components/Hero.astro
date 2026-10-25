@@ -13,6 +13,139 @@ const {
 
 const t = getTranslations(lang);
 const casesHref = getLocalizedPath('/casos-de-uso', lang);
+
+const heroI18n = {
+  es: {
+    badge: 'Ilithya Workflow • Soporte Digital para Decisiones de Equipo',
+    headlineMain: 'Agilidad y Claridad para las',
+    headlineGradient: 'Decisiones de tu Equipo',
+    subline: 'ILITHYA — Un soporte digital para que los flujos de compras, viáticos, vacaciones y contrataciones de tu empresa avancen sin fricción, cuellos de botella ni desgaste en correos.',
+    ctaPilot: 'Solicitar Plan Piloto (15 a 20 Días)',
+    ctaCases: 'Explorar Casos de Uso',
+    trustSluggish: 'Recordatorios & SLAs en Vivo',
+    trustSignatures: 'Firmas & Sellos Criptográficos',
+    trustArchive: 'PDF Consolidado y Auto-Archivado',
+    liveSync: 'Sincronización en Vivo',
+    docTitle: 'Requisa_Compra_Servidores_OC-80492.pdf',
+    inReview: 'En Aprobación',
+    slaTime: 'SLA: 03h 45m Restante',
+    docSub: 'Flujo: Compra a Proveedores • Solicitante: Carlos Méndez (TI) • 3 Adjuntos (Requisa + Cotización + Justificación)',
+    step1Role: 'Solicitante',
+    step1Name: 'Expediente Subido',
+    step1Time: 'Hoy, 09:15 AM',
+    step2Role: 'Jefe de Área (TI)',
+    step2Name: 'Autorizado y Sellado',
+    step2Time: 'Hoy, 11:28 AM',
+    step3Role: 'Gerente Financiero',
+    step3Name: 'Validación Presupuesto',
+    step3Time: 'Asignado a L. Morales',
+    step4Role: 'Depto. de Compras',
+    step4Name: 'Orden al Proveedor',
+    step4Time: 'Basado en PDF Consolidado',
+    auditTitle: 'Pista de Auditoría en Vivo',
+    audit1: 'Sello y firma digital estampados por Jefe de Área (TI) con sello de fecha/hora.',
+    audit2: 'Validación técnica aprobada: 2 cotizaciones comparadas y partida justificada.',
+    audit3: 'Documentos cargados: Formato de requisa, cotización del proveedor y justificación técnica.'
+  },
+  en: {
+    badge: 'Ilithya Workflow • Digital Backbone for Team Decisions',
+    headlineMain: 'Agility and Clarity for Your',
+    headlineGradient: 'Team’s Decisions',
+    subline: 'ILITHYA — A digital backbone ensuring your company’s approval workflows for purchases, travel, leave, and hiring advance without friction, bottlenecks, or email fatigue.',
+    ctaPilot: 'Request Pilot Plan (15 to 20 Days)',
+    ctaCases: 'Explore Use Cases',
+    trustSluggish: 'Live Reminders & Intelligent SLAs',
+    trustSignatures: 'Digital Signatures & Cryptographic Stamps',
+    trustArchive: 'Consolidated PDF & 30-Day Auto-Archive',
+    liveSync: 'Live Real-Time Sync',
+    docTitle: 'Requisition_Server_Procurement_PO-80492.pdf',
+    inReview: 'In Review',
+    slaTime: 'SLA: 03h 45m Remaining',
+    docSub: 'Workflow: Vendor Procurement • Requester: Charles Mendez (IT) • 3 Attachments (Requisition + Quote + Case)',
+    step1Role: 'Requester',
+    step1Name: 'Package Uploaded',
+    step1Time: 'Today, 09:15 AM',
+    step2Role: 'Department Head (IT)',
+    step2Name: 'Authorized & Stamped',
+    step2Time: 'Today, 11:28 AM',
+    step3Role: 'Finance Director',
+    step3Name: 'Budget Validation',
+    step3Time: 'Assigned to L. Morales',
+    step4Role: 'Procurement Dept',
+    step4Name: 'Purchase Order',
+    step4Time: 'Based on Final PDF',
+    auditTitle: 'Live Cryptographic Audit Trail',
+    audit1: 'Digital signature and stamp affixed by Department Head (IT) with UTC timestamp.',
+    audit2: 'Technical validation approved: 2 supplier quotes compared and budget justified.',
+    audit3: 'Documents uploaded: Requisition form, vendor quote, and technical justification.'
+  },
+  it: {
+    badge: 'Ilithya Workflow • Spina Dorsale Digitale per le Decisioni del Team',
+    headlineMain: 'Agilità e Chiarezza per le',
+    headlineGradient: 'Decisioni del Tuo Team',
+    subline: 'ILITHYA — Una spina dorsale digitale affinché i flussi di acquisti, trasferte, ferie e assunzioni della tua azienda avanzino senza attriti, colli di bottiglia né fatiche via email.',
+    ctaPilot: 'Richiedi Piano Pilota (15-20 Giorni)',
+    ctaCases: 'Scopri i Casi d\'Uso',
+    trustSluggish: 'Promemoria & SLA in Tempo Reale',
+    trustSignatures: 'Firme & Timbri Crittografici',
+    trustArchive: 'PDF Consolidato e Archiviazione Automatica',
+    liveSync: 'Sincronizzazione in Tempo Reale',
+    docTitle: 'Richiesta_Acquisto_Server_OC-80492.pdf',
+    inReview: 'In Approvazione',
+    slaTime: 'SLA: 03h 45m Rimanenti',
+    docSub: 'Flusso: Acquisti Fornitori • Richiedente: Carlo Mori (IT) • 3 Allegati (Richiesta + Preventivo + Giustificativo)',
+    step1Role: 'Richiedente',
+    step1Name: 'Fascicolo Inviato',
+    step1Time: 'Oggi, 09:15',
+    step2Role: 'Responsabile IT',
+    step2Name: 'Autorizzato e Timbrato',
+    step2Time: 'Oggi, 11:28',
+    step3Role: 'Direttore Finanziario',
+    step3Name: 'Verifica Budget',
+    step3Time: 'Assegnato a L. Moretti',
+    step4Role: 'Ufficio Acquisti',
+    step4Name: 'Ordine al Fornitore',
+    step4Time: 'Basato su PDF Consolidato',
+    auditTitle: 'Audit Trail Crittografico in Tempo Reale',
+    audit1: 'Timbro e firma digitale apposti dal Responsabile IT con marca temporale.',
+    audit2: 'Convalida tecnica approvata: 2 preventivi confrontati e spesa giustificata.',
+    audit3: 'Documenti caricati: Modulo di richiesta, preventivo fornitore e motivazione tecnica.'
+  },
+  pt: {
+    badge: 'Ilithya Workflow • Estrutura Digital para Decisões da Equipe',
+    headlineMain: 'Agilidade e Clareza para as',
+    headlineGradient: 'Decisões da sua Equipe',
+    subline: 'ILITHYA — Uma estrutura digital para que os fluxos de compras, diárias, férias e contratações da sua empresa avancem sem atritos, gargalos ou desgaste em e-mails.',
+    ctaPilot: 'Solicitar Plano Piloto (15 a 20 Dias)',
+    ctaCases: 'Explorar Casos de Uso',
+    trustSluggish: 'Lembretes & SLAs em Tempo Real',
+    trustSignatures: 'Assinaturas & Carimbos Criptográficos',
+    trustArchive: 'PDF Consolidado e Auto-Arquivamento',
+    liveSync: 'Sincronização em Tempo Real',
+    docTitle: 'Requisicao_Compra_Servidores_OC-80492.pdf',
+    inReview: 'Em Aprovação',
+    slaTime: 'SLA: 03h 45m Restantes',
+    docSub: 'Fluxo: Compra a Fornecedores • Solicitante: Carlos Mendes (TI) • 3 Anexos (Requisição + Cotação + Justificativa)',
+    step1Role: 'Solicitante',
+    step1Name: 'Processo Enviado',
+    step1Time: 'Hoje, 09:15',
+    step2Role: 'Gestor de Área (TI)',
+    step2Name: 'Autorizado e Carimbado',
+    step2Time: 'Hoje, 11:28',
+    step3Role: 'Gerente Financeiro',
+    step3Name: 'Validação Orçamentária',
+    step3Time: 'Atribuído a L. Morales',
+    step4Role: 'Depto. de Compras',
+    step4Name: 'Pedido ao Fornecedor',
+    step4Time: 'Baseado no PDF Consolidado',
+    auditTitle: 'Trilha de Auditoria Criptográfica em Tempo Real',
+    audit1: 'Carimbo e assinatura digital aplicados pelo Gestor de TI com carimbo de data/hora.',
+    audit2: 'Validação técnica aprovada: 2 cotações comparadas e dotação justificada.',
+    audit3: 'Documentos enviados: Formulário de requisição, cotação e justificativa técnica.'
+  }
+};
+
+const h = heroI18n[lang] || heroI18n.es;
 ---
 
 <section class="hero-section">
@@ -20,28 +153,22 @@ const casesHref = getLocalizedPath('/casos-de-uso', lang);
     <div class="hero-badge-wrapper">
       <div class="hero-badge">
         <span class="badge-dot"></span>
-        <span class="badge-text">{lang === 'es' ? 'Ilithya Workflow • Soporte Digital para Decisiones de Equipo' : 'Ilithya Workflow • Digital Backbone for Team Decisions'}</span>
+        <span class="badge-text">{h.badge}</span>
         <span class="badge-arrow">→</span>
       </div>
     </div>
 
     <div class="hero-content">
       <h1 class="hero-headline">
-        {lang === 'es' ? (
-          <>Agilidad y Claridad para las <span class="gradient-text">Decisiones de tu Equipo</span></>
-        ) : (
-          <>Agility and Clarity for Your <span class="gradient-text">Team’s Decisions</span></>
-        )}
+        {h.headlineMain} <span class="gradient-text">{h.headlineGradient}</span>
       </h1>
       <p class="hero-subline">
-        {lang === 'es' 
-          ? 'ILITHYA — Un soporte digital para que los flujos de compras, viáticos, vacaciones y contrataciones de tu empresa avancen sin fricción, cuellos de botella ni desgaste en correos.'
-          : 'ILITHYA — A digital backbone ensuring your company’s approval workflows for purchases, travel, leave, and hiring advance without friction, bottlenecks, or email fatigue.'}
+        {h.subline}
       </p>
 
       <div class="hero-ctas">
         <button class="btn btn-primary btn-lg" data-open-modal="pilot" id="hero-cta-primary">
-          <span>{lang === 'es' ? 'Solicitar Plan Piloto (15 a 20 Días)' : 'Request Pilot Plan (15 to 20 Days)'}</span>
+          <span>{h.ctaPilot}</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>
@@ -51,7 +178,7 @@ const casesHref = getLocalizedPath('/casos-de-uso', lang);
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="5 3 19 12 5 21 5 3"></polygon>
           </svg>
-          <span>{lang === 'es' ? 'Explorar Casos de Uso' : 'Explore Use Cases'}</span>
+          <span>{h.ctaCases}</span>
         </a>
       </div>
 
@@ -62,21 +189,21 @@ const casesHref = getLocalizedPath('/casos-de-uso', lang);
             <circle cx="12" cy="12" r="10"/>
             <polyline points="12 6 12 12 16 14"/>
           </svg>
-          <span>{lang === 'es' ? 'Recordatorios & SLAs en Vivo' : 'Live Reminders & Intelligent SLAs'}</span>
+          <span>{h.trustSluggish}</span>
         </div>
         <div class="trust-divider"></div>
         <div class="trust-item">
           <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
-          <span>{lang === 'es' ? 'Firmas & Sellos Criptográficos' : 'Digital Signatures & Cryptographic Stamps'}</span>
+          <span>{h.trustSignatures}</span>
         </div>
         <div class="trust-divider"></div>
         <div class="trust-item">
           <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
           </svg>
-          <span>{lang === 'es' ? 'PDF Consolidado y Auto-Archivado' : 'Consolidated PDF & 30-Day Auto-Archive'}</span>
+          <span>{h.trustArchive}</span>
         </div>
       </div>
     </div>
@@ -101,7 +228,7 @@ const casesHref = getLocalizedPath('/casos-de-uso', lang);
           </div>
           <div class="header-status">
             <span class="status-indicator"></span>
-            <span>{lang === 'es' ? 'Sincronización en Vivo' : 'Live Real-Time Sync'}</span>
+            <span>{h.liveSync}</span>
           </div>
         </div>
 
@@ -115,14 +242,12 @@ const casesHref = getLocalizedPath('/casos-de-uso', lang);
           </div>
           <div class="doc-meta">
             <div class="doc-title-row">
-              <h2 class="doc-title">{lang === 'es' ? 'Requisa_Compra_Servidores_OC-80492.pdf' : 'Requisition_Server_Procurement_PO-80492.pdf'}</h2>
-              <span class="pill pill-blue">{lang === 'es' ? 'En Aprobación' : 'In Review'}</span>
-              <span class="pill pill-sla">{lang === 'es' ? 'SLA: 03h 45m Restante' : 'SLA: 03h 45m Remaining'}</span>
+              <h2 class="doc-title">{h.docTitle}</h2>
+              <span class="pill pill-blue">{h.inReview}</span>
+              <span class="pill pill-sla">{h.slaTime}</span>
             </div>
             <p class="doc-sub">
-              {lang === 'es' 
-                ? 'Flujo: Compra a Proveedores • Solicitante: Carlos Méndez (TI) • 3 Adjuntos (Requisa + Cotización + Justificación)' 
-                : 'Workflow: Vendor Procurement • Requester: Charles Mendez (IT) • 3 Attachments (Requisition + Quote + Case)'}
+              {h.docSub}
             </p>
           </div>
         </div>
@@ -136,9 +261,9 @@ const casesHref = getLocalizedPath('/casos-de-uso', lang);
               </svg>
             </div>
             <div class="step-info">
-              <span class="step-role">{lang === 'es' ? 'Solicitante' : 'Requester'}</span>
-              <span class="step-name">{lang === 'es' ? 'Expediente Subido' : 'Package Uploaded'}</span>
-              <span class="step-time">{lang === 'es' ? 'Hoy, 09:15 AM' : 'Today, 09:15 AM'}</span>
+              <span class="step-role">{h.step1Role}</span>
+              <span class="step-name">{h.step1Name}</span>
+              <span class="step-time">{h.step1Time}</span>
             </div>
           </div>
 
@@ -151,9 +276,9 @@ const casesHref = getLocalizedPath('/casos-de-uso', lang);
               </svg>
             </div>
             <div class="step-info">
-              <span class="step-role">{lang === 'es' ? 'Jefe de Área (TI)' : 'Department Head (IT)'}</span>
-              <span class="step-name">{lang === 'es' ? 'Autorizado y Sellado' : 'Authorized & Stamped'}</span>
-              <span class="step-time">{lang === 'es' ? 'Hoy, 11:28 AM' : 'Today, 11:28 AM'}</span>
+              <span class="step-role">{h.step2Role}</span>
+              <span class="step-name">{h.step2Name}</span>
+              <span class="step-time">{h.step2Time}</span>
             </div>
           </div>
 
@@ -165,9 +290,9 @@ const casesHref = getLocalizedPath('/casos-de-uso', lang);
               3
             </div>
             <div class="step-info">
-              <span class="step-role">{lang === 'es' ? 'Gerente Financiero' : 'Finance Director'}</span>
-              <span class="step-name">{lang === 'es' ? 'Validación Presupuesto' : 'Budget Validation'}</span>
-              <span class="step-time">{lang === 'es' ? 'Asignado a L. Morales' : 'Assigned to L. Morales'}</span>
+              <span class="step-role">{h.step3Role}</span>
+              <span class="step-name">{h.step3Name}</span>
+              <span class="step-time">{h.step3Time}</span>
             </div>
           </div>
 
@@ -176,9 +301,9 @@ const casesHref = getLocalizedPath('/casos-de-uso', lang);
           <div class="step-card pending">
             <div class="step-number">4</div>
             <div class="step-info">
-              <span class="step-role">{lang === 'es' ? 'Depto. de Compras' : 'Procurement Dept'}</span>
-              <span class="step-name">{lang === 'es' ? 'Orden al Proveedor' : 'Purchase Order'}</span>
-              <span class="step-time">{lang === 'es' ? 'Basado en PDF Consolidado' : 'Based on Final PDF'}</span>
+              <span class="step-role">{h.step4Role}</span>
+              <span class="step-name">{h.step4Name}</span>
+              <span class="step-time">{h.step4Time}</span>
             </div>
           </div>
         </div>
@@ -223,20 +348,20 @@ const casesHref = getLocalizedPath('/casos-de-uso', lang);
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
               </svg>
-              <span>{lang === 'es' ? 'Pista de Auditoría en Vivo' : 'Live Cryptographic Audit Trail'}</span>
+              <span>{h.auditTitle}</span>
             </div>
             <div class="audit-items">
               <div class="audit-entry">
                 <span class="entry-time">11:28:40</span>
-                <p>{lang === 'es' ? 'Sello y firma digital estampados por Jefe de Área (TI) con sello de fecha/hora.' : 'Digital signature and stamp affixed by Department Head (IT) with UTC timestamp.'}</p>
+                <p>{h.audit1}</p>
               </div>
               <div class="audit-entry">
                 <span class="entry-time">11:25:02</span>
-                <p>{lang === 'es' ? 'Validación técnica aprobada: 2 cotizaciones comparadas y partida justificada.' : 'Technical validation approved: 2 supplier quotes compared and budget justified.'}</p>
+                <p>{h.audit2}</p>
               </div>
               <div class="audit-entry">
                 <span class="entry-time">09:15:18</span>
-                <p>{lang === 'es' ? 'Documentos cargados: Formato de requisa, cotización del proveedor y justificación técnica.' : 'Documents uploaded: Requisition form, vendor quote, and technical justification.'}</p>
+                <p>{h.audit3}</p>
               </div>
             </div>
           </div>

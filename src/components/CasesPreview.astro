@@ -21,6 +21,32 @@ const cases = t.casesPreview.cases.map((c, i) => ({
   ...c,
   icon: caseIcons[i % caseIcons.length]
 }));
+const labels = {
+  es: {
+    viewStations: 'Ver flujo y estaciones',
+    exploreAll: 'Explorar los 5 Flujos Detallados Paso a Paso',
+    requestPilot: 'Solicitar Plan Piloto (15 a 20 Días)'
+  },
+  en: {
+    viewStations: 'View workflow & stations',
+    exploreAll: 'Explore All 5 Workflows Step-by-Step',
+    requestPilot: 'Request Pilot Plan (15 to 20 Days)'
+  },
+  it: {
+    viewStations: 'Vedi flusso e stazioni',
+    exploreAll: 'Esplora Tutti i 5 Flussi Passo dopo Passo',
+    requestPilot: 'Richiedi Piano Pilota (15-20 Giorni)'
+  },
+  pt: {
+    viewStations: 'Ver fluxo e estações',
+    exploreAll: 'Explorar Todos os 5 Fluxos Passo a Passo',
+    requestPilot: 'Solicitar Plano Piloto (15 a 20 Dias)'
+  }
+}[lang] || {
+  viewStations: 'Ver flujo y estaciones',
+  exploreAll: 'Explorar los 5 Flujos Detallados Paso a Paso',
+  requestPilot: 'Solicitar Plan Piloto (15 a 20 Días)'
+};
 ---
 
 <section class="cases-preview-section" id="casos-preview">
@@ -47,7 +73,7 @@ const cases = t.casesPreview.cases.map((c, i) => ({
           <h3 class="card-title">{c.title}</h3>
           <p class="card-desc">{c.desc}</p>
           <div class="card-link">
-            <span>{lang === 'es' ? 'Ver flujo y estaciones' : 'View workflow & stations'}</span>
+            <span>{labels.viewStations}</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
@@ -60,14 +86,14 @@ const cases = t.casesPreview.cases.map((c, i) => ({
     <!-- CTA Row -->
     <div class="preview-cta-row">
       <a href={casesBaseHref} class="btn btn-secondary btn-lg">
-        <span>{lang === 'es' ? 'Explorar los 5 Flujos Detallados Paso a Paso' : 'Explore All 5 Workflows Step-by-Step'}</span>
+        <span>{labels.exploreAll}</span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <line x1="5" y1="12" x2="19" y2="12"></line>
           <polyline points="12 5 19 12 12 19"></polyline>
         </svg>
       </a>
       <button class="btn btn-primary btn-lg" data-open-modal="pilot">
-        <span>{lang === 'es' ? 'Solicitar Plan Piloto (15 a 20 Días)' : 'Request Pilot Plan (15 to 20 Days)'}</span>
+        <span>{labels.requestPilot}</span>
       </button>
     </div>
   </div>

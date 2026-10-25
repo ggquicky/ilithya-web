@@ -14,6 +14,39 @@ const casesHref = getLocalizedPath('/casos-de-uso', lang);
 const platformHref = getLocalizedPath('/plataforma', lang);
 const pilotHref = getLocalizedPath('/plan-piloto', lang);
 const contactHref = getLocalizedPath('/contacto', lang);
+const footerLabels: Record<Language, {
+  uptime: string;
+  privacy: string;
+  terms: string;
+  security: string;
+}> = {
+  es: {
+    uptime: 'Sistemas Operativos • 99.98% Disponibilidad',
+    privacy: 'Privacidad',
+    terms: 'Términos',
+    security: 'Seguridad & Cumplimiento'
+  },
+  en: {
+    uptime: 'All Systems Operational • 99.98% Uptime',
+    privacy: 'Privacy',
+    terms: 'Terms',
+    security: 'Security & Compliance'
+  },
+  it: {
+    uptime: 'Tutti i Sistemi Operativi • 99.98% Disponibilità',
+    privacy: 'Privacy',
+    terms: 'Termini',
+    security: 'Sicurezza & Conformità'
+  },
+  pt: {
+    uptime: 'Todos os Sistemas Operacionais • 99.98% Disponibilidade',
+    privacy: 'Privacidade',
+    terms: 'Termos',
+    security: 'Segurança & Conformidade'
+  }
+};
+
+const fl = footerLabels[lang] || footerLabels.es;
 ---
 
 <footer class="site-footer">
@@ -29,7 +62,7 @@ const contactHref = getLocalizedPath('/contacto', lang);
         </p>
         <div class="system-status">
           <span class="status-pulse"></span>
-          <span>{lang === 'es' ? 'Sistemas Operativos • 99.98% Disponibilidad' : 'All Systems Operational • 99.98% Uptime'}</span>
+          <span>{fl.uptime}</span>
         </div>
       </div>
 
@@ -70,9 +103,9 @@ const contactHref = getLocalizedPath('/contacto', lang);
         &copy; {currentYear} Ilithya Workflow Inc. {t.footer.rights}
       </p>
       <div class="legal-links">
-        <a href={contactHref}>{lang === 'es' ? 'Privacidad' : 'Privacy'}</a>
-        <a href={contactHref}>{lang === 'es' ? 'Términos' : 'Terms'}</a>
-        <a href={platformHref}>{lang === 'es' ? 'Seguridad & Cumplimiento' : 'Security & Compliance'}</a>
+        <a href={contactHref}>{fl.privacy}</a>
+        <a href={contactHref}>{fl.terms}</a>
+        <a href={platformHref}>{fl.security}</a>
       </div>
     </div>
   </div>

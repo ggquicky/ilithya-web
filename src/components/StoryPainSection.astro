@@ -1,28 +1,200 @@
 ---
-import { getTranslations, type Language } from '../i18n/ui';
+import { type Language } from '../i18n/ui';
 
 interface Props {
   lang?: Language;
 }
 
 const { lang = (Astro.currentLocale || 'es') as Language } = Astro.props;
-const isEs = lang === 'es';
+
+const storyI18n = {
+  es: {
+    tag: 'El Desafío Común',
+    title: 'Cuando la operación crece, el seguimiento manual se vuelve complejo',
+    desc: 'En el día a día, todos los ejecutivos están enfocados en sus metas clave. Sin embargo, al depender del correo o mensajes para autorizar trámites, la fricción es inevitable.',
+    pains: [
+      {
+        label: 'Riesgo Financiero',
+        title: 'Vencimiento de Condiciones',
+        desc: 'Una compra importante se retrasa unos días en revisión y, para cuando se aprueba, la cotización del proveedor ha cambiado o expirado, encareciendo la operación.'
+      },
+      {
+        label: 'Sobrecarga Operativa',
+        title: 'Bandejas Saturadas',
+        desc: 'Los directores y aprobadores reciben docenas de solicitudes diarias. Una tarea crítica puede quedar sepultada en un mar de emails sin ninguna mala intención.'
+      },
+      {
+        label: 'Pérdida de Productividad',
+        title: 'Desgaste del Equipo',
+        desc: 'Los colaboradores invierten horas valiosas haciendo "arqueología de correos" y preguntando "¿dónde está mi solicitud?", en lugar de concentrarse en su trabajo principal.'
+      }
+    ],
+    badge: 'El Papel de Ilithya: Tu Aliado Operativo',
+    solutionTitle: 'Un sistema que apoya la gestión de tu gente sin imponer nuevas reglas',
+    solutionSubtitle: 'Ilithya no viene a reemplazar sus procesos ni a imponer burocracia rígida, sino a respaldar a su equipo en su jornada diaria para que las decisiones fluyan con agilidad.',
+    pillars: [
+      {
+        title: 'Recordatorios Automáticos',
+        desc: 'Le avisa amablemente al aprobador sobre sus pendientes, liberando al solicitante de tener que "perseguir" firmas o enviar recordatorios incómodos.'
+      },
+      {
+        title: 'Gestión de Ausencias',
+        desc: 'Si un líder sale de viaje o a una reunión clave, el sistema ayuda a redirigir la tarea temporalmente al suplente para no frenar la continuidad del negocio.'
+      },
+      {
+        title: 'Visibilidad Compartida',
+        desc: 'Cualquier involucrado puede consultar el estado exacto de una solicitud en segundos con total transparencia: estación actual, responsable y SLA proyectado.'
+      },
+      {
+        title: 'Consultas Integradas',
+        desc: 'Permite resolver dudas o solicitar soportes adicionales dentro del mismo flujo sin perder el hilo de la conversación ni dispersar información por chats externos.'
+      }
+    ]
+  },
+  en: {
+    tag: 'The Common Challenge',
+    title: 'As operations expand, manual follow-ups quickly become a bottleneck',
+    desc: 'Leaders are dedicated to high-priority goals. Yet relying on emails or chat messages to authorize requests inevitably generates friction and delays.',
+    pains: [
+      {
+        label: 'Financial Risk',
+        title: 'Expired Supplier Quotes',
+        desc: 'A key purchase sits delayed in inboxes; by the time it is signed, vendor pricing has expired, needlessly driving up operational costs.'
+      },
+      {
+        label: 'Operational Overhead',
+        title: 'Saturated Inboxes',
+        desc: 'Managers receive dozens of requests daily. High-priority approvals get buried under routine emails without any ill intent.'
+      },
+      {
+        label: 'Lost Productivity',
+        title: 'Team Fatigue',
+        desc: 'Employees waste valuable hours doing "email archaeology" asking "where is my request?", instead of focusing on their core mission.'
+      }
+    ],
+    badge: 'Ilithya’s Role: Your Operational Ally',
+    solutionTitle: 'A platform supporting your team’s decisions without enforcing rigid bureaucracy',
+    solutionSubtitle: 'Ilithya does not replace your established processes or introduce complex red tape; it empowers your leadership so decisions flow with speed.',
+    pillars: [
+      {
+        title: 'Automated Reminders',
+        desc: 'Courteously alerts decision-makers of pending items, sparing requesters from awkwardly chasing signatures.'
+      },
+      {
+        title: 'Out-of-Office Stand-ins',
+        desc: 'When a manager is traveling or in meetings, requests seamlessly delegate to appointed deputies to preserve business continuity.'
+      },
+      {
+        title: 'Real-Time Visibility',
+        desc: 'Anyone involved can check request progress in seconds with complete clarity: current station, reviewer, and target SLA.'
+      },
+      {
+        title: 'In-Thread Context',
+        desc: 'Resolve questions or request additional documentation directly within the approval thread without fragmenting info across external chats.'
+      }
+    ]
+  },
+  it: {
+    tag: 'La Sfida Comune',
+    title: 'Quando l\'operatività cresce, il monitoraggio manuale diventa complesso',
+    desc: 'Nella quotidianità, i dirigenti sono concentrati sui loro obiettivi chiave. Tuttavia, affidarsi a email o messaggi per autorizzare pratiche genera inevitabili ritardi.',
+    pains: [
+      {
+        label: 'Rischio Finanziario',
+        title: 'Scadenza delle Condizioni',
+        desc: 'Un acquisto importante ritarda qualche giorno in revisione e, quando viene approvato, il preventivo del fornitore è scaduto o variato, rincarando i costi.'
+      },
+      {
+        label: 'Sovraccarico Operativo',
+        title: 'Caselle Intasate',
+        desc: 'I responsabili ricevono decine di richieste ogni giorno. Un\'approvazione critica può finire sepolta in un mare di email senza alcuna cattiva intenzione.'
+      },
+      {
+        label: 'Calo di Produttività',
+        title: 'Fatica del Team',
+        desc: 'I collaboratori sprecano ore preziose a fare "archeologia di email" chiedendo "a che punto è la mia pratica?", invece di concentrarsi sui propri compiti.'
+      }
+    ],
+    badge: 'Il Ruolo di Ilithya: Il Tuo Alleato Operativo',
+    solutionTitle: 'Un sistema che sostiene le decisioni del tuo team senza imporre rigida burocrazia',
+    solutionSubtitle: 'Ilithya non viene a stravolgere i tuoi processi né a introdurre complessità: affianca la tua squadra affinché le decisioni scorrano agilmente.',
+    pillars: [
+      {
+        title: 'Promemoria Automatici',
+        desc: 'Avvisa con discrezione l\'approvatore sulle pratiche in sospeso, liberando il richiedente dall\'imbarazzo di sollecitare firme.'
+      },
+      {
+        title: 'Gestione delle Assenze',
+        desc: 'Se un responsabile è in trasferta o occupato, il sistema delega temporaneamente al sostituto per garantire continuità.'
+      },
+      {
+        title: 'Visibilità Condivisa',
+        desc: 'Chiunque sia coinvolto può verificare lo stato esatto di una richiesta in pochi secondi: stazione attuale, revisore e SLA previsto.'
+      },
+      {
+        title: 'Chiarimenti Integrati',
+        desc: 'Consente di risolvere dubbi o allegare documenti aggiuntivi direttamente nel flusso senza disperdere conversazioni su chat esterne.'
+      }
+    ]
+  },
+  pt: {
+    tag: 'O Desafio Comum',
+    title: 'Quando a operação cresce, o acompanhamento manual se torna complexo',
+    desc: 'No dia a dia, as lideranças estão focadas em suas metas estratégicas. Porém, depender de e-mails ou mensagens para autorizar processos gera atrito inevitável.',
+    pains: [
+      {
+        label: 'Risco Financeiro',
+        title: 'Vencimento de Condições',
+        desc: 'Uma compra importante atrasa alguns dias em revisão e, quando é aprovada, a cotação do fornecedor expirou, encarecendo a operação.'
+      },
+      {
+        label: 'Sobrecarga Operacional',
+        title: 'Caixas de Entrada Lotadas',
+        desc: 'Os gestores recebem dezenas de solicitações diárias. Uma autorização crítica pode ficar sepultada sob mensagens rotineiras sem má intenção.'
+      },
+      {
+        label: 'Perda de Produtividade',
+        title: 'Desgaste da Equipe',
+        desc: 'Os colaboradores perdem horas valiosas fazendo "arqueologia de e-mails" perguntando "onde está meu pedido?", em vez de focar no seu trabalho principal.'
+      }
+    ],
+    badge: 'O Papel do Ilithya: Seu Aliado Operacional',
+    solutionTitle: 'Um sistema que apoia as decisões da sua equipe sem impor burocracia rígida',
+    solutionSubtitle: 'O Ilithya não vem substituir seus processos nem criar entraves: apoia sua liderança no dia a dia para que as decisões fluam com rapidez.',
+    pillars: [
+      {
+        title: 'Lembretes Automáticos',
+        desc: 'Avisa cordialmente o aprovador sobre pendências, poupando o solicitante de ter que "cobrar" assinaturas ou mandar recados desconfortáveis.'
+      },
+      {
+        title: 'Gestão de Ausências',
+        desc: 'Se um gestor estiver viajando ou em reunião, o sistema direciona temporariamente a tarefa ao suplente para não travar o negócio.'
+      },
+      {
+        title: 'Visibilidade Compartilhada',
+        desc: 'Qualquer envolvido pode consultar o status exato da solicitação em segundos: estação atual, responsável e prazo estimado de SLA.'
+      },
+      {
+        title: 'Esclarecimentos Integrados',
+        desc: 'Permite tirar dúvidas ou solicitar comprovantes adicionais dentro do próprio fluxo sem dispersar informações em chats paralelos.'
+      }
+    ]
+  }
+};
+
+const s = storyI18n[lang] || storyI18n.es;
 ---
 
 <section class="story-section" id="desafio">
   <div class="container">
     <!-- Header -->
     <div class="section-header text-center">
-      <span class="section-tag">{isEs ? 'El Desafío Común' : 'The Common Challenge'}</span>
+      <span class="section-tag">{s.tag}</span>
       <h2 class="section-title">
-        {isEs 
-          ? 'Cuando la operación crece, el seguimiento manual se vuelve complejo' 
-          : 'As operations expand, manual follow-ups quickly become a bottleneck'}
+        {s.title}
       </h2>
       <p class="section-desc">
-        {isEs 
-          ? 'En el día a día, todos los ejecutivos están enfocados en sus metas clave. Sin embargo, al depender del correo o mensajes para autorizar trámites, la fricción es inevitable.' 
-          : 'Leaders are dedicated to high-priority goals. Yet relying on emails or chat messages to authorize requests inevitably generates friction and delays.'}
+        {s.desc}
       </p>
     </div>
 
@@ -36,12 +208,10 @@ const isEs = lang === 'es';
           </svg>
         </div>
         <div class="pain-content">
-          <span class="pain-label">{isEs ? 'Riesgo Financiero' : 'Financial Risk'}</span>
-          <h3 class="pain-title">{isEs ? 'Vencimiento de Condiciones' : 'Expired Supplier Quotes'}</h3>
+          <span class="pain-label">{s.pains[0].label}</span>
+          <h3 class="pain-title">{s.pains[0].title}</h3>
           <p class="pain-desc">
-            {isEs 
-              ? 'Una compra importante se retrasa unos días en revisión y, para cuando se aprueba, la cotización del proveedor ha cambiado o expirado, encareciendo la operación.' 
-              : 'A key purchase sits delayed in inboxes; by the time it is signed, vendor pricing has expired, needlessly driving up operational costs.'}
+            {s.pains[0].desc}
           </p>
         </div>
       </div>
@@ -54,12 +224,10 @@ const isEs = lang === 'es';
           </svg>
         </div>
         <div class="pain-content">
-          <span class="pain-label">{isEs ? 'Sobrecarga Operativa' : 'Operational Overhead'}</span>
-          <h3 class="pain-title">{isEs ? 'Bandejas Saturadas' : 'Saturated Inboxes'}</h3>
+          <span class="pain-label">{s.pains[1].label}</span>
+          <h3 class="pain-title">{s.pains[1].title}</h3>
           <p class="pain-desc">
-            {isEs 
-              ? 'Los directores y aprobadores reciben docenas de solicitudes diarias. Una tarea crítica puede quedar sepultada en un mar de emails sin ninguna mala intención.' 
-              : 'Managers receive dozens of requests daily. High-priority approvals get buried under routine emails without any ill intent.'}
+            {s.pains[1].desc}
           </p>
         </div>
       </div>
@@ -74,12 +242,10 @@ const isEs = lang === 'es';
           </svg>
         </div>
         <div class="pain-content">
-          <span class="pain-label">{isEs ? 'Pérdida de Productividad' : 'Lost Productivity'}</span>
-          <h3 class="pain-title">{isEs ? 'Desgaste del Equipo' : 'Team Fatigue'}</h3>
+          <span class="pain-label">{s.pains[2].label}</span>
+          <h3 class="pain-title">{s.pains[2].title}</h3>
           <p class="pain-desc">
-            {isEs 
-              ? 'Los colaboradores invierten horas valiosas haciendo "arqueología de correos" y preguntando "¿dónde está mi solicitud?", en lugar de concentrarse en su trabajo principal.' 
-              : 'Employees waste valuable hours doing "email archaeology" asking "where is my request?", instead of focusing on their core mission.'}
+            {s.pains[2].desc}
           </p>
         </div>
       </div>
@@ -90,17 +256,13 @@ const isEs = lang === 'es';
       <div class="solution-header">
         <div class="solution-badge">
           <span class="pulse-dot"></span>
-          <span>{isEs ? 'El Papel de Ilithya: Tu Aliado Operativo' : 'Ilithya’s Role: Your Operational Ally'}</span>
+          <span>{s.badge}</span>
         </div>
         <h3 class="solution-title">
-          {isEs 
-            ? 'Un sistema que apoya la gestión de tu gente sin imponer nuevas reglas' 
-            : 'A platform supporting your team’s decisions without enforcing rigid bureaucracy'}
+          {s.solutionTitle}
         </h3>
         <p class="solution-subtitle">
-          {isEs 
-            ? 'Ilithya no viene a reemplazar sus procesos ni a imponer burocracia rígida, sino a respaldar a su equipo en su jornada diaria para que las decisiones fluyan con agilidad.' 
-            : 'Ilithya does not replace your established processes or introduce complex red tape; it empowers your leadership so decisions flow with speed.'}
+          {s.solutionSubtitle}
         </p>
       </div>
 
@@ -112,11 +274,9 @@ const isEs = lang === 'es';
               <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
             </svg>
           </div>
-          <h4 class="pillar-title">{isEs ? 'Recordatorios Automáticos' : 'Automated Reminders'}</h4>
+          <h4 class="pillar-title">{s.pillars[0].title}</h4>
           <p class="pillar-desc">
-            {isEs 
-              ? 'Le avisa amablemente al aprobador sobre sus pendientes, liberando al solicitante de tener que "perseguir" firmas o enviar recordatorios incómodos.' 
-              : 'Courteously alerts decision-makers of pending items, sparing requesters from awkwardly chasing signatures.'}
+            {s.pillars[0].desc}
           </p>
         </div>
 
@@ -127,11 +287,9 @@ const isEs = lang === 'es';
               <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
             </svg>
           </div>
-          <h4 class="pillar-title">{isEs ? 'Gestión de Ausencias' : 'Out-of-Office Stand-ins'}</h4>
+          <h4 class="pillar-title">{s.pillars[1].title}</h4>
           <p class="pillar-desc">
-            {isEs 
-              ? 'Si un líder sale de viaje o a una reunión clave, el sistema ayuda a redirigir la tarea temporalmente al suplente para no frenar la continuidad del negocio.' 
-              : 'When a manager is traveling or in meetings, requests seamlessly delegate to appointed deputies to preserve business continuity.'}
+            {s.pillars[1].desc}
           </p>
         </div>
 
@@ -143,11 +301,9 @@ const isEs = lang === 'es';
               <path d="M2 12h20"></path>
             </svg>
           </div>
-          <h4 class="pillar-title">{isEs ? 'Visibilidad Compartida' : 'Real-Time Visibility'}</h4>
+          <h4 class="pillar-title">{s.pillars[2].title}</h4>
           <p class="pillar-desc">
-            {isEs 
-              ? 'Cualquier involucrado puede consultar el estado exacto de una solicitud en segundos con total transparencia: estación actual, responsable y SLA proyectado.' 
-              : 'Anyone involved can check request progress in seconds with complete clarity: current station, reviewer, and target SLA.'}
+            {s.pillars[2].desc}
           </p>
         </div>
 
@@ -157,11 +313,9 @@ const isEs = lang === 'es';
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
             </svg>
           </div>
-          <h4 class="pillar-title">{isEs ? 'Consultas Integradas' : 'In-Thread Context'}</h4>
+          <h4 class="pillar-title">{s.pillars[3].title}</h4>
           <p class="pillar-desc">
-            {isEs 
-              ? 'Permite resolver dudas o solicitar soportes adicionales dentro del mismo flujo sin perder el hilo de la conversación ni dispersar información por chats externos.' 
-              : 'Resolve questions or request additional documentation directly within the approval thread without fragmenting info across external chats.'}
+            {s.pillars[3].desc}
           </p>
         </div>
       </div>

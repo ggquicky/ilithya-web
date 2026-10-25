@@ -477,3 +477,470 @@ export const useCasesEn: UseCaseItem[] = [
     }
   }
 ];
+
+export const useCasesIt: UseCaseItem[] = [
+  {
+    id: "compras-proveedores",
+    category: "finanzas",
+    categoryName: "Gestione Finanziaria e Acquisti",
+    code: "CASO 01",
+    title: "Acquisti o Pagamenti Fornitori",
+    shortDesc: "Autorizzazione strutturata degli acquisti aziendali garantendo fattibilità tecnica e assegnazione del budget.",
+    fullDesc: "Strutturazione del processo di autorizzazione per acquisti aziendali, convalidando la pertinenza tecnica e la disponibilità di budget prima dell'esecuzione dell'ordine per prevenire preventivi scaduti.",
+    docs: [
+      { name: "Modulo di Richiesta", type: "PDF / Modulo", note: "Compilato dal richiedente" },
+      { name: "Preventivo del Fornitore", type: "PDF / Immagine", note: "Con validità e prezzi chiari" },
+      { name: "Motivazione d'Acquisto", type: "Doc / Allegato", note: "Impatto operativo" }
+    ],
+    stations: [
+      {
+        step: 1,
+        role: "Richiedente",
+        name: "Caricamento Fascicolo",
+        action: "Invia richiesta, preventivo del fornitore e motivazione in un unico pacchetto digitale.",
+        badge: "Avviato"
+      },
+      {
+        step: 2,
+        role: "Stazione 1: Responsabile di Reparto",
+        name: "Convalida Tecnica",
+        action: "Verifica la necessità operativa e autorizza con firma digitale e timbro orario.",
+        badge: "Timbro Digitale"
+      },
+      {
+        step: 3,
+        role: "Stazione 2: Direttore Finanziario",
+        name: "Verifica del Budget",
+        action: "Verifica la disponibilità sul capitolo di spesa e approva formalmente l'uscita aziendale.",
+        badge: "Controllo Fiscale"
+      },
+      {
+        step: 4,
+        role: "Stazione 3: Ufficio Acquisti",
+        name: "Emissione Ordine Ufficiale",
+        action: "Verifica finale e invio dell'ordine ufficiale al fornitore basato sul PDF consolidato.",
+        badge: "Approvazione Finale"
+      }
+    ],
+    closure: {
+      type: "PDF Consolidato con Timbro Crittografico",
+      summary: "Il fornitore riceve l'ordine con tutte le firme integrate in un unico fascicolo digitale immutabile.",
+      sla: "SLA Tipico: < 24 Ore",
+      benefit: "Elimina acquisti fuori tempo e protegge da aumenti imprevisti di preventivo."
+    }
+  },
+  {
+    id: "viaticos-colaboradores",
+    category: "finanzas",
+    categoryName: "Gestione Finanziaria e Acquisti",
+    code: "CASO 02",
+    title: "Richiesta e Rimborso Trasferte",
+    shortDesc: "Controllo preventivo delle spese di viaggio locali o internazionali con liquidazione contabile ordinata.",
+    fullDesc: "Approvazione ordinata di spostamenti, alloggio e vitto prima del viaggio, con collegamento contabile automatico per la liquidazione senza documenti cartacei sparsi.",
+    docs: [
+      { name: "Richiesta Itinerario", type: "Modulo", note: "Date, destinazione e obiettivi" },
+      { name: "Preventivo di Spesa", type: "Foglio di Calcolo / PDF", note: "Tariffe e rimborsi previsti" },
+      { name: "Giustificativi / Fatture", type: "PDF / XML", note: "Per la fase di liquidazione" }
+    ],
+    stations: [
+      {
+        step: 1,
+        role: "Collaboratore in Viaggio",
+        name: "Proposta Itinerario",
+        action: "Inserisce date, destinazione, motivo della visita e stima dei costi.",
+        badge: "Bozza"
+      },
+      {
+        step: 2,
+        role: "Stazione 1: Responsabile Diretto",
+        name: "Approvazione Missione",
+        action: "Valuta la necessità operativa e timbra digitalmente il benestare al viaggio.",
+        badge: "Autorizzato"
+      },
+      {
+        step: 3,
+        role: "Stazione 2: Amministrazione e Pagamenti",
+        name: "Erogazione Anticipo",
+        action: "Programma il bonifico o autorizza la carta aziendale in base alla politica di spesa.",
+        badge: "Bonifico"
+      },
+      {
+        step: 4,
+        role: "Stazione 3: Revisione Contabile",
+        name: "Liquidazione Finale Spese",
+        action: "Verifica fatture e ricevute al rientro e chiude formalmente il rendiconto.",
+        badge: "Chiusura Contabile"
+      }
+    ],
+    closure: {
+      type: "Fascicolo Contabile Certificato",
+      summary: "Tutti i giustificativi, i voucher e le firme vengono uniti in un PDF pronto per l'ispezione fiscale.",
+      sla: "SLA Tipico: < 48 Ore",
+      benefit: "Zero sanzioni per ricevute smarrite e piena conformità nelle deduzioni fiscali."
+    }
+  },
+  {
+    id: "onboarding-candidatos",
+    category: "rrhh",
+    categoryName: "Risorse Umane e Talenti",
+    code: "CASO 03",
+    title: "Onboarding e Selezione del Personale",
+    shortDesc: "Screening collaborativo e coordinamento delle offerte di assunzione tra responsabili di linea e Risorse Umane.",
+    fullDesc: "Valutazione collaborativa e snella dei candidati tra responsabili di linea e Risorse Umane, con approvazione della proposta contrattuale e firma digitale dell'offerta.",
+    docs: [
+      { name: "Curriculum Vitae", type: "PDF", note: "Esperienza e referenze" },
+      { name: "Griglia di Valutazione", type: "Modulo", note: "Competenze tecniche" },
+      { name: "Lettera d'Offerta", type: "PDF", note: "Compenso e data d'ingresso" }
+    ],
+    stations: [
+      {
+        step: 1,
+        role: "Talent Acquisition",
+        name: "Screening Iniziale",
+        action: "Carica il profilo del finalista e compila la sintesi del colloquio.",
+        badge: "Candidato"
+      },
+      {
+        step: 2,
+        role: "Stazione 1: Hiring Manager",
+        name: "Feedback Tecnico",
+        action: "Valuta le competenze specifiche e approva l'avanzamento verso la proposta formale.",
+        badge: "Idoneo"
+      },
+      {
+        step: 3,
+        role: "Stazione 2: Direzione Risorse Umane",
+        name: "Autorizzazione Economica",
+        action: "Convalida l'inquadramento retributivo ed emette la bozza contrattuale per la firma.",
+        badge: "Contratto"
+      }
+    ],
+    closure: {
+      type: "Offerta Firmata Digitalmente",
+      summary: "Il nuovo assunto riceve il documento approvato e firma digitalmente da qualsiasi dispositivo.",
+      sla: "SLA Tipico: < 12 Ore",
+      benefit: "Riduce il rischio di perdere i migliori talenti a causa della lentezza aziendale."
+    }
+  },
+  {
+    id: "solicitud-vacaciones",
+    category: "rrhh",
+    categoryName: "Risorse Umane e Talenti",
+    code: "CASO 04",
+    title: "Ferie e Permessi (Azione del Personale)",
+    shortDesc: "Gestione di permessi e ferie con timbri orari e archiviazione automatica nel fascicolo del dipendente.",
+    fullDesc: "Pianificazione trasparente delle assenze senza sovrapposizioni tra colleghi, con convalida automatica dei giorni residui e notifica immediata alle buste paga.",
+    docs: [
+      { name: "Richiesta di Ferie", type: "Modulo Digitale", note: "Giorni richiesti e saldo" },
+      { name: "Piano di Sostituzione", type: "Testo / Allegato", note: "Passaggio consegne" }
+    ],
+    stations: [
+      {
+        step: 1,
+        role: "Collaboratore",
+        name: "Invio Richiesta",
+        action: "Seleziona l'intervallo temporale e assegna il collega designato per le urgenze.",
+        badge: "Richiesta"
+      },
+      {
+        step: 2,
+        role: "Stazione 1: Responsabile di Reparto",
+        name: "Convalida Operativa",
+        action: "Verifica che il turno o il progetto sia coperto e approva con timbro orario.",
+        badge: "Approvato"
+      },
+      {
+        step: 3,
+        role: "Stazione 2: Amministrazione del Personale",
+        name: "Registrazione Presenze",
+        action: "Aggiorna il registro delle ferie e archivia il PDF nel fascicolo digitale del dipendente.",
+        badge: "Archiviato"
+      }
+    ],
+    closure: {
+      type: "Notifica Ufficiale con Timbro di Data/Ora",
+      summary: "Richiedente, manager e ufficio presenze ricevono la conferma con il saldo ferie aggiornato.",
+      sla: "SLA Tipico: < 8 Ore",
+      benefit: "Evita reclami sui giorni maturati ed elimina le richieste informali su chat."
+    }
+  },
+  {
+    id: "compra-suministros",
+    category: "operaciones",
+    categoryName: "Operazioni e Servizi Generali",
+    code: "CASO 05",
+    title: "Acquisto Forniture e Manutenzione",
+    shortDesc: "Convalida di materiali e interventi sulle sedi aziendali con controllo budget e coordinamento con il magazzino.",
+    fullDesc: "Tracciamento rapido delle richieste di cancelleria, manutenzione impianti o servizi generali per evitare che problemi strutturali paralizzino il lavoro degli uffici.",
+    docs: [
+      { name: "Richiesta Materiali", type: "Modulo", note: "Quantità, codici e urgenza" },
+      { name: "Scheda Tecnica / Preventivo", type: "PDF / Immagine", note: "Per ricambi o servizi esterni" }
+    ],
+    stations: [
+      {
+        step: 1,
+        role: "Responsabile Struttura",
+        name: "Richiesta Materiali",
+        action: "Specifica le forniture necessarie o l'intervento urgente per le sedi aziendali.",
+        badge: "Ticket"
+      },
+      {
+        step: 2,
+        role: "Stazione 1: Direzione Operativa",
+        name: "Controllo Giacenze",
+        action: "Verifica se i beni sono a magazzino o invia l'ordine ai fornitori convenzionati.",
+        badge: "Magazzino"
+      },
+      {
+        step: 3,
+        role: "Stazione 2: Ufficio Spedizioni",
+        name: "Consegna e Ricezione",
+        action: "Il documento autorizzato torna ai Servizi Generali per il ritiro dei materiali.",
+        badge: "Logistica"
+      }
+    ],
+    closure: {
+      type: "Buono di Lavoro Certificato",
+      summary: "I Servizi Generali ricevono l'autorizzazione timbrata con codice QR per il ritiro a magazzino.",
+      sla: "SLA Tipico: < 24 Ore",
+      benefit: "Manutenzione tempestiva senza strutture paralizzate da ritardi di firma."
+    }
+  }
+];
+
+export const useCasesPt: UseCaseItem[] = [
+  {
+    id: "compras-proveedores",
+    category: "finanzas",
+    categoryName: "Gestão Financeira e Compras",
+    code: "CASO 01",
+    title: "Compra ou Pagamento a Fornecedores",
+    shortDesc: "Autorização estruturada de aquisições corporativas garantindo viabilidade técnica e dotação orçamentária.",
+    fullDesc: "Estruturação do fluxo de autorização para aquisições corporativas, validando a pertinência técnica e a disponibilidade orçamentária antes de efetivar a compra para evitar cotações vencidas.",
+    docs: [
+      { name: "Formulário de Requisição", type: "PDF / Formulário", note: "Preenchido pelo solicitante" },
+      { name: "Cotação do Fornecedor", type: "PDF / Imagem", note: "Com validade e preços definidos" },
+      { name: "Justificativa da Compra", type: "Doc / Anexo", note: "Impacto operacional" }
+    ],
+    stations: [
+      {
+        step: 1,
+        role: "Solicitante",
+        name: "Envio do Processo",
+        action: "Insere requisição, cotação e justificativa em um único pacote digital.",
+        badge: "Iniciado"
+      },
+      {
+        step: 2,
+        role: "Estação 1: Gestor da Área",
+        name: "Validação Técnica",
+        action: "Avalia a necessidade operacional e autoriza com assinatura digital e carimbo de data/hora.",
+        badge: "Carimbo Digital"
+      },
+      {
+        step: 3,
+        role: "Estação 2: Gerente Financeiro",
+        name: "Disponibilidade de Verba",
+        action: "Verifica a dotação orçamentária disponível e aprova formalmente a despesa corporativa.",
+        badge: "Controle Fiscal"
+      },
+      {
+        step: 4,
+        role: "Estação 3: Depto. de Compras",
+        name: "Emissão do Pedido Oficial",
+        action: "Auditoria final e envio do pedido oficial ao fornecedor com base no PDF consolidado.",
+        badge: "Aprovação Final"
+      }
+    ],
+    closure: {
+      type: "PDF Consolidado com Carimbo Criptográfico",
+      summary: "O fornecedor recebe o pedido com todas as assinaturas integradas em um dossiê digital imutável.",
+      sla: "SLA Típico: < 24 Horas",
+      benefit: "Elimina compras atrasadas e protege contra aumentos repentinos de cotação."
+    }
+  },
+  {
+    id: "viaticos-colaboradores",
+    category: "finanzas",
+    categoryName: "Gestão Financeira e Compras",
+    code: "CASO 02",
+    title: "Solicitação e Adiantamento de Diárias",
+    shortDesc: "Controle prévio de despesas de viagens a trabalho com prestação de contas organizada.",
+    fullDesc: "Aprovação ordenada de deslocamentos, hospedagem e alimentação antes da viagem, com integração contábil automática para prestação de contas sem papéis perdidos.",
+    docs: [
+      { name: "Solicitação de Itinerário", type: "Formulário", note: "Datas, destino e objetivos" },
+      { name: "Orçamento Estimado", type: "Planilha / PDF", note: "Tarifas de diárias aplicáveis" },
+      { name: "Comprovantes / Notas Fiscais", type: "PDF / XML", note: "Para fase de prestação de contas" }
+    ],
+    stations: [
+      {
+        step: 1,
+        role: "Colaborador Viajante",
+        name: "Proposta de Itinerário",
+        action: "Cadastra datas, destino, motivo da visita e estimativa de gastos.",
+        badge: "Rascunho"
+      },
+      {
+        step: 2,
+        role: "Estação 1: Gestor Direto",
+        name: "Aprovação da Viagem",
+        action: "Analisa a justificativa da missão e carimba digitalmente a autorização.",
+        badge: "Autorizado"
+      },
+      {
+        step: 3,
+        role: "Estação 2: Financeiro e Pagamentos",
+        name: "Liberação do Adiantamento",
+        action: "Agenda o pagamento ou libera o cartão corporativo conforme as políticas da empresa.",
+        badge: "Pagamento"
+      },
+      {
+        step: 4,
+        role: "Estação 3: Controladoria Contábil",
+        name: "Prestação de Contas Final",
+        action: "Verifica notas e recibos anexados ao retorno e encerra formalmente o adiantamento.",
+        badge: "Encerramento"
+      }
+    ],
+    closure: {
+      type: "Dossiê Contábil Certificado",
+      summary: "Todos os comprovantes, vouchers e assinaturas são reunidos em um PDF pronto para auditoria.",
+      sla: "SLA Típico: < 48 Horas",
+      benefit: "Zero multas por notas perdidas e total conformidade fiscal perante a Receita."
+    }
+  },
+  {
+    id: "onboarding-candidatos",
+    category: "rrhh",
+    categoryName: "Recursos Humanos e Talentos",
+    code: "CASO 03",
+    title: "Onboarding e Contratação",
+    shortDesc: "Triagem colaborativa ágil e aprovação de propostas de contratação entre gestores e RH.",
+    fullDesc: "Avaliação ágil e transparente de currículos entre líderes de equipe e RH para agendar entrevistas e formalizar propostas salariais sem cadeias de e-mails.",
+    docs: [
+      { name: "Currículo do Candidato", type: "PDF", note: "Experiência e referências" },
+      { name: "Ficha de Avaliação", type: "Formulário", note: "Competências técnicas" },
+      { name: "Carta de Proposta", type: "PDF", note: "Salário, benefícios e data de início" }
+    ],
+    stations: [
+      {
+        step: 1,
+        role: "Recrutamento & Seleção",
+        name: "Triagem Inicial",
+        action: "Insere o perfil do finalista e registra o parecer da entrevista inicial.",
+        badge: "Candidato"
+      },
+      {
+        step: 2,
+        role: "Estação 1: Gestor da Vaga",
+        name: "Avaliação Técnica",
+        action: "Valida as habilidades práticas e aprova o envio da proposta formal.",
+        badge: "Aprovado"
+      },
+      {
+        step: 3,
+        role: "Estação 2: Diretoria de RH",
+        name: "Aprovação da Proposta",
+        action: "Convalida a faixa salarial e emite a minuta contratual para assinatura.",
+        badge: "Contrato"
+      }
+    ],
+    closure: {
+      type: "Proposta Assinada Digitalmente",
+      summary: "O novo contratado recebe a minuta aprovada e assina digitalmente em qualquer dispositivo.",
+      sla: "SLA Típico: < 12 Horas",
+      benefit: "Reduz o risco de perder os melhores talentos pela demora na formalização."
+    }
+  },
+  {
+    id: "solicitud-vacaciones",
+    category: "rrhh",
+    categoryName: "Recursos Humanos e Talentos",
+    code: "CASO 04",
+    title: "Férias e Licenças (Ação de Pessoal)",
+    shortDesc: "Tramitação de permissões e férias com carimbos de data/hora e arquivamento no prontuário digital.",
+    fullDesc: "Planejamento transparente de ausências sem sobreposição de escalas, com validação de saldo de dias e notificação automática à folha de pagamento.",
+    docs: [
+      { name: "Solicitação de Férias", type: "Formulário Digital", note: "Período e saldo de dias" },
+      { name: "Plano de Cobertura", type: "Texto / Anexo", note: "Alinhamento com substituto" }
+    ],
+    stations: [
+      {
+        step: 1,
+        role: "Colaborador",
+        name: "Envio do Pedido",
+        action: "Seleciona o período desejado e indica o colega que dará cobertura às urgências.",
+        badge: "Solicitação"
+      },
+      {
+        step: 2,
+        role: "Estação 1: Gestor Imediato",
+        name: "Validação da Escala",
+        action: "Garante que o setor não fique desfalcado e aprova com carimbo de data/hora.",
+        badge: "Aprovado"
+      },
+      {
+        step: 3,
+        role: "Estação 2: Departamento Pessoal",
+        name: "Lançamento em Folha",
+        action: "Atualiza o saldo de férias e arquiva o PDF consolidado no prontuário do colaborador.",
+        badge: "Arquivado"
+      }
+    ],
+    closure: {
+      type: "Comprovante Oficial com Carimbo de Data/Hora",
+      summary: "Solicitante, gestor e DP recebem o comprovante com o saldo de férias atualizado.",
+      sla: "SLA Típico: < 8 Horas",
+      benefit: "Evita contestações trabalhistas e elimina pedidos informais via mensagens."
+    }
+  },
+  {
+    id: "compra-suministros",
+    category: "operaciones",
+    categoryName: "Operações e Serviços Gerais",
+    code: "CASO 05",
+    title: "Aquisição de Suprimentos",
+    shortDesc: "Validação de insumos e manutenção predial corporativa com verificação orçamentária e almoxarifado.",
+    fullDesc: "Atendimento ágil de solicitações de papelaria, manutenção de instalações e serviços prediais para evitar que problemas físicos prejudiquem a rotina dos escritórios.",
+    docs: [
+      { name: "Requisição de Materiais", type: "Formulário", note: "Quantidades, códigos e urgência" },
+      { name: "Especificação Técnica / Orçamento", type: "PDF / Imagem", note: "Para serviços ou peças externas" }
+    ],
+    stations: [
+      {
+        step: 1,
+        role: "Responsável Predial",
+        name: "Solicitação de Materiais",
+        action: "Relaciona os suprimentos necessários ou o serviço de manutenção urgente para as sedes.",
+        badge: "Chamado"
+      },
+      {
+        step: 2,
+        role: "Estação 1: Gestão Operacional",
+        name: "Checagem de Estoque",
+        action: "Verifica se há itens no estoque central ou encaminha compra aos fornecedores homologados.",
+        badge: "Estoque"
+      },
+      {
+        step: 3,
+        role: "Estação 2: Almoxarifado / Expedição",
+        name: "Entrega e Recebimento",
+        action: "O documento autorizado retorna a Serviços Gerais com verificação para retirada dos itens.",
+        badge: "Logística"
+      }
+    ],
+    closure: {
+      type: "Ordem de Serviço Certificada",
+      summary: "Serviços Gerais recebe o despacho carimbado com código QR para retirada no almoxarifado.",
+      sla: "SLA Típico: < 24 Horas",
+      benefit: "Manutenção rápida sem instalações paradas por atrasos burocráticos de assinatura."
+    }
+  }
+];
+
+export const useCasesByLang: Record<string, UseCaseItem[]> = {
+  es: useCasesEs,
+  en: useCasesEn,
+  it: useCasesIt,
+  pt: useCasesPt
+};

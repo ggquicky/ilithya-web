@@ -19,6 +19,12 @@ const casesHref = getLocalizedPath('/casos-de-uso', lang);
 const platformHref = getLocalizedPath('/plataforma', lang);
 const pilotHref = getLocalizedPath('/plan-piloto', lang);
 const contactHref = getLocalizedPath('/contacto', lang);
+const navAriaLabels: Record<Language, string> = {
+  es: 'Navegación Principal',
+  en: 'Main Navigation',
+  it: 'Navigazione Principale',
+  pt: 'Navegação Principal'
+};
 ---
 
 <header class="site-header">
@@ -28,7 +34,7 @@ const contactHref = getLocalizedPath('/contacto', lang);
       <img src="/brand/lightLogo.png" alt="Ilithya Workflow" class="brand-logo-img logo-light" />
     </a>
 
-    <nav class="nav-links" aria-label={lang === 'es' ? 'Navegación Principal' : 'Main Navigation'}>
+    <nav class="nav-links" aria-label={navAriaLabels[lang] || navAriaLabels.es}>
       <a href={homeHref} class="nav-item">{t.nav.home}</a>
       <a href={casesHref} class="nav-item">{t.nav.useCases}</a>
       <a href={platformHref} class="nav-item">{t.nav.platform}</a>
