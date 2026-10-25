@@ -1,282 +1,46 @@
 ---
-// UseCases.astro - Casos de Uso Principales de Ilithya Workflow Approvals
-const useCases = [
-  {
-    id: "compras-proveedores",
-    category: "finanzas",
-    categoryName: "Gestión Financiera y Compras",
-    code: "CASO 01",
-    title: "Compra o Pago a Proveedores",
-    shortDesc: "Autorización estructurada de adquisiciones corporativas asegurando viabilidad técnica y presupuestaria.",
-    fullDesc: "Estructuración del proceso de autorización para adquisiciones corporativas, asegurando la viabilidad técnica y presupuestaria antes de ejecutar la compra y evitando cotizaciones vencidas.",
-    docs: [
-      { name: "Formato de Requisición", type: "PDF / Form", note: "Llenado por solicitante" },
-      { name: "Cotización del Proveedor", type: "PDF / Imagen", note: "Con vigencia y precios" },
-      { name: "Justificación de Compra", type: "Doc / Adjunto", note: "Impacto operativo" }
-    ],
-    stations: [
-      {
-        step: 1,
-        role: "Solicitante",
-        name: "Carga de Expediente",
-        action: "Sube requisa, cotización y justificación en un solo paquete digital.",
-        badge: "Iniciado"
-      },
-      {
-        step: 2,
-        role: "Estación 1: Jefe de Área",
-        name: "Validación Técnica",
-        action: "Revisa la pertinencia operativa y autoriza con firma digital y sello de fecha/hora.",
-        badge: "Sello Digital"
-      },
-      {
-        step: 3,
-        role: "Estación 2: Gerente Financiero",
-        name: "Disponibilidad de Presupuesto",
-        action: "Cruza con la partida presupuestaria disponible y aprueba el gasto formalmente.",
-        badge: "Control Fiscal"
-      },
-      {
-        step: 4,
-        role: "Estación 3: Depto. de Compras",
-        name: "Emisión de Orden Oficial",
-        action: "Revisión final y despacho de orden oficial al proveedor basándose en el PDF consolidado.",
-        badge: "Aprobación Final"
-      }
-    ],
-    closure: {
-      type: "PDF Consolidado con Sello Criptográfico",
-      summary: "El proveedor recibe la orden con todas las firmas integradas en un único expediente digital inmutable.",
-      sla: "SLA Típico: < 24 Horas",
-      benefit: "Elimina compras a destiempo y protege contra aumentos imprevistos de cotización."
-    }
-  },
-  {
-    id: "viaticos-colaboradores",
-    category: "finanzas",
-    categoryName: "Gestión Financiera y Compras",
-    code: "CASO 02",
-    title: "Solicitud y Pago de Viáticos",
-    shortDesc: "Control previo de gastos de viaje de trabajo locales o internacionales con liquidación ordenada.",
-    fullDesc: "Control previo y auditable de los gastos asociados a viajes corporativos antes de su ejecución, unificando cotizaciones de traslado, hospedaje y alimentación.",
-    docs: [
-      { name: "Formato de Viáticos", type: "PDF / Formato", note: "Itinerario y objetivos" },
-      { name: "Cotizaciones de Hospedaje", type: "PDF / Reserva", note: "Políticas de tarifa" },
-      { name: "Cotizaciones de Transporte", type: "PDF / Vuelos", note: "Boletos o rutas" }
-    ],
-    stations: [
-      {
-        step: 1,
-        role: "Solicitante (Colaborador)",
-        name: "Paquete de Planeación",
-        action: "Registra fechas, destino, agenda de trabajo y cotizaciones adjuntas.",
-        badge: "Iniciado"
-      },
-      {
-        step: 2,
-        role: "Estación 1: Jefe Inmediato",
-        name: "Pertinencia Operativa",
-        action: "Evalúa la necesidad del viaje y el impacto para la unidad de negocio.",
-        badge: "Visto Bueno"
-      },
-      {
-        step: 3,
-        role: "Estación 2: Gerencia General",
-        name: "Autorización de Fondos",
-        action: "Autoriza el desplazamiento y los techos de gasto proyectados.",
-        badge: "Firma Ejecutiva"
-      },
-      {
-        step: 4,
-        role: "Estación 3: Área de Finanzas",
-        name: "Desembolso / Anticipo",
-        action: "Recibe el expediente completo y aprobado para emitir el pago o anticipo de viáticos.",
-        badge: "Liquidación"
-      }
-    ],
-    closure: {
-      type: "Cadena de Pago Integrada",
-      summary: "Finanzas puede enlazar automáticamente este flujo con 'Compra a Proveedores' para reservar hoteles y agencias.",
-      sla: "SLA Típico: < 48 Horas",
-      benefit: "Cero viajes sin presupuesto asignado y comprobación ordenada desde el día uno."
-    }
-  },
-  {
-    id: "onboarding-candidatos",
-    category: "rrhh",
-    categoryName: "Recursos Humanos y Administración",
-    code: "CASO 03",
-    title: "Onboarding y Selección de Candidatos",
-    shortDesc: "Filtro ágil y colaborativo de currículums entre el área solicitante y Recursos Humanos.",
-    fullDesc: "Filtro estructurado y colaborativo para la revisión de currículos y coordinación de entrevistas en procesos de reclutamiento sin cadenas infinitas de emails.",
-    docs: [
-      { name: "Currículum Vitae (CV)", type: "PDF", note: "Hoja de vida del postulante" },
-      { name: "Perfil de la Plaza", type: "Requisición Interna", note: "Habilidades requeridas" }
-    ],
-    stations: [
-      {
-        step: 1,
-        role: "Solicitante (Recepción)",
-        name: "Recepción de CV",
-        action: "Recibe las postulaciones vía correo e inicia un flujo ágil individual por cada candidato.",
-        badge: "Recepción"
-      },
-      {
-        step: 2,
-        role: "Estación 1: Gerente del Área",
-        name: "Evaluación Técnica de Perfil",
-        action: "Evalúa la experiencia en el documento adjunto y decide con un clic si aprueba o descarta.",
-        badge: "Filtro Técnico"
-      },
-      {
-        step: 3,
-        role: "Estación 2: Recursos Humanos",
-        name: "Coordinación de Entrevistas",
-        action: "Recibe únicamente los perfiles preaprobados por el líder de área para agendar pruebas.",
-        badge: "Gestión Talento"
-      },
-      {
-        step: 4,
-        role: "Retorno y Cierre: Recepción",
-        name: "Luz Verde para Cita Formal",
-        action: "El flujo retorna automáticamente a Recepción para contactar al postulante y citarlo.",
-        badge: "Cita Agendada"
-      }
-    ],
-    closure: {
-      type: "Ficha de Candidato Aprobada",
-      summary: "Expediente con el historial de evaluaciones del gerente y RRHH listo para el proceso de contratación.",
-      sla: "SLA Típico: < 12 Horas",
-      benefit: "Evita perder talento clave por demoras en la revisión inicial de postulaciones."
-    }
-  },
-  {
-    id: "solicitud-vacaciones",
-    category: "rrhh",
-    categoryName: "Recursos Humanos y Administración",
-    code: "CASO 04",
-    title: "Solicitud de Vacaciones (Acción de Personal)",
-    shortDesc: "Formalización y registro auditable de permisos y periodos vacacionales con archivo automático.",
-    fullDesc: "Formalización y registro auditable de los permisos o periodos vacacionales del personal, culminando con el archivo automático en el expediente digital del colaborador.",
-    docs: [
-      { name: "Formato 'Acción de Personal'", type: "PDF / Imagen", note: "Fechas solicitadas y suplente" },
-      { name: "Saldo de Días Disponibles", type: "Cálculo RRHH", note: "Validado por sistema" }
-    ],
-    stations: [
-      {
-        step: 1,
-        role: "Solicitante (Colaborador)",
-        name: "Inicio de Solicitud",
-        action: "Carga su formulario de Acción de Personal con las fechas y tareas delegadas.",
-        badge: "Iniciado"
-      },
-      {
-        step: 2,
-        role: "Estación 1: Jefe Inmediato",
-        name: "Aprobación de Turno",
-        action: "Valida la cobertura del puesto durante la ausencia y autoriza con firma electrónica.",
-        badge: "Visto Bueno"
-      },
-      {
-        step: 3,
-        role: "Estación 2: Gerencia de Área",
-        name: "Revisión Operativa",
-        action: "Ratifica la solicitud sin fricción mediante confirmación móvil o de escritorio.",
-        badge: "Firma Gerencial"
-      },
-      {
-        step: 4,
-        role: "Estación 3: Recursos Humanos",
-        name: "Registro en Planilla",
-        action: "Estampa el sello oficial de tiempo y descuenta los días en el historial laboral.",
-        badge: "Sello de Tiempo"
-      }
-    ],
-    closure: {
-      type: "Auto-Archivado en Expediente Digital",
-      summary: "El PDF consolidado firmado se transfiere automáticamente a la carpeta digital del empleado en la nube.",
-      sla: "SLA Típico: < 8 Horas",
-      benefit: "100% auditable ante entidades laborales sin papeles impresos ni firmas extraviadas."
-    }
-  },
-  {
-    id: "compra-suministros",
-    category: "operaciones",
-    categoryName: "Operaciones y Mantenimiento",
-    code: "CASO 05",
-    title: "Compra de Suministros (Servicios Generales)",
-    shortDesc: "Validación técnica y presupuestaria para insumos y mantenimiento de instalaciones corporativas.",
-    fullDesc: "Validación técnica y financiera ágil para la adquisición de materiales, repuestos o equipamiento necesarios para la continuidad de las sedes e instalaciones.",
-    docs: [
-      { name: "Requisición de Mantenimiento", type: "PDF / Form", note: "Detalle de insumos y cantidades" },
-      { name: "Cotización de Materiales", type: "PDF / Proveedor", note: "Desglose de costos unitarios" }
-    ],
-    stations: [
-      {
-        step: 1,
-        role: "Solicitante (Servicios Generales)",
-        name: "Solicitud de Materiales",
-        action: "Describe los requerimientos para reparación o abastecimiento de edificios.",
-        badge: "Iniciado"
-      },
-      {
-        step: 2,
-        role: "Estación 1: Gerencia de Operaciones",
-        name: "Evaluación de Necesidad",
-        action: "Evalúa la urgencia real, justifica el gasto y proyecta las cantidades adecuadas.",
-        badge: "Visto Bueno"
-      },
-      {
-        step: 3,
-        role: "Estación 2: Gerencia de Finanzas",
-        name: "Cruce Presupuestario",
-        action: "Valida la recurrencia del rubro de mantenimiento y estampa su firma definitiva.",
-        badge: "Firma Final"
-      },
-      {
-        step: 4,
-        role: "Retorno al Solicitante",
-        name: "Gestión de Entrega y Logística",
-        action: "El documento autorizado retorna a Servicios Generales para recibir los suministros.",
-        badge: "Logística"
-      }
-    ],
-    closure: {
-      type: "PDF de Autorización Inmediata",
-      summary: "Servicios Generales recibe el documento con código QR de verificación para despachar con bodega.",
-      sla: "SLA Típico: < 24 Horas",
-      benefit: "Mantenimiento ágil sin instalaciones paralizadas por retrasos de firma."
-    }
-  }
-];
+import { useCasesEs, useCasesEn } from "../i18n/useCasesData";
+import type { Language } from "../i18n/ui";
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = (Astro.currentLocale || "es") as Language } = Astro.props;
+const isEs = lang === "es";
+const useCases = isEs ? useCasesEs : useCasesEn;
 ---
 
 <section class="use-cases-section" id="casos-de-uso">
   <div class="container">
     <div class="section-header text-center">
-      <span class="section-tag">Flujos Reales en Acción</span>
-      <h2 class="section-title">Casos de Uso Principales: Diseñados para Tu Empresa</h2>
+      <span class="section-tag">{isEs ? 'Flujos Reales en Acción' : 'Real-World Workflows in Action'}</span>
+      <h2 class="section-title">
+        {isEs ? 'Casos de Uso Principales: Diseñados para Tu Empresa' : 'Core Enterprise Use Cases: Engineered for Your Business'}
+      </h2>
       <p class="section-desc">
-        Ilithya Workflow se adapta a los procesos que ya ejecutas hoy. Explora cómo fluyen las aprobaciones desde la solicitud inicial hasta la firma y el PDF consolidado.
+        {isEs 
+          ? 'Ilithya Workflow se adapta a los procesos que ya ejecutas hoy. Explora cómo fluyen las aprobaciones desde la solicitud inicial hasta la firma y el PDF consolidado.' 
+          : 'Ilithya Workflow adapts seamlessly to your current business routines. Explore how approvals progress from initial submission to final signature and consolidated PDF.'}
       </p>
     </div>
 
     <!-- Category Filter Tabs -->
-    <div class="category-tabs" role="tablist" aria-label="Filtrar por Área">
+    <div class="category-tabs" role="tablist" aria-label={isEs ? 'Filtrar por Área' : 'Filter by Department'}>
       <button class="cat-tab active" data-category="all" role="tab" aria-selected="true">
-        <span>Todos los Casos</span>
+        <span>{isEs ? 'Todos los Casos' : 'All Cases'}</span>
         <span class="cat-count">5</span>
       </button>
       <button class="cat-tab" data-category="finanzas" role="tab" aria-selected="false">
-        <span>Finanzas y Compras</span>
+        <span>{isEs ? 'Finanzas y Compras' : 'Finance & Procurement'}</span>
         <span class="cat-count">2</span>
       </button>
       <button class="cat-tab" data-category="rrhh" role="tab" aria-selected="false">
-        <span>Recursos Humanos</span>
+        <span>{isEs ? 'Recursos Humanos' : 'Human Resources'}</span>
         <span class="cat-count">2</span>
       </button>
       <button class="cat-tab" data-category="operaciones" role="tab" aria-selected="false">
-        <span>Operaciones y Servicios</span>
+        <span>{isEs ? 'Operaciones y Servicios' : 'Operations & Facilities'}</span>
         <span class="cat-count">1</span>
       </button>
     </div>
@@ -334,7 +98,7 @@ const useCases = [
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                   <polyline points="14 2 14 8 20 8"></polyline>
                 </svg>
-                <span>Documentación Inicial Requerida:</span>
+                <span>{isEs ? 'Documentación Inicial Requerida:' : 'Required Initial Documentation:'}</span>
               </div>
               <div class="docs-tags">
                 {item.docs.map(doc => (
@@ -348,7 +112,7 @@ const useCases = [
 
             <!-- Interactive Stepper Track -->
             <div class="workflow-track-wrapper">
-              <h4 class="track-title">Ruta Secuencial de Aprobación por Estaciones</h4>
+              <h4 class="track-title">{isEs ? 'Ruta Secuencial de Aprobación por Estaciones' : 'Sequential Approval Route by Stations'}</h4>
               <div class="stepper-grid">
                 {item.stations.map((st, sIndex) => (
                   <div class="stepper-node">
@@ -379,16 +143,16 @@ const useCases = [
               </div>
               <div class="closure-content">
                 <div class="closure-heading">
-                  <span class="closure-tag">Cierre del Trámite</span>
+                  <span class="closure-tag">{isEs ? 'Cierre del Trámite' : 'Workflow Closure'}</span>
                   <span class="closure-type">{item.closure.type}</span>
                 </div>
                 <p class="closure-summary">{item.closure.summary}</p>
                 <div class="closure-impact">
-                  <strong>Impacto Medible:</strong> {item.closure.benefit}
+                  <strong>{isEs ? 'Impacto Medible:' : 'Measurable Impact:'}</strong> {item.closure.benefit}
                 </div>
                 <div class="closure-action-row">
                   <button class="btn btn-primary btn-sm" data-open-modal="pilot" data-preselect={item.title}>
-                    <span>Probar este proceso en Plan Piloto (15 a 20 Días)</span>
+                    <span>{isEs ? 'Probar este proceso en Plan Piloto (15 a 20 Días)' : 'Test this workflow in Pilot Program (15 to 20 Days)'}</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                       <polyline points="9 18 15 12 9 6"></polyline>
                     </svg>

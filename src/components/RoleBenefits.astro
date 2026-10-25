@@ -1,14 +1,25 @@
 ---
-// RoleBenefits.astro - Beneficios Unificados por Área (Diapositiva 5)
+import { getTranslations, type Language } from '../i18n/ui';
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = (Astro.currentLocale || 'es') as Language } = Astro.props;
+const isEs = lang === 'es';
 ---
 
 <section class="benefits-section" id="beneficios">
   <div class="container">
     <div class="section-header text-center">
-      <span class="section-tag">Impacto Transversal</span>
-      <h2 class="section-title">Impulsando el Éxito de Cada Líder en la Organización</h2>
+      <span class="section-tag">{isEs ? 'Impacto Transversal' : 'Cross-Functional Impact'}</span>
+      <h2 class="section-title">
+        {isEs ? 'Impulsando el Éxito de Cada Líder en la Organización' : 'Empowering Success for Every Operational Leader'}
+      </h2>
       <p class="section-desc">
-        Ilithya Workflow no solo resuelve los dolores del solicitante, sino que empodera a las gerencias con control, velocidad y cumplimiento sin añadir fricción.
+        {isEs 
+          ? 'Ilithya Workflow no solo resuelve los dolores del solicitante, sino que empodera a las gerencias con control, velocidad y cumplimiento sin añadir fricción.' 
+          : 'Ilithya Workflow not only alleviates bottlenecks for requesters, but arms management with control, speed, and audit-readiness without friction.'}
       </p>
     </div>
 
@@ -23,24 +34,26 @@
               <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
             </svg>
           </div>
-          <span class="role-badge">Para Finanzas & Auditoría</span>
+          <span class="role-badge">{isEs ? 'Para Finanzas & Auditoría' : 'For Finance & Audit'}</span>
         </div>
-        <h3 class="benefit-title">Trazabilidad Total y Control Presupuestario</h3>
+        <h3 class="benefit-title">{isEs ? 'Trazabilidad Total y Control Presupuestario' : 'Total Traceability & Budget Control'}</h3>
         <p class="benefit-desc">
-          Mantenga la gobernanza de cada centavo autorizado con expedientes limpios y organizados para revisiones fiscales y auditorías internas.
+          {isEs 
+            ? 'Mantenga la gobernanza de cada centavo autorizado con expedientes limpios y organizados para revisiones fiscales y auditorías internas.' 
+            : 'Maintain governance over every dollar authorized with organized digital dossiers for tax reviews and internal audits.'}
         </p>
         <ul class="benefit-list">
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>Validación previa de presupuesto antes de emitir cualquier orden.</span>
+            <span>{isEs ? 'Validación previa de presupuesto antes de emitir cualquier orden.' : 'Pre-approval budget verification before purchase order issuance.'}</span>
           </li>
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>Huella criptográfica SHA-256 inmutable por cada firma y sello.</span>
+            <span>{isEs ? 'Huella criptográfica SHA-256 inmutable por cada firma y sello.' : 'Immutable SHA-256 cryptographic audit trail for every signature and stamp.'}</span>
           </li>
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>PDF consolidado listo para contabilidad sin recopilar adjuntos dispersos.</span>
+            <span>{isEs ? 'PDF consolidado listo para contabilidad sin recopilar adjuntos dispersos.' : 'Consolidated PDF ready for accounting without chasing scattered attachments.'}</span>
           </li>
         </ul>
       </div>
@@ -55,24 +68,26 @@
               <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
           </div>
-          <span class="role-badge">Para Operaciones & Proyectos</span>
+          <span class="role-badge">{isEs ? 'Para Operaciones & Proyectos' : 'For Operations & Projects'}</span>
         </div>
-        <h3 class="benefit-title">Cero Cuellos de Botella y Entrega a Tiempo</h3>
+        <h3 class="benefit-title">{isEs ? 'Cero Cuellos de Botella y Entrega a Tiempo' : 'Zero Bottlenecks & On-Time Delivery'}</h3>
         <p class="benefit-desc">
-          Reduzca radicalmente los tiempos muertos de espera para que compras, mantenimiento e insumos no detengan la operación del negocio.
+          {isEs 
+            ? 'Reduzca radicalmente los tiempos muertos de espera para que compras, mantenimiento e insumos no detengan la operación del negocio.' 
+            : 'Radically cut idle waiting times so procurement, maintenance, and supplies never stall operational momentum.'}
         </p>
         <ul class="benefit-list">
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>Monitoreo de SLAs con avisos tempranos antes de que una tarea venza.</span>
+            <span>{isEs ? 'Monitoreo de SLAs con avisos tempranos antes de que una tarea venza.' : 'Live SLA tracking with proactive alerts well before deadlines expire.'}</span>
           </li>
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>Reasignación temporal por ausencia de directores para evitar parálisis.</span>
+            <span>{isEs ? 'Reasignación temporal por ausencia de directores para evitar parálisis.' : 'Seamless out-of-office delegation to designated deputies preventing gridlock.'}</span>
           </li>
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>Consultas en el mismo expediente sin perder el contexto de la decisión.</span>
+            <span>{isEs ? 'Consultas en el mismo expediente sin perder el contexto de la decisión.' : 'In-thread contextual questions without losing decision history across chats.'}</span>
           </li>
         </ul>
       </div>
@@ -86,24 +101,26 @@
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
             </svg>
           </div>
-          <span class="role-badge">Para Tecnología & TI</span>
+          <span class="role-badge">{isEs ? 'Para Tecnología & TI' : 'For Technology & IT'}</span>
         </div>
-        <h3 class="benefit-title">Plataforma Ligera, Segura y Cero Fricción</h3>
+        <h3 class="benefit-title">{isEs ? 'Plataforma Ligera, Segura y Cero Fricción' : 'Lightweight, Secure & Zero IT Friction'}</h3>
         <p class="benefit-desc">
-          Transformación digital inmediata sin desarrollos eternos ni cargas de mantenimiento pesado en infraestructura o servidores propios.
+          {isEs 
+            ? 'Transformación digital inmediata sin desarrollos eternos ni cargas de mantenimiento pesado en infraestructura o servidores propios.' 
+            : 'Instant digital modernization without months of custom development or burdensome on-premise infrastructure upkeep.'}
         </p>
         <ul class="benefit-list">
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>Aislamiento de datos con PostgreSQL Row-Level Security (RLS).</span>
+            <span>{isEs ? 'Aislamiento de datos con PostgreSQL Row-Level Security (RLS).' : 'Multi-tenant database isolation with PostgreSQL Row-Level Security (RLS).'}</span>
           </li>
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>Descarga automática a 30 días a Google Drive o OneDrive (cero hot storage bloat).</span>
+            <span>{isEs ? 'Descarga automática a 30 días a Google Drive o OneDrive (cero hot storage bloat).' : '30-day auto-archiving to Google Drive or OneDrive with zero cloud storage bloat.'}</span>
           </li>
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>Autenticación unificada mediante Google Workspace y Microsoft 365.</span>
+            <span>{isEs ? 'Autenticación unificada mediante Google Workspace y Microsoft 365.' : 'Seamless single sign-on through Google Workspace and Microsoft 365.'}</span>
           </li>
         </ul>
       </div>

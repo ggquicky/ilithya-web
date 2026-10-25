@@ -1,0 +1,314 @@
+---
+import { getLocalizedPath, type Language } from '../i18n/ui';
+
+interface Props {
+  id?: string;
+  className?: string;
+  variant?: 'navbar' | 'segmented';
+  lang?: Language;
+}
+
+const { 
+  id = "lang-selector", 
+  className = "", 
+  variant = "navbar",
+  lang = (Astro.currentLocale || 'es') as Language
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const esPath = getLocalizedPath(currentPath, 'es');
+const enPath = getLocalizedPath(currentPath, 'en');
+---
+
+{variant === 'segmented' ? (
+  <div class={`lang-segmented ${className}`} id={id}>
+    <a 
+      href={esPath} 
+      class={`lang-seg-btn ${lang === 'es' ? 'active' : ''}`}
+      data-lang-choice="es"
+      title="Cambiar a Español"
+    >
+      <span>🇪🇸</span>
+      <span>ES</span>
+    </a>
+    <a 
+      href={enPath} 
+      class={`lang-seg-btn ${lang === 'en' ? 'active' : ''}`}
+      data-lang-choice="en"
+      title="Switch to English"
+    >
+      <span>🇺🇸</span>
+      <span>EN</span>
+    </a>
+  </div>
+) : (
+  <div class={`lang-dropdown-wrapper ${className}`} id={id}>
+    <button 
+      type="button" 
+      class="lang-btn" 
+      aria-label="Seleccionar idioma / Select language" 
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      <svg class="globe-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="2" y1="12" x2="22" y2="12"></line>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+      </svg>
+      <span class="lang-code">{lang.toUpperCase()}</span>
+      <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </button>
+
+    <div class="lang-menu" hidden>
+      <div class="lang-menu-header">
+        {lang === 'es' ? 'Idioma' : 'Language'}
+      </div>
+      <a 
+        href={esPath} 
+        class={`lang-menu-item ${lang === 'es' ? 'active' : ''}`}
+        data-lang-choice="es"
+      >
+        <span class="lang-item-content">
+          <span class="lang-flag">🇪🇸</span>
+          <span class="lang-label">Español</span>
+        </span>
+        {lang === 'es' && (
+          <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        )}
+      </a>
+      <a 
+        href={enPath} 
+        class={`lang-menu-item ${lang === 'en' ? 'active' : ''}`}
+        data-lang-choice="en"
+      >
+        <span class="lang-item-content">
+          <span class="lang-flag">🇺🇸</span>
+          <span class="lang-label">English</span>
+        </span>
+        {lang === 'en' && (
+          <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        )}
+      </a>
+    </div>
+  </div>
+)}
+
+<script>
+  function setupLangDropdowns() {
+    document.querySelectorAll('.lang-dropdown-wrapper').forEach((wrapper) => {
+      const btn = wrapper.querySelector<HTMLButtonElement>('.lang-btn');
+      const menu = wrapper.querySelector<HTMLElement>('.lang-menu');
+      if (!btn || !menu) return;
+
+      btn.onclick = (e) => {
+        e.stopPropagation();
+        const willOpen = menu.hidden;
+        // Close any other open menus
+        document.querySelectorAll<HTMLElement>('.lang-menu').forEach((m) => {
+          if (m !== menu) m.hidden = true;
+        });
+        document.querySelectorAll<HTMLButtonElement>('.lang-btn').forEach((b) => {
+          if (b !== btn) b.setAttribute('aria-expanded', 'false');
+        });
+        menu.hidden = !willOpen;
+        btn.setAttribute('aria-expanded', String(willOpen));
+      };
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement | null;
+      if (target?.closest('.lang-dropdown-wrapper')) return;
+      document.querySelectorAll<HTMLElement>('.lang-menu').forEach((m) => {
+        m.hidden = true;
+      });
+      document.querySelectorAll<HTMLButtonElement>('.lang-btn').forEach((b) => {
+        b.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Save language choice on click
+    document.querySelectorAll('[data-lang-choice]').forEach((link) => {
+      link.addEventListener('click', () => {
+        const chosen = link.getAttribute('data-lang-choice');
+        if (chosen) {
+          try {
+            localStorage.setItem('flowpilot_language', chosen);
+          } catch (err) {}
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupLangDropdowns);
+  } else {
+    setupLangDropdowns();
+  }
+</script>
+
+<style>
+  /* Dropdown Wrapper */
+  .lang-dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .lang-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    height: 40px;
+    padding-inline: 0.75rem;
+    border-radius: var(--radius-md);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .lang-btn:hover {
+    color: var(--text-main);
+    background: var(--bg-surface-elevated);
+    border-color: var(--color-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px -2px rgba(19, 127, 236, 0.2);
+  }
+
+  .globe-icon {
+    color: var(--text-muted);
+    transition: color 0.15s ease;
+  }
+
+  .lang-btn:hover .globe-icon {
+    color: var(--color-primary);
+  }
+
+  .lang-code {
+    font-family: monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .chevron-icon {
+    opacity: 0.6;
+    transition: transform 0.2s ease;
+  }
+
+  .lang-btn[aria-expanded="true"] .chevron-icon {
+    transform: rotate(180deg);
+  }
+
+  /* Dropdown Menu */
+  .lang-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    width: 148px;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 0.35rem;
+    box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.35);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    backdrop-filter: blur(12px);
+  }
+
+  .lang-menu[hidden] {
+    display: none;
+  }
+
+  .lang-menu-header {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    padding: 0.35rem 0.6rem 0.2rem;
+  }
+
+  .lang-menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0.6rem;
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    transition: all 0.15s ease;
+  }
+
+  .lang-menu-item:hover {
+    background: rgba(19, 127, 236, 0.1);
+    color: var(--text-main);
+  }
+
+  .lang-menu-item.active {
+    background: rgba(19, 127, 236, 0.15);
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .lang-item-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .lang-flag {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .check-icon {
+    color: var(--color-primary);
+  }
+
+  /* Segmented Toggle (For Mobile Drawer) */
+  .lang-segmented {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    gap: 3px;
+  }
+
+  .lang-seg-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+
+  .lang-seg-btn:hover {
+    color: var(--text-main);
+  }
+
+  .lang-seg-btn.active {
+    background: var(--bg-surface-elevated);
+    color: var(--color-primary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+</style>

@@ -1,54 +1,65 @@
 ---
+import { getTranslations, getLocalizedPath, type Language } from '../i18n/ui';
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = (Astro.currentLocale || 'es') as Language } = Astro.props;
+const t = getTranslations(lang);
 const currentYear = new Date().getFullYear();
+
+const homeHref = getLocalizedPath('/', lang);
+const casesHref = getLocalizedPath('/casos-de-uso', lang);
+const platformHref = getLocalizedPath('/plataforma', lang);
+const pilotHref = getLocalizedPath('/plan-piloto', lang);
+const contactHref = getLocalizedPath('/contacto', lang);
 ---
 
 <footer class="site-footer">
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="/" class="brand-logo" aria-label="Ilithya Workflow Home">
+        <a href={homeHref} class="brand-logo" aria-label="Ilithya Workflow Home">
           <img src="/brand/darkLogo.png" alt="Ilithya Workflow" class="footer-logo-img logo-dark" />
           <img src="/brand/lightLogo.png" alt="Ilithya Workflow" class="footer-logo-img logo-light" />
         </a>
         <p class="brand-slogan">
-          Soporte digital para flujos de aprobación documental con firmas de coordenadas exactas, control de SLAs y auto-archivado en la nube.
+          {t.footer.desc}
         </p>
         <div class="system-status">
           <span class="status-pulse"></span>
-          <span>Sistemas Operativos • 99.98% Disponibilidad</span>
+          <span>{lang === 'es' ? 'Sistemas Operativos • 99.98% Disponibilidad' : 'All Systems Operational • 99.98% Uptime'}</span>
         </div>
       </div>
 
       <div class="footer-grid">
         <div class="footer-col">
-          <h4 class="col-title">Plataforma</h4>
+          <h4 class="col-title">{t.footer.navHeading}</h4>
           <ul class="col-links">
-            <li><a href="/casos-de-uso">Casos de Uso</a></li>
-            <li><a href="/#desafio">El Desafío</a></li>
-            <li><a href="/#solucion">Nuestra Solución</a></li>
-            <li><a href="/#beneficios">Beneficios por Área</a></li>
-            <li><a href="/plan-piloto">Plan Piloto (15 a 20 Días)</a></li>
+            <li><a href={homeHref}>{t.nav.home}</a></li>
+            <li><a href={casesHref}>{t.nav.useCases}</a></li>
+            <li><a href={platformHref}>{t.nav.platform}</a></li>
+            <li><a href={pilotHref}>{t.nav.pilotPlan}</a></li>
+            <li><a href={contactHref}>{t.nav.contact}</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4 class="col-title">Seguridad & TI</h4>
+          <h4 class="col-title">{t.footer.capabilitiesHeading}</h4>
           <ul class="col-links">
-            <li><a href="/plataforma">Capacidades de Plataforma</a></li>
-            <li><a href="/plataforma#seguridad">PostgreSQL RLS Multi-Tenant</a></li>
-            <li><a href="/plataforma#nube">Auto-Archivado a 30 Días</a></li>
-            <li><a href="/plataforma#integraciones">Google Workspace & MS 365</a></li>
-            <li><a href="/plataforma#auditoria">Pistas de Auditoría SHA-256</a></li>
+            {t.footer.capabilitiesList.map((item) => (
+              <li><a href={platformHref}>{item}</a></li>
+            ))}
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4 class="col-title">Contacto</h4>
+          <h4 class="col-title">{t.footer.complianceHeading}</h4>
           <ul class="col-links">
-            <li><a href="/contacto">Canales de Contacto</a></li>
-            <li><button class="footer-btn-link" data-open-modal="pilot">Solicitar Plan Piloto</button></li>
-            <li><a href="mailto:jlmoralesm08@gmail.com">Mesa Directiva</a></li>
-            <li><a href="/casos-de-uso">Modelado de Flujos</a></li>
+            {t.footer.complianceList.map((item) => (
+              <li><a href={platformHref}>{item}</a></li>
+            ))}
           </ul>
         </div>
       </div>
@@ -56,12 +67,12 @@ const currentYear = new Date().getFullYear();
 
     <div class="footer-bottom">
       <p class="copyright">
-        &copy; {currentYear} Ilithya Workflow Inc. Todos los derechos reservados. Diseñado para Jorge Morales y Operaciones Corporativas.
+        &copy; {currentYear} Ilithya Workflow Inc. {t.footer.rights}
       </p>
       <div class="legal-links">
-        <a href="#">Política de Privacidad</a>
-        <a href="#">Términos del Servicio</a>
-        <a href="#">Seguridad y Cumplimiento</a>
+        <a href={contactHref}>{lang === 'es' ? 'Privacidad' : 'Privacy'}</a>
+        <a href={contactHref}>{lang === 'es' ? 'Términos' : 'Terms'}</a>
+        <a href={platformHref}>{lang === 'es' ? 'Seguridad & Cumplimiento' : 'Security & Compliance'}</a>
       </div>
     </div>
   </div>

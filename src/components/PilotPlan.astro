@@ -1,15 +1,26 @@
 ---
-// PilotPlan.astro - Plan de Prueba (15 a 20 Días) from Diapositiva 6
+import { getTranslations, type Language } from '../i18n/ui';
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = (Astro.currentLocale || 'es') as Language } = Astro.props;
+const isEs = lang === 'es';
 ---
 
 <section class="pilot-section" id="plan-piloto">
   <div class="container">
     <div class="pilot-wrapper">
       <div class="pilot-content">
-        <span class="section-tag">Propuesta de Colaboración</span>
-        <h2 class="pilot-title">Evaluemos juntos el impacto en tu operación</h2>
+        <span class="section-tag">{isEs ? 'Propuesta de Colaboración' : 'Collaborative Evaluation'}</span>
+        <h2 class="pilot-title">
+          {isEs ? 'Evaluemos juntos el impacto en tu operación' : 'Let’s measure the operational impact together'}
+        </h2>
         <p class="pilot-desc">
-          Queremos que experimenten la agilidad de Ilithya con un proceso real de su empresa. Sin costos ocultos, sin instalaciones complejas y con total acompañamiento.
+          {isEs 
+            ? 'Queremos que experimenten la agilidad de Ilithya con un proceso real de su empresa. Sin costos ocultos, sin instalaciones complejas y con total acompañamiento.' 
+            : 'Experience Ilithya’s velocity on a live operational process in your organization. Zero hidden costs, zero software installations, with 1-on-1 engineering guidance.'}
         </p>
 
         <!-- 3-Phase Timeline -->
@@ -17,9 +28,11 @@
           <div class="pilot-step-item">
             <div class="step-num-badge">1</div>
             <div class="step-body">
-              <h3 class="step-heading">Selección</h3>
+              <h3 class="step-heading">{isEs ? 'Selección' : 'Selection'}</h3>
               <p class="step-text">
-                Elegimos 1 proceso de compra, viáticos o solicitud representativo de su día a día.
+                {isEs 
+                  ? 'Elegimos 1 proceso de compra, viáticos o solicitud representativo de su día a día.' 
+                  : 'We select 1 representative purchasing, travel, or personnel workflow from your day-to-day.'}
               </p>
             </div>
           </div>
@@ -29,9 +42,11 @@
           <div class="pilot-step-item">
             <div class="step-num-badge">2</div>
             <div class="step-body">
-              <h3 class="step-heading">Configuración</h3>
+              <h3 class="step-heading">{isEs ? 'Configuración' : 'Configuration'}</h3>
               <p class="step-text">
-                Acompañamos a su equipo a configurar la ruta, estaciones y reglas de aprobación en horas.
+                {isEs 
+                  ? 'Acompañamos a su equipo a configurar la ruta, estaciones y reglas de aprobación en horas.' 
+                  : 'We pair with your team to configure approval stations, rules, and PDF templates in hours.'}
               </p>
             </div>
           </div>
@@ -41,9 +56,11 @@
           <div class="pilot-step-item">
             <div class="step-num-badge">3</div>
             <div class="step-body">
-              <h3 class="step-heading">Evaluación</h3>
+              <h3 class="step-heading">{isEs ? 'Evaluación' : 'Evaluation'}</h3>
               <p class="step-text">
-                Al finalizar el período, revisamos juntos los tiempos ahorrados y la experiencia de sus usuarios.
+                {isEs 
+                  ? 'Al finalizar el período, revisamos juntos los tiempos ahorrados y la experiencia de sus usuarios.' 
+                  : 'At the conclusion of the evaluation, we review the turnaround hours saved and user satisfaction.'}
               </p>
             </div>
           </div>
@@ -53,20 +70,24 @@
         <div class="pilot-quote-card">
           <div class="quote-symbol">“</div>
           <p class="quote-body">
-            Permítannos acompañar a su equipo en esta prueba <strong>sin costo ni compromiso</strong>, para que experimenten de primera mano cómo las aprobaciones pueden fluir a tiempo y sin desgaste.
+            {isEs ? (
+              <>Permítannos acompañar a su equipo en esta prueba <strong>sin costo ni compromiso</strong>, para que experimenten de primera mano cómo las aprobaciones pueden fluir a tiempo y sin desgaste.</>
+            ) : (
+              <>Allow us to guide your team through this evaluation <strong>with zero cost or commitment</strong>, experiencing firsthand how enterprise approvals flow on time and without friction.</>
+            )}
           </p>
         </div>
 
         <!-- Call to action button -->
         <div class="pilot-actions">
           <button class="btn btn-primary btn-lg" data-open-modal="pilot" id="pilot-cta-btn">
-            <span>Solicitar Plan de Prueba (15 a 20 Días)</span>
+            <span>{isEs ? 'Solicitar Plan de Prueba (15 a 20 Días)' : 'Request Guided Pilot Trial (15 to 20 Days)'}</span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
           </button>
-          <span class="pilot-guarantee">✓ Acompañamiento técnico 1-a-1 incluido</span>
+          <span class="pilot-guarantee">{isEs ? '✓ Acompañamiento técnico 1-a-1 incluido' : '✓ 1-on-1 technical onboarding included'}</span>
         </div>
       </div>
     </div>

@@ -1,67 +1,41 @@
 ---
-// CasesPreview.astro - Compact teaser for the Home page
-const cases = [
-  {
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
-    code: "CASO 01",
-    tag: "Finanzas & Compras",
-    title: "Compra o Pago a Proveedores",
-    desc: "Requisas, cotizaciones y justificación de compra validadas por Jefe de Área y Gerente Financiero antes de la orden final.",
-    sla: "< 24h",
-    caseSlug: "compras-proveedores"
-  },
-  {
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>`,
-    code: "CASO 02",
-    tag: "Finanzas & Movilidad",
-    title: "Solicitud y Pago de Viáticos",
-    desc: "Aprobación previa de traslados, hospedaje y alimentación con encadenamiento automático a pagos de contabilidad.",
-    sla: "< 48h",
-    caseSlug: "viaticos-colaboradores"
-  },
-  {
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
-    code: "CASO 03",
-    tag: "Recursos Humanos",
-    title: "Onboarding y Selección",
-    desc: "Filtro colaborativo ágil de CVs entre líderes de área y RRHH para agendar citas de entrevista sin cadenas de correo.",
-    sla: "< 12h",
-    caseSlug: "onboarding-candidatos"
-  },
-  {
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
-    code: "CASO 04",
-    tag: "Recursos Humanos",
-    title: "Vacaciones (Acción de Personal)",
-    desc: "Trámite de permisos y vacaciones con sellos de tiempo y archivado automático del PDF final en el expediente digital.",
-    sla: "< 8h",
-    caseSlug: "solicitud-vacaciones"
-  },
-  {
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>`,
-    code: "CASO 05",
-    tag: "Operaciones",
-    title: "Compra de Suministros",
-    desc: "Validación de insumos y mantenimiento de sedes corporativas con cruce presupuestario y despacho con bodega.",
-    sla: "< 24h",
-    caseSlug: "compra-suministros"
-  }
+import { getTranslations, getLocalizedPath, type Language } from '../i18n/ui';
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = (Astro.currentLocale || 'es') as Language } = Astro.props;
+const t = getTranslations(lang);
+const casesBaseHref = getLocalizedPath('/casos-de-uso', lang);
+
+const caseIcons = [
+  `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
+  `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>`,
+  `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+  `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
+  `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>`
 ];
+
+const cases = t.casesPreview.cases.map((c, i) => ({
+  ...c,
+  icon: caseIcons[i % caseIcons.length]
+}));
 ---
 
 <section class="cases-preview-section" id="casos-preview">
   <div class="container">
     <div class="section-header text-center">
-      <span class="section-tag">Flujos Listos para Usar</span>
-      <h2 class="section-title">Casos de Uso Diseñados para Tu Empresa</h2>
+      <span class="section-tag">{t.casesPreview.tag}</span>
+      <h2 class="section-title">{t.casesPreview.title}</h2>
       <p class="section-desc">
-        Ilithya Workflow automatiza las aprobaciones cotidianas que hoy consumen el tiempo de tus líderes y colaboradores.
+        {t.casesPreview.desc}
       </p>
     </div>
 
     <div class="cases-preview-grid">
       {cases.map((c) => (
-        <a href={`/casos-de-uso#${c.caseSlug}`} class="preview-case-card">
+        <a href={`${casesBaseHref}#${c.caseSlug}`} class="preview-case-card">
           <div class="card-top">
             <div class="card-icon" set:html={c.icon}></div>
             <span class="card-sla">SLA {c.sla}</span>
@@ -73,7 +47,7 @@ const cases = [
           <h3 class="card-title">{c.title}</h3>
           <p class="card-desc">{c.desc}</p>
           <div class="card-link">
-            <span>Ver flujo y estaciones</span>
+            <span>{lang === 'es' ? 'Ver flujo y estaciones' : 'View workflow & stations'}</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
@@ -85,15 +59,15 @@ const cases = [
 
     <!-- CTA Row -->
     <div class="preview-cta-row">
-      <a href="/casos-de-uso" class="btn btn-secondary btn-lg">
-        <span>Explorar los 5 Flujos Detallados Paso a Paso</span>
+      <a href={casesBaseHref} class="btn btn-secondary btn-lg">
+        <span>{lang === 'es' ? 'Explorar los 5 Flujos Detallados Paso a Paso' : 'Explore All 5 Workflows Step-by-Step'}</span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <line x1="5" y1="12" x2="19" y2="12"></line>
           <polyline points="12 5 19 12 12 19"></polyline>
         </svg>
       </a>
       <button class="btn btn-primary btn-lg" data-open-modal="pilot">
-        <span>Solicitar Plan Piloto (15 a 20 Días)</span>
+        <span>{lang === 'es' ? 'Solicitar Plan Piloto (15 a 20 Días)' : 'Request Pilot Plan (15 to 20 Days)'}</span>
       </button>
     </div>
   </div>

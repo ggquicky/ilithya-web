@@ -1,19 +1,32 @@
 ---
-// StoryPainSection.astro - Empathy & Solution alignment from Presentation Slides 2 & 3
+import { getTranslations, type Language } from '../i18n/ui';
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = (Astro.currentLocale || 'es') as Language } = Astro.props;
+const isEs = lang === 'es';
 ---
 
 <section class="story-section" id="desafio">
   <div class="container">
     <!-- Header -->
     <div class="section-header text-center">
-      <span class="section-tag">El Desafío Común</span>
-      <h2 class="section-title">Cuando la operación crece, el seguimiento manual se vuelve complejo</h2>
+      <span class="section-tag">{isEs ? 'El Desafío Común' : 'The Common Challenge'}</span>
+      <h2 class="section-title">
+        {isEs 
+          ? 'Cuando la operación crece, el seguimiento manual se vuelve complejo' 
+          : 'As operations expand, manual follow-ups quickly become a bottleneck'}
+      </h2>
       <p class="section-desc">
-        En el día a día, todos los ejecutivos están enfocados en sus metas clave. Sin embargo, al depender del correo o mensajes para autorizar trámites, la fricción es inevitable.
+        {isEs 
+          ? 'En el día a día, todos los ejecutivos están enfocados en sus metas clave. Sin embargo, al depender del correo o mensajes para autorizar trámites, la fricción es inevitable.' 
+          : 'Leaders are dedicated to high-priority goals. Yet relying on emails or chat messages to authorize requests inevitably generates friction and delays.'}
       </p>
     </div>
 
-    <!-- Pain Points Grid (Diapositiva 2) -->
+    <!-- Pain Points Grid -->
     <div class="pain-grid">
       <div class="pain-card">
         <div class="pain-icon-wrapper danger">
@@ -23,10 +36,12 @@
           </svg>
         </div>
         <div class="pain-content">
-          <span class="pain-label">Riesgo Financiero</span>
-          <h3 class="pain-title">Vencimiento de Condiciones</h3>
+          <span class="pain-label">{isEs ? 'Riesgo Financiero' : 'Financial Risk'}</span>
+          <h3 class="pain-title">{isEs ? 'Vencimiento de Condiciones' : 'Expired Supplier Quotes'}</h3>
           <p class="pain-desc">
-            Una compra importante se retrasa unos días en revisión y, para cuando se aprueba, la cotización del proveedor ha cambiado o expirado, encareciendo la operación.
+            {isEs 
+              ? 'Una compra importante se retrasa unos días en revisión y, para cuando se aprueba, la cotización del proveedor ha cambiado o expirado, encareciendo la operación.' 
+              : 'A key purchase sits delayed in inboxes; by the time it is signed, vendor pricing has expired, needlessly driving up operational costs.'}
           </p>
         </div>
       </div>
@@ -39,10 +54,12 @@
           </svg>
         </div>
         <div class="pain-content">
-          <span class="pain-label">Sobrecarga Operativa</span>
-          <h3 class="pain-title">Bandejas Saturadas</h3>
+          <span class="pain-label">{isEs ? 'Sobrecarga Operativa' : 'Operational Overhead'}</span>
+          <h3 class="pain-title">{isEs ? 'Bandejas Saturadas' : 'Saturated Inboxes'}</h3>
           <p class="pain-desc">
-            Los directores y aprobadores reciben docenas de solicitudes diarias. Una tarea crítica puede quedar sepultada en un mar de emails sin ninguna mala intención.
+            {isEs 
+              ? 'Los directores y aprobadores reciben docenas de solicitudes diarias. Una tarea crítica puede quedar sepultada en un mar de emails sin ninguna mala intención.' 
+              : 'Managers receive dozens of requests daily. High-priority approvals get buried under routine emails without any ill intent.'}
           </p>
         </div>
       </div>
@@ -57,25 +74,33 @@
           </svg>
         </div>
         <div class="pain-content">
-          <span class="pain-label">Pérdida de Productividad</span>
-          <h3 class="pain-title">Desgaste del Equipo</h3>
+          <span class="pain-label">{isEs ? 'Pérdida de Productividad' : 'Lost Productivity'}</span>
+          <h3 class="pain-title">{isEs ? 'Desgaste del Equipo' : 'Team Fatigue'}</h3>
           <p class="pain-desc">
-            Los colaboradores invierten horas valiosas haciendo "arqueología de correos" y preguntando <em>"¿dónde está mi solicitud?"</em>, en lugar de concentrarse en su trabajo principal.
+            {isEs 
+              ? 'Los colaboradores invierten horas valiosas haciendo "arqueología de correos" y preguntando "¿dónde está mi solicitud?", en lugar de concentrarse en su trabajo principal.' 
+              : 'Employees waste valuable hours doing "email archaeology" asking "where is my request?", instead of focusing on their core mission.'}
           </p>
         </div>
       </div>
     </div>
 
-    <!-- The Solution Banner (Diapositiva 3 - Ilithya como Aliado) -->
+    <!-- The Solution Banner (Ilithya como Aliado) -->
     <div class="solution-hero-box" id="solucion">
       <div class="solution-header">
         <div class="solution-badge">
           <span class="pulse-dot"></span>
-          <span>El Papel de Ilithya: Tu Aliado Operativo</span>
+          <span>{isEs ? 'El Papel de Ilithya: Tu Aliado Operativo' : 'Ilithya’s Role: Your Operational Ally'}</span>
         </div>
-        <h3 class="solution-title">Un sistema que apoya la gestión de tu gente sin imponer nuevas reglas</h3>
+        <h3 class="solution-title">
+          {isEs 
+            ? 'Un sistema que apoya la gestión de tu gente sin imponer nuevas reglas' 
+            : 'A platform supporting your team’s decisions without enforcing rigid bureaucracy'}
+        </h3>
         <p class="solution-subtitle">
-          Ilithya no viene a reemplazar sus procesos ni a imponer burocracia rígida, sino a respaldar a su equipo en su jornada diaria para que las decisiones fluyan con agilidad.
+          {isEs 
+            ? 'Ilithya no viene a reemplazar sus procesos ni a imponer burocracia rígida, sino a respaldar a su equipo en su jornada diaria para que las decisiones fluyan con agilidad.' 
+            : 'Ilithya does not replace your established processes or introduce complex red tape; it empowers your leadership so decisions flow with speed.'}
         </p>
       </div>
 
@@ -87,9 +112,11 @@
               <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
             </svg>
           </div>
-          <h4 class="pillar-title">Recordatorios Automáticos</h4>
+          <h4 class="pillar-title">{isEs ? 'Recordatorios Automáticos' : 'Automated Reminders'}</h4>
           <p class="pillar-desc">
-            Le avisa amablemente al aprobador sobre sus pendientes, liberando al solicitante de tener que "perseguir" firmas o enviar recordatorios incómodos.
+            {isEs 
+              ? 'Le avisa amablemente al aprobador sobre sus pendientes, liberando al solicitante de tener que "perseguir" firmas o enviar recordatorios incómodos.' 
+              : 'Courteously alerts decision-makers of pending items, sparing requesters from awkwardly chasing signatures.'}
           </p>
         </div>
 
@@ -100,9 +127,11 @@
               <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
             </svg>
           </div>
-          <h4 class="pillar-title">Gestión de Ausencias</h4>
+          <h4 class="pillar-title">{isEs ? 'Gestión de Ausencias' : 'Out-of-Office Stand-ins'}</h4>
           <p class="pillar-desc">
-            Si un líder sale de viaje o a una reunión clave, el sistema ayuda a redirigir la tarea temporalmente al suplente para no frenar la continuidad del negocio.
+            {isEs 
+              ? 'Si un líder sale de viaje o a una reunión clave, el sistema ayuda a redirigir la tarea temporalmente al suplente para no frenar la continuidad del negocio.' 
+              : 'When a manager is traveling or in meetings, requests seamlessly delegate to appointed deputies to preserve business continuity.'}
           </p>
         </div>
 
@@ -114,9 +143,11 @@
               <path d="M2 12h20"></path>
             </svg>
           </div>
-          <h4 class="pillar-title">Visibilidad Compartida</h4>
+          <h4 class="pillar-title">{isEs ? 'Visibilidad Compartida' : 'Real-Time Visibility'}</h4>
           <p class="pillar-desc">
-            Cualquier involucrado puede consultar el estado exacto de una solicitud en segundos con total transparencia: estación actual, responsable y SLA proyectado.
+            {isEs 
+              ? 'Cualquier involucrado puede consultar el estado exacto de una solicitud en segundos con total transparencia: estación actual, responsable y SLA proyectado.' 
+              : 'Anyone involved can check request progress in seconds with complete clarity: current station, reviewer, and target SLA.'}
           </p>
         </div>
 
@@ -126,9 +157,11 @@
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
             </svg>
           </div>
-          <h4 class="pillar-title">Consultas Integradas</h4>
+          <h4 class="pillar-title">{isEs ? 'Consultas Integradas' : 'In-Thread Context'}</h4>
           <p class="pillar-desc">
-            Permite resolver dudas o solicitar soportes adicionales dentro del mismo flujo sin perder el hilo de la conversación ni dispersar información por chats externos.
+            {isEs 
+              ? 'Permite resolver dudas o solicitar soportes adicionales dentro del mismo flujo sin perder el hilo de la conversación ni dispersar información por chats externos.' 
+              : 'Resolve questions or request additional documentation directly within the approval thread without fragmenting info across external chats.'}
           </p>
         </div>
       </div>
