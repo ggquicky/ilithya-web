@@ -11,32 +11,32 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
     <div class="hero-badge-wrapper">
       <div class="hero-badge">
         <span class="badge-dot"></span>
-        <span class="badge-text">Ilithya Workflow 2.0 • Enterprise Lifecycle Automation</span>
+        <span class="badge-text">Ilithya Workflow • Soporte Digital para Decisiones de Equipo</span>
         <span class="badge-arrow">→</span>
       </div>
     </div>
 
     <div class="hero-content">
       <h1 class="hero-headline">
-        Intelligent PDF Approvals & Signatures for <span class="gradient-text">Modern Enterprise</span>
+        Agilidad y Claridad para las <span class="gradient-text">Decisiones de tu Equipo</span>
       </h1>
       <p class="hero-subline">
-        Eliminate document bottlenecks with Ilithya Workflow. Automate multi-stage approval chains, visual digital stamping, SLA escalation alarms, and automatic 30-day cloud archival — fully isolated and multi-tenant.
+        ILITHYA — Un soporte digital para que los flujos de compras, viáticos, vacaciones y contrataciones de tu empresa avancen sin fricción, cuellos de botella ni desgaste en correos.
       </p>
 
       <div class="hero-ctas">
-        <a href="#contact" class="btn btn-primary btn-lg" id="hero-cta-primary">
-          <span>Start Free 14-Day Trial</span>
+        <button class="btn btn-primary btn-lg" data-open-modal="pilot" id="hero-cta-primary">
+          <span>Solicitar Plan Piloto (15 a 20 Días)</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>
           </svg>
-        </a>
-        <a href="#workflow" class="btn btn-secondary btn-lg" id="hero-cta-secondary">
+        </button>
+        <a href="/casos-de-uso" class="btn btn-secondary btn-lg" id="hero-cta-secondary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="5 3 19 12 5 21 5 3"></polygon>
           </svg>
-          <span>Explore Interactive Demo</span>
+          <span>Explorar Casos de Uso</span>
         </a>
       </div>
 
@@ -44,24 +44,24 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
       <div class="trust-strip">
         <div class="trust-item">
           <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
           </svg>
-          <span>Enterprise RLS Security</span>
+          <span>Recordatorios & SLAs en Vivo</span>
         </div>
         <div class="trust-divider"></div>
         <div class="trust-item">
           <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"/>
-            <polyline points="12 6 12 12 16 14"/>
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
-          <span>Real-time SLA Alarms</span>
+          <span>Firmas & Sellos Criptográficos</span>
         </div>
         <div class="trust-divider"></div>
         <div class="trust-item">
           <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
           </svg>
-          <span>Automated 30-Day Storage Offload</span>
+          <span>PDF Consolidado y Auto-Archivado</span>
         </div>
       </div>
     </div>
@@ -82,11 +82,11 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
               <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
             </svg>
-            <span>home.ilithya.app / workflow / #IW-80492</span>
+            <span>home.ilithya.app / workflow / #OC-2026-80492</span>
           </div>
           <div class="header-status">
             <span class="status-indicator"></span>
-            <span>Live Sync</span>
+            <span>Sincronización en Vivo</span>
           </div>
         </div>
 
@@ -100,11 +100,11 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
           </div>
           <div class="doc-meta">
             <div class="doc-title-row">
-              <h2 class="doc-title">Master_Services_Agreement_v3.4.pdf</h2>
-              <span class="pill pill-blue">In Process</span>
-              <span class="pill pill-sla">SLA: 04h 12m Remaining</span>
+              <h2 class="doc-title">Requisa_Compra_Servidores_OC-80492.pdf</h2>
+              <span class="pill pill-blue">En Aprobación</span>
+              <span class="pill pill-sla">SLA: 03h 45m Restante</span>
             </div>
-            <p class="doc-sub">Tenant: Acme Global Corp • Requester: Sarah Connor (Operations) • 4 Pages</p>
+            <p class="doc-sub">Flujo: Compra a Proveedores • Solicitante: Carlos Méndez (TI) • 3 Adjuntos (Requisa + Cotización + Justificación)</p>
           </div>
         </div>
 
@@ -117,9 +117,9 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
               </svg>
             </div>
             <div class="step-info">
-              <span class="step-role">Requester</span>
-              <span class="step-name">Submitted</span>
-              <span class="step-time">Today, 09:14 AM</span>
+              <span class="step-role">Solicitante</span>
+              <span class="step-name">Expediente Subido</span>
+              <span class="step-time">Hoy, 09:15 AM</span>
             </div>
           </div>
 
@@ -132,9 +132,9 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
               </svg>
             </div>
             <div class="step-info">
-              <span class="step-role">Legal Supervisor</span>
-              <span class="step-name">Approved & Stamped</span>
-              <span class="step-time">Today, 11:28 AM</span>
+              <span class="step-role">Jefe de Área (TI)</span>
+              <span class="step-name">Autorizado y Sellado</span>
+              <span class="step-time">Hoy, 11:28 AM</span>
             </div>
           </div>
 
@@ -146,9 +146,9 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
               3
             </div>
             <div class="step-info">
-              <span class="step-role">CFO Approval</span>
-              <span class="step-name">Pending Decision</span>
-              <span class="step-time">Assigned to M. Vance</span>
+              <span class="step-role">Gerente Financiero</span>
+              <span class="step-name">Validación Presupuesto</span>
+              <span class="step-time">Asignado a L. Morales</span>
             </div>
           </div>
 
@@ -157,9 +157,9 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
           <div class="step-card pending">
             <div class="step-number">4</div>
             <div class="step-info">
-              <span class="step-role">Cloud Archival</span>
-              <span class="step-name">Google Drive / OneDrive</span>
-              <span class="step-time">30-Day Auto Offload</span>
+              <span class="step-role">Depto. de Compras</span>
+              <span class="step-name">Orden al Proveedor</span>
+              <span class="step-time">Basado en PDF Consolidado</span>
             </div>
           </div>
         </div>
@@ -189,9 +189,9 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
                   <span>ILITHYA VERIFIED APPROVAL</span>
                 </div>
                 <div class="stamp-body">
-                  <div class="stamp-line"><strong>OFFICER:</strong> J. Henderson (LEGAL)</div>
-                  <div class="stamp-line"><strong>STAMP ID:</strong> #IW-STMP-2026-9941</div>
-                  <div class="stamp-line"><strong>TIMESTAMP:</strong> 2026-10-14 11:28:40 UTC</div>
+                  <div class="stamp-line"><strong>OFICIAL:</strong> M. Ramos (JEFE DE ÁREA - TI)</div>
+                  <div class="stamp-line"><strong>STAMP ID:</strong> #IW-STMP-2026-80492</div>
+                  <div class="stamp-line"><strong>TIMESTAMP:</strong> 2026-10-24 11:28:40 UTC</div>
                   <div class="stamp-hash">SHA256: 7e8f190a4bb...8c2</div>
                 </div>
               </div>
@@ -204,20 +204,20 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
               </svg>
-              <span>Live Audit Stream</span>
+              <span>Pista de Auditoría en Vivo</span>
             </div>
             <div class="audit-items">
               <div class="audit-entry">
                 <span class="entry-time">11:28:40</span>
-                <p>Digital seal anchored at [X: 420, Y: 110] page 4.</p>
+                <p>Sello y firma digital estampados por Jefe de Área (TI) con sello de fecha/hora.</p>
               </div>
               <div class="audit-entry">
                 <span class="entry-time">11:25:02</span>
-                <p>Legal supervisor reviewed document checksum.</p>
+                <p>Validación técnica aprobada: 2 cotizaciones comparadas y partida justificada.</p>
               </div>
               <div class="audit-entry">
-                <span class="entry-time">09:14:18</span>
-                <p>Document uploaded and normalized to standard PDF.</p>
+                <span class="entry-time">09:15:18</span>
+                <p>Documentos cargados: Formato de requisa, cotización del proveedor y justificación técnica.</p>
               </div>
             </div>
           </div>

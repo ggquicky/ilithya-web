@@ -10,44 +10,44 @@ const currentYear = new Date().getFullYear();
           <img src="/brand/darkLogo.png" alt="Ilithya Workflow" class="footer-logo-img" />
         </a>
         <p class="brand-slogan">
-          Enterprise multi-tenant document workflows with coordinate-accurate digital signature stamps, SLA automation, and cloud offloading.
+          Soporte digital para flujos de aprobación documental con firmas de coordenadas exactas, control de SLAs y auto-archivado en la nube.
         </p>
         <div class="system-status">
           <span class="status-pulse"></span>
-          <span>All Services Operational • 99.98% Uptime</span>
+          <span>Sistemas Operativos • 99.98% Disponibilidad</span>
         </div>
       </div>
 
       <div class="footer-grid">
         <div class="footer-col">
-          <h4 class="col-title">Product</h4>
+          <h4 class="col-title">Plataforma</h4>
           <ul class="col-links">
-            <li><a href="#features">Digital Stamping</a></li>
-            <li><a href="#features">Multi-Stage Approvals</a></li>
-            <li><a href="#features">SLA Engine</a></li>
-            <li><a href="#features">30-Day Cloud Archival</a></li>
-            <li><a href="#workflow">Interactive Demo</a></li>
+            <li><a href="/casos-de-uso">Casos de Uso</a></li>
+            <li><a href="/#desafio">El Desafío</a></li>
+            <li><a href="/#solucion">Nuestra Solución</a></li>
+            <li><a href="/#beneficios">Beneficios por Área</a></li>
+            <li><a href="/plan-piloto">Plan Piloto (15 a 20 Días)</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4 class="col-title">Security & RBAC</h4>
+          <h4 class="col-title">Seguridad & TI</h4>
           <ul class="col-links">
-            <li><a href="#compliance">PostgreSQL RLS</a></li>
-            <li><a href="#compliance">Audit Trail Fingerprints</a></li>
-            <li><a href="#compliance">Google & Microsoft OAuth</a></li>
-            <li><a href="#compliance">SOC 2 Type II Readiness</a></li>
-            <li><a href="#compliance">Data Privacy & GDPR</a></li>
+            <li><a href="/plataforma">Capacidades de Plataforma</a></li>
+            <li><a href="/plataforma#seguridad">PostgreSQL RLS Multi-Tenant</a></li>
+            <li><a href="/plataforma#nube">Auto-Archivado a 30 Días</a></li>
+            <li><a href="/plataforma#integraciones">Google Workspace & MS 365</a></li>
+            <li><a href="/plataforma#auditoria">Pistas de Auditoría SHA-256</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4 class="col-title">Connect</h4>
+          <h4 class="col-title">Contacto</h4>
           <ul class="col-links">
-            <li><a href="#contact">Contact Sales</a></li>
-            <li><a href="#contact">Request Pilot</a></li>
-            <li><a href="mailto:support@ilithyaworkflow.com">Engineering Support</a></li>
-            <li><a href="#contact">Partner Inquiries</a></li>
+            <li><a href="/contacto">Canales de Contacto</a></li>
+            <li><button class="footer-btn-link" data-open-modal="pilot">Solicitar Plan Piloto</button></li>
+            <li><a href="mailto:jlmoralesm08@gmail.com">Mesa Directiva</a></li>
+            <li><a href="/casos-de-uso">Modelado de Flujos</a></li>
           </ul>
         </div>
       </div>
@@ -55,12 +55,12 @@ const currentYear = new Date().getFullYear();
 
     <div class="footer-bottom">
       <p class="copyright">
-        &copy; {currentYear} Ilithya Workflow Inc. All rights reserved. Designed for Jorge Morales & Enterprise Operations.
+        &copy; {currentYear} Ilithya Workflow Inc. Todos los derechos reservados. Diseñado para Jorge Morales y Operaciones Corporativas.
       </p>
       <div class="legal-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Security Disclosure</a>
+        <a href="#">Política de Privacidad</a>
+        <a href="#">Términos del Servicio</a>
+        <a href="#">Seguridad y Cumplimiento</a>
       </div>
     </div>
   </div>
@@ -153,13 +153,21 @@ const currentYear = new Date().getFullYear();
     gap: 0.75rem;
   }
 
-  .col-links a {
+  .col-links a,
+  .footer-btn-link {
     font-size: 0.875rem;
     color: var(--text-muted);
     transition: color 0.15s ease;
+    background: transparent;
+    border: none;
+    padding: 0;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
   }
 
-  .col-links a:hover {
+  .col-links a:hover,
+  .footer-btn-link:hover {
     color: var(--color-primary);
   }
 

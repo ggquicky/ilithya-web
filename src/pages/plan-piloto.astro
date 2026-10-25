@@ -1,0 +1,196 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import PilotPlan from '../components/PilotPlan.astro';
+import Footer from '../components/Footer.astro';
+
+const faqs = [
+  {
+    q: "¿El Plan de Prueba de 15 a 20 días tiene algún costo o compromiso de compra?",
+    a: "No, en lo absoluto. Es una prueba totalmente gratuita y sin compromiso contractual. Nuestro objetivo es que su equipo experimente de primera mano el ahorro de tiempo y la reducción de cuellos de botella antes de tomar cualquier decisión."
+  },
+  {
+    q: "¿Cuánto tiempo toma configurar nuestro primer proceso?",
+    a: "Normalmente toma entre 2 y 4 horas. Nuestro equipo de soluciones técnicas le acompaña en una sesión remota para cargar sus plantillas PDF, definir las estaciones de aprobación, asignar suplentes y fijar los tiempos de SLA."
+  },
+  {
+    q: "¿Requiere instalar software en nuestros servidores o computadoras?",
+    a: "No. Ilithya Workflow opera 100% en la nube a través de cualquier navegador web moderno (Chrome, Safari, Edge, Firefox), optimizado tanto para escritorio como para dispositivos móviles."
+  },
+  {
+    q: "¿Qué sucede con los documentos y datos al finalizar los 20 días?",
+    a: "Todos los expedientes generados y sus pistas de auditoría inmutables le pertenecen a su empresa. Al finalizar el período, usted puede exportar los PDFs consolidados o mantenerlos integrados si decide continuar con la suscripción."
+  },
+  {
+    q: "¿Podemos conectar Ilithya con nuestro Google Drive o Microsoft OneDrive?",
+    a: "Sí. Durante la misma prueba podemos vincular la cuenta corporativa de su empresa para que los paquetes aprobados se transfieran automáticamente a su carpeta de archivo permanente tras 30 días."
+  }
+];
+---
+
+<Layout 
+  title="Plan de Prueba (15 a 20 Días) | Ilithya Workflow"
+  description="Evalúe Ilithya Workflow con un proceso de compra o solicitud representativo de su empresa. Sin costo ni compromiso, con acompañamiento 1-a-1."
+>
+  <Header />
+
+  <main>
+    <!-- Page Intro Header -->
+    <section class="page-intro-header">
+      <div class="container text-center">
+        <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+          <a href="/">Inicio</a>
+          <span class="bc-sep">/</span>
+          <span class="bc-current">Plan Piloto</span>
+        </nav>
+        <span class="section-tag">Garantía Sin Riesgo</span>
+        <h1 class="page-intro-title">Plan de Prueba Asistido (15 a 20 Días)</h1>
+        <p class="page-intro-desc">
+          Ponemos a prueba la agilidad de Ilithya directamente en el terreno de su operación: seleccionamos un flujo representativo, lo configuramos juntos y medimos el tiempo ahorrado.
+        </p>
+      </div>
+    </section>
+
+    <!-- Pilot Plan Component -->
+    <PilotPlan />
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">Preguntas Frecuentes</span>
+          <h2 class="section-title">Todo lo que Necesita Saber sobre el Piloto</h2>
+          <p class="section-desc">
+            Respuestas claras y transparentes para que su equipo inicie con absoluta tranquilidad.
+          </p>
+        </div>
+
+        <div class="faq-grid">
+          {faqs.map((faq) => (
+            <div class="faq-card">
+              <h3 class="faq-q">{faq.q}</h3>
+              <p class="faq-a">{faq.a}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="faq-footer-cta text-center">
+          <button class="btn btn-primary btn-lg" data-open-modal="pilot">
+            <span>Iniciar Prueba Gratuita Ahora</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .page-intro-header {
+    padding-top: 4.5rem;
+    padding-bottom: 2.5rem;
+    background: radial-gradient(ellipse at top, rgba(19, 127, 236, 0.12) 0%, transparent 70%);
+    position: relative;
+  }
+
+  .breadcrumb-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--text-dim);
+    margin-bottom: 1.25rem;
+  }
+
+  .breadcrumb-nav a {
+    color: var(--text-muted);
+    transition: color 0.15s ease;
+  }
+
+  .breadcrumb-nav a:hover {
+    color: var(--color-primary);
+  }
+
+  .bc-sep {
+    opacity: 0.4;
+  }
+
+  .bc-current {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .page-intro-title {
+    font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    letter-spacing: -0.03em;
+  }
+
+  .page-intro-desc {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 720px;
+    margin-inline: auto;
+    line-height: 1.6;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  /* FAQ Section */
+  .faq-section {
+    padding-block: 5.5rem;
+    background: var(--bg-main);
+    border-top: 1px solid var(--border-color);
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .faq-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .faq-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(96, 165, 250, 0.4);
+  }
+
+  .faq-q {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.35;
+  }
+
+  .faq-a {
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .faq-footer-cta {
+    margin-top: 2rem;
+  }
+</style>

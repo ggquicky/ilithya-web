@@ -1,0 +1,533 @@
+---
+// PilotModal.astro - Reusable Modal for requesting the 15-20 Day Pilot
+interface Props {
+  recipientEmail?: string;
+}
+
+const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
+---
+
+<div id="pilot-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-backdrop" data-close-modal></div>
+
+  <div class="modal-container">
+    <!-- Close Button -->
+    <button class="modal-close-btn" data-close-modal aria-label="Cerrar ventana">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <div class="modal-badge">
+        <span class="pulse-dot"></span>
+        <span>Acompañamiento 1-a-1 Incluido</span>
+      </div>
+      <h2 id="modal-title" class="modal-title">Solicitar Plan Piloto (15 a 20 Días)</h2>
+      <p class="modal-desc">
+        Evaluemos juntos el impacto de Ilithya en un proceso real de su empresa. Sin costo ni compromiso.
+      </p>
+    </div>
+
+    <!-- Form -->
+    <form 
+      class="modal-form" 
+      id="modal-pilot-form" 
+      method="POST" 
+      action={`https://formsubmit.co/ajax/${recipientEmail}`}
+    >
+      <!-- Anti-spam Honeypot -->
+      <div class="visually-hidden">
+        <label for="modal-bot-field">No llenar este campo</label>
+        <input type="text" id="modal-bot-field" name="_honey" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <!-- FormSubmit Config -->
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_subject" value="Nueva Solicitud de Plan Piloto (Modal Web)" />
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="modal-full-name" class="form-label">Nombre Completo <span class="required">*</span></label>
+          <input 
+            type="text" 
+            id="modal-full-name" 
+            name="name" 
+            class="form-input" 
+            placeholder="Ej. Roberto Gómez" 
+            autocomplete="name" 
+            required 
+            minlength="2"
+          />
+        </div>
+        <div class="form-group">
+          <label for="modal-work-email" class="form-label">Correo Corporativo <span class="required">*</span></label>
+          <input 
+            type="email" 
+            id="modal-work-email" 
+            name="email" 
+            class="form-input" 
+            placeholder="roberto@empresa.com" 
+            autocomplete="email" 
+            required 
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="modal-company-name" class="form-label">Empresa / Organización <span class="required">*</span></label>
+          <input 
+            type="text" 
+            id="modal-company-name" 
+            name="company" 
+            class="form-input" 
+            placeholder="Ej. Grupo Industrial S.A." 
+            autocomplete="organization" 
+            required 
+          />
+        </div>
+        <div class="form-group">
+          <label for="modal-process-select" class="form-label">Proceso que Desea Evaluar</label>
+          <div class="select-wrapper">
+            <select id="modal-process-select" name="proceso_a_evaluar" class="form-select">
+              <option value="Compra o Pago a Proveedores">Compra o Pago a Proveedores (Finanzas)</option>
+              <option value="Solicitud y Pago de Viáticos">Solicitud y Pago de Viáticos (Movilidad)</option>
+              <option value="Onboarding y Selección de Candidatos">Selección de Candidatos (RRHH)</option>
+              <option value="Solicitud de Vacaciones">Vacaciones / Acción de Personal (RRHH)</option>
+              <option value="Compra de Suministros">Compra de Suministros (Servicios Generales)</option>
+              <option value="Otro Flujo Personalizado">Otro Flujo Interno Personalizado</option>
+            </select>
+            <div class="select-arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="modal-message" class="form-label">Detalles del flujo (opcional)</label>
+        <textarea 
+          id="modal-message" 
+          name="message" 
+          class="form-textarea" 
+          rows="3" 
+          placeholder="Ej. Queremos evaluar las 3 estaciones de aprobación y la alerta de vencimiento de cotizaciones..."
+        ></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-submit w-full" id="modal-submit-btn">
+        <span id="modal-btn-text">Iniciar Prueba Piloto Gratuita</span>
+        <svg id="modal-btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+
+      <!-- Trust Strip inside Modal -->
+      <div class="modal-trust-strip">
+        <span>✓ Sin costo ni compromiso</span>
+        <span>•</span>
+        <span>✓ Configuración en horas</span>
+        <span>•</span>
+        <span>✓ Soporte 1-a-1</span>
+      </div>
+
+      <!-- Alerts -->
+      <div class="form-alert success" id="modal-form-success" hidden role="alert">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <div>
+          <strong>¡Solicitud enviada con éxito!</strong>
+          <p>Un especialista de Ilithya se comunicará a la brevedad para coordinar la configuración de su prueba.</p>
+        </div>
+      </div>
+
+      <div class="form-alert error" id="modal-form-error" hidden role="alert">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <div>
+          <strong>No se pudo enviar la solicitud</strong>
+          <p>Por favor intente nuevamente o escríbanos directamente a <a href={`mailto:${recipientEmail}`}>{recipientEmail}</a>.</p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function setupPilotModal() {
+    const modal = document.getElementById('pilot-modal');
+    if (!modal) return;
+
+    const processSelect = document.getElementById('modal-process-select') as HTMLSelectElement | null;
+    const form = document.getElementById('modal-pilot-form') as HTMLFormElement | null;
+    const submitBtn = document.getElementById('modal-submit-btn') as HTMLButtonElement | null;
+    const btnText = document.getElementById('modal-btn-text');
+    const successBanner = document.getElementById('modal-form-success');
+    const errorBanner = document.getElementById('modal-form-error');
+    const honeypot = document.getElementById('modal-bot-field') as HTMLInputElement | null;
+
+    function openModal(preselectedProcess?: string) {
+      if (preselectedProcess && processSelect) {
+        // Find matching option
+        for (let i = 0; i < processSelect.options.length; i++) {
+          if (processSelect.options[i].value.toLowerCase().includes(preselectedProcess.toLowerCase())) {
+            processSelect.selectedIndex = i;
+            break;
+          }
+        }
+      }
+
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+
+      // Focus first input
+      setTimeout(() => {
+        const firstInput = modal.querySelector<HTMLInputElement>('#modal-full-name');
+        if (firstInput) firstInput.focus();
+      }, 100);
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    // Expose globally
+    (window as any).openPilotModal = openModal;
+    (window as any).closePilotModal = closeModal;
+
+    // Attach to triggers
+    document.addEventListener('click', (e) => {
+      const target = (e.target as HTMLElement).closest('[data-open-modal="pilot"], .trigger-pilot-modal, a[href="#plan-piloto"], a[href="#contacto"]');
+      if (target) {
+        // If it's on a dedicated page with direct form, we still prefer smooth modal if requested
+        e.preventDefault();
+        const preselect = target.getAttribute('data-preselect') || undefined;
+        openModal(preselect);
+      }
+
+      // Close handlers
+      if ((e.target as HTMLElement).closest('[data-close-modal]')) {
+        e.preventDefault();
+        closeModal();
+      }
+    });
+
+    // Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+        closeModal();
+      }
+    });
+
+    // Form submission
+    if (form && submitBtn && btnText) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        if (honeypot && honeypot.value.trim() !== '') return;
+
+        const formData = new FormData(form);
+        const originalText = btnText.textContent;
+        submitBtn.disabled = true;
+        btnText.textContent = 'Enviando solicitud...';
+
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            form.reset();
+            if (successBanner) successBanner.hidden = false;
+            if (errorBanner) errorBanner.hidden = true;
+            btnText.textContent = '¡Solicitud Recibida!';
+
+            setTimeout(() => {
+              closeModal();
+              if (successBanner) successBanner.hidden = true;
+              btnText.textContent = originalText;
+              submitBtn.disabled = false;
+            }, 3000);
+          } else {
+            throw new Error('Response not ok');
+          }
+        } catch (err) {
+          if (errorBanner) errorBanner.hidden = false;
+          btnText.textContent = originalText;
+          submitBtn.disabled = false;
+        }
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupPilotModal);
+  } else {
+    setupPilotModal();
+  }
+</script>
+
+<style>
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .modal-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(6, 9, 14, 0.82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .modal-container {
+    position: relative;
+    width: 100%;
+    max-width: 620px;
+    background: linear-gradient(145deg, #101c2c 0%, #0c1420 100%);
+    border: 1px solid var(--border-glow);
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 50px -10px rgba(19, 127, 236, 0.3);
+    z-index: 2;
+    transform: translateY(20px) scale(0.97);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal-overlay.is-open .modal-container {
+    transform: translateY(0) scale(1);
+  }
+
+  .modal-close-btn {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .modal-close-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--text-main);
+    transform: scale(1.08);
+  }
+
+  .modal-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-inline: 1rem;
+  }
+
+  .modal-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #60a5fa;
+    background: rgba(37, 99, 235, 0.15);
+    border: 1px solid rgba(96, 165, 250, 0.3);
+    margin-bottom: 0.75rem;
+  }
+
+  .pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #60a5fa;
+    box-shadow: 0 0 8px #60a5fa;
+  }
+
+  .modal-title {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.25;
+    margin-bottom: 0.5rem;
+  }
+
+  .modal-desc {
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  .required {
+    color: #ef4444;
+  }
+
+  .form-input,
+  .form-textarea,
+  .form-select {
+    width: 100%;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 0.7rem 0.95rem;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 0.9375rem;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .form-input:focus,
+  .form-textarea:focus,
+  .form-select:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-light);
+    outline: none;
+  }
+
+  .select-wrapper {
+    position: relative;
+  }
+
+  .form-select {
+    appearance: none;
+    cursor: pointer;
+    padding-right: 2.5rem;
+  }
+
+  .select-arrow {
+    position: absolute;
+    right: 0.95rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--text-dim);
+  }
+
+  .w-full {
+    width: 100%;
+  }
+
+  .btn-submit {
+    padding: 0.9rem;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .modal-trust-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--accent-green);
+    font-weight: 600;
+    margin-top: 0.25rem;
+    flex-wrap: wrap;
+  }
+
+  .form-alert {
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .form-alert.success {
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #a7f3d0;
+  }
+
+  .form-alert.error {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #fca5a5;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  @media (max-width: 600px) {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .modal-container {
+      padding: 1.75rem 1.25rem;
+    }
+  }
+</style>

@@ -12,21 +12,23 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
       <img src="/brand/darkLogo.png" alt="Ilithya Workflow" class="brand-logo-img" />
     </a>
 
-    <nav class="nav-links" aria-label="Main Navigation">
-      <a href="#features" class="nav-item">Features</a>
-      <a href="#workflow" class="nav-item">How It Works</a>
-      <a href="#contact" class="nav-item">Contact</a>
+    <nav class="nav-links" aria-label="Navegación Principal">
+      <a href="/" class="nav-item">Inicio</a>
+      <a href="/casos-de-uso" class="nav-item">Casos de Uso</a>
+      <a href="/plataforma" class="nav-item">Plataforma & TI</a>
+      <a href="/plan-piloto" class="nav-item">Plan Piloto</a>
+      <a href="/contacto" class="nav-item">Contacto</a>
     </nav>
 
     <div class="header-actions">
-      <a href={`${appUrl}/login`} class="btn btn-ghost" id="nav-login">Sign In</a>
-      <a href="#contact" class="btn btn-primary" id="nav-cta">
-        <span>Get Started</span>
+      <a href={`${appUrl}/login`} class="btn btn-ghost" id="nav-login">Iniciar Sesión</a>
+      <button class="btn btn-primary" data-open-modal="pilot" id="nav-cta">
+        <span>Plan Piloto</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <line x1="5" y1="12" x2="19" y2="12"></line>
           <polyline points="12 5 19 12 12 19"></polyline>
         </svg>
-      </a>
+      </button>
       <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -38,12 +40,14 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
   </div>
 
   <div class="mobile-menu" id="mobile-menu" hidden>
-    <a href="#features" class="mobile-nav-item">Features</a>
-    <a href="#workflow" class="mobile-nav-item">How It Works</a>
-    <a href="#contact" class="mobile-nav-item">Contact</a>
+    <a href="/" class="mobile-nav-item">Inicio</a>
+    <a href="/casos-de-uso" class="mobile-nav-item">Casos de Uso</a>
+    <a href="/plataforma" class="mobile-nav-item">Plataforma & TI</a>
+    <a href="/plan-piloto" class="mobile-nav-item">Plan Piloto</a>
+    <a href="/contacto" class="mobile-nav-item">Contacto</a>
     <div class="mobile-menu-actions">
-      <a href={`${appUrl}/login`} class="btn btn-secondary w-full">Sign In</a>
-      <a href="#contact" class="btn btn-primary w-full">Get Started</a>
+      <a href={`${appUrl}/login`} class="btn btn-secondary w-full">Iniciar Sesión</a>
+      <button class="btn btn-primary w-full" data-open-modal="pilot">Solicitar Plan Piloto</button>
     </div>
   </div>
 </header>

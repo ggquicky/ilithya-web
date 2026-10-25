@@ -1,0 +1,936 @@
+---
+// UseCases.astro - Casos de Uso Principales de Ilithya Workflow Approvals
+const useCases = [
+  {
+    id: "compras-proveedores",
+    category: "finanzas",
+    categoryName: "Gestión Financiera y Compras",
+    code: "CASO 01",
+    title: "Compra o Pago a Proveedores",
+    shortDesc: "Autorización estructurada de adquisiciones corporativas asegurando viabilidad técnica y presupuestaria.",
+    fullDesc: "Estructuración del proceso de autorización para adquisiciones corporativas, asegurando la viabilidad técnica y presupuestaria antes de ejecutar la compra y evitando cotizaciones vencidas.",
+    docs: [
+      { name: "Formato de Requisición", type: "PDF / Form", note: "Llenado por solicitante" },
+      { name: "Cotización del Proveedor", type: "PDF / Imagen", note: "Con vigencia y precios" },
+      { name: "Justificación de Compra", type: "Doc / Adjunto", note: "Impacto operativo" }
+    ],
+    stations: [
+      {
+        step: 1,
+        role: "Solicitante",
+        name: "Carga de Expediente",
+        action: "Sube requisa, cotización y justificación en un solo paquete digital.",
+        badge: "Iniciado"
+      },
+      {
+        step: 2,
+        role: "Estación 1: Jefe de Área",
+        name: "Validación Técnica",
+        action: "Revisa la pertinencia operativa y autoriza con firma digital y sello de fecha/hora.",
+        badge: "Sello Digital"
+      },
+      {
+        step: 3,
+        role: "Estación 2: Gerente Financiero",
+        name: "Disponibilidad de Presupuesto",
+        action: "Cruza con la partida presupuestaria disponible y aprueba el gasto formalmente.",
+        badge: "Control Fiscal"
+      },
+      {
+        step: 4,
+        role: "Estación 3: Depto. de Compras",
+        name: "Emisión de Orden Oficial",
+        action: "Revisión final y despacho de orden oficial al proveedor basándose en el PDF consolidado.",
+        badge: "Aprobación Final"
+      }
+    ],
+    closure: {
+      type: "PDF Consolidado con Sello Criptográfico",
+      summary: "El proveedor recibe la orden con todas las firmas integradas en un único expediente digital inmutable.",
+      sla: "SLA Típico: < 24 Horas",
+      benefit: "Elimina compras a destiempo y protege contra aumentos imprevistos de cotización."
+    }
+  },
+  {
+    id: "viaticos-colaboradores",
+    category: "finanzas",
+    categoryName: "Gestión Financiera y Compras",
+    code: "CASO 02",
+    title: "Solicitud y Pago de Viáticos",
+    shortDesc: "Control previo de gastos de viaje de trabajo locales o internacionales con liquidación ordenada.",
+    fullDesc: "Control previo y auditable de los gastos asociados a viajes corporativos antes de su ejecución, unificando cotizaciones de traslado, hospedaje y alimentación.",
+    docs: [
+      { name: "Formato de Viáticos", type: "PDF / Formato", note: "Itinerario y objetivos" },
+      { name: "Cotizaciones de Hospedaje", type: "PDF / Reserva", note: "Políticas de tarifa" },
+      { name: "Cotizaciones de Transporte", type: "PDF / Vuelos", note: "Boletos o rutas" }
+    ],
+    stations: [
+      {
+        step: 1,
+        role: "Solicitante (Colaborador)",
+        name: "Paquete de Planeación",
+        action: "Registra fechas, destino, agenda de trabajo y cotizaciones adjuntas.",
+        badge: "Iniciado"
+      },
+      {
+        step: 2,
+        role: "Estación 1: Jefe Inmediato",
+        name: "Pertinencia Operativa",
+        action: "Evalúa la necesidad del viaje y el impacto para la unidad de negocio.",
+        badge: "Visto Bueno"
+      },
+      {
+        step: 3,
+        role: "Estación 2: Gerencia General",
+        name: "Autorización de Fondos",
+        action: "Autoriza el desplazamiento y los techos de gasto proyectados.",
+        badge: "Firma Ejecutiva"
+      },
+      {
+        step: 4,
+        role: "Estación 3: Área de Finanzas",
+        name: "Desembolso / Anticipo",
+        action: "Recibe el expediente completo y aprobado para emitir el pago o anticipo de viáticos.",
+        badge: "Liquidación"
+      }
+    ],
+    closure: {
+      type: "Cadena de Pago Integrada",
+      summary: "Finanzas puede enlazar automáticamente este flujo con 'Compra a Proveedores' para reservar hoteles y agencias.",
+      sla: "SLA Típico: < 48 Horas",
+      benefit: "Cero viajes sin presupuesto asignado y comprobación ordenada desde el día uno."
+    }
+  },
+  {
+    id: "onboarding-candidatos",
+    category: "rrhh",
+    categoryName: "Recursos Humanos y Administración",
+    code: "CASO 03",
+    title: "Onboarding y Selección de Candidatos",
+    shortDesc: "Filtro ágil y colaborativo de currículums entre el área solicitante y Recursos Humanos.",
+    fullDesc: "Filtro estructurado y colaborativo para la revisión de currículos y coordinación de entrevistas en procesos de reclutamiento sin cadenas infinitas de emails.",
+    docs: [
+      { name: "Currículum Vitae (CV)", type: "PDF", note: "Hoja de vida del postulante" },
+      { name: "Perfil de la Plaza", type: "Requisición Interna", note: "Habilidades requeridas" }
+    ],
+    stations: [
+      {
+        step: 1,
+        role: "Solicitante (Recepción)",
+        name: "Recepción de CV",
+        action: "Recibe las postulaciones vía correo e inicia un flujo ágil individual por cada candidato.",
+        badge: "Recepción"
+      },
+      {
+        step: 2,
+        role: "Estación 1: Gerente del Área",
+        name: "Evaluación Técnica de Perfil",
+        action: "Evalúa la experiencia en el documento adjunto y decide con un clic si aprueba o descarta.",
+        badge: "Filtro Técnico"
+      },
+      {
+        step: 3,
+        role: "Estación 2: Recursos Humanos",
+        name: "Coordinación de Entrevistas",
+        action: "Recibe únicamente los perfiles preaprobados por el líder de área para agendar pruebas.",
+        badge: "Gestión Talento"
+      },
+      {
+        step: 4,
+        role: "Retorno y Cierre: Recepción",
+        name: "Luz Verde para Cita Formal",
+        action: "El flujo retorna automáticamente a Recepción para contactar al postulante y citarlo.",
+        badge: "Cita Agendada"
+      }
+    ],
+    closure: {
+      type: "Ficha de Candidato Aprobada",
+      summary: "Expediente con el historial de evaluaciones del gerente y RRHH listo para el proceso de contratación.",
+      sla: "SLA Típico: < 12 Horas",
+      benefit: "Evita perder talento clave por demoras en la revisión inicial de postulaciones."
+    }
+  },
+  {
+    id: "solicitud-vacaciones",
+    category: "rrhh",
+    categoryName: "Recursos Humanos y Administración",
+    code: "CASO 04",
+    title: "Solicitud de Vacaciones (Acción de Personal)",
+    shortDesc: "Formalización y registro auditable de permisos y periodos vacacionales con archivo automático.",
+    fullDesc: "Formalización y registro auditable de los permisos o periodos vacacionales del personal, culminando con el archivo automático en el expediente digital del colaborador.",
+    docs: [
+      { name: "Formato 'Acción de Personal'", type: "PDF / Imagen", note: "Fechas solicitadas y suplente" },
+      { name: "Saldo de Días Disponibles", type: "Cálculo RRHH", note: "Validado por sistema" }
+    ],
+    stations: [
+      {
+        step: 1,
+        role: "Solicitante (Colaborador)",
+        name: "Inicio de Solicitud",
+        action: "Carga su formulario de Acción de Personal con las fechas y tareas delegadas.",
+        badge: "Iniciado"
+      },
+      {
+        step: 2,
+        role: "Estación 1: Jefe Inmediato",
+        name: "Aprobación de Turno",
+        action: "Valida la cobertura del puesto durante la ausencia y autoriza con firma electrónica.",
+        badge: "Visto Bueno"
+      },
+      {
+        step: 3,
+        role: "Estación 2: Gerencia de Área",
+        name: "Revisión Operativa",
+        action: "Ratifica la solicitud sin fricción mediante confirmación móvil o de escritorio.",
+        badge: "Firma Gerencial"
+      },
+      {
+        step: 4,
+        role: "Estación 3: Recursos Humanos",
+        name: "Registro en Planilla",
+        action: "Estampa el sello oficial de tiempo y descuenta los días en el historial laboral.",
+        badge: "Sello de Tiempo"
+      }
+    ],
+    closure: {
+      type: "Auto-Archivado en Expediente Digital",
+      summary: "El PDF consolidado firmado se transfiere automáticamente a la carpeta digital del empleado en la nube.",
+      sla: "SLA Típico: < 8 Horas",
+      benefit: "100% auditable ante entidades laborales sin papeles impresos ni firmas extraviadas."
+    }
+  },
+  {
+    id: "compra-suministros",
+    category: "operaciones",
+    categoryName: "Operaciones y Mantenimiento",
+    code: "CASO 05",
+    title: "Compra de Suministros (Servicios Generales)",
+    shortDesc: "Validación técnica y presupuestaria para insumos y mantenimiento de instalaciones corporativas.",
+    fullDesc: "Validación técnica y financiera ágil para la adquisición de materiales, repuestos o equipamiento necesarios para la continuidad de las sedes e instalaciones.",
+    docs: [
+      { name: "Requisición de Mantenimiento", type: "PDF / Form", note: "Detalle de insumos y cantidades" },
+      { name: "Cotización de Materiales", type: "PDF / Proveedor", note: "Desglose de costos unitarios" }
+    ],
+    stations: [
+      {
+        step: 1,
+        role: "Solicitante (Servicios Generales)",
+        name: "Solicitud de Materiales",
+        action: "Describe los requerimientos para reparación o abastecimiento de edificios.",
+        badge: "Iniciado"
+      },
+      {
+        step: 2,
+        role: "Estación 1: Gerencia de Operaciones",
+        name: "Evaluación de Necesidad",
+        action: "Evalúa la urgencia real, justifica el gasto y proyecta las cantidades adecuadas.",
+        badge: "Visto Bueno"
+      },
+      {
+        step: 3,
+        role: "Estación 2: Gerencia de Finanzas",
+        name: "Cruce Presupuestario",
+        action: "Valida la recurrencia del rubro de mantenimiento y estampa su firma definitiva.",
+        badge: "Firma Final"
+      },
+      {
+        step: 4,
+        role: "Retorno al Solicitante",
+        name: "Gestión de Entrega y Logística",
+        action: "El documento autorizado retorna a Servicios Generales para recibir los suministros.",
+        badge: "Logística"
+      }
+    ],
+    closure: {
+      type: "PDF de Autorización Inmediata",
+      summary: "Servicios Generales recibe el documento con código QR de verificación para despachar con bodega.",
+      sla: "SLA Típico: < 24 Horas",
+      benefit: "Mantenimiento ágil sin instalaciones paralizadas por retrasos de firma."
+    }
+  }
+];
+---
+
+<section class="use-cases-section" id="casos-de-uso">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-tag">Flujos Reales en Acción</span>
+      <h2 class="section-title">Casos de Uso Principales: Diseñados para Tu Empresa</h2>
+      <p class="section-desc">
+        Ilithya Workflow se adapta a los procesos que ya ejecutas hoy. Explora cómo fluyen las aprobaciones desde la solicitud inicial hasta la firma y el PDF consolidado.
+      </p>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div class="category-tabs" role="tablist" aria-label="Filtrar por Área">
+      <button class="cat-tab active" data-category="all" role="tab" aria-selected="true">
+        <span>Todos los Casos</span>
+        <span class="cat-count">5</span>
+      </button>
+      <button class="cat-tab" data-category="finanzas" role="tab" aria-selected="false">
+        <span>Finanzas y Compras</span>
+        <span class="cat-count">2</span>
+      </button>
+      <button class="cat-tab" data-category="rrhh" role="tab" aria-selected="false">
+        <span>Recursos Humanos</span>
+        <span class="cat-count">2</span>
+      </button>
+      <button class="cat-tab" data-category="operaciones" role="tab" aria-selected="false">
+        <span>Operaciones y Servicios</span>
+        <span class="cat-count">1</span>
+      </button>
+    </div>
+
+    <!-- Use Cases Layout: List selector + Interactive Detail Card -->
+    <div class="use-cases-layout">
+      <!-- Left List -->
+      <div class="cases-nav-list" role="tablist" aria-orientation="vertical">
+        {useCases.map((item, index) => (
+          <button 
+            class={`case-nav-item ${index === 0 ? 'active' : ''}`}
+            data-case-id={item.id}
+            data-category={item.category}
+            role="tab"
+            aria-selected={index === 0 ? 'true' : 'false'}
+          >
+            <div class="nav-item-header">
+              <span class="case-code">{item.code}</span>
+              <span class="case-cat-pill">{item.categoryName.split(' ')[0]}</span>
+            </div>
+            <h3 class="nav-item-title">{item.title}</h3>
+            <p class="nav-item-desc">{item.shortDesc}</p>
+            <div class="nav-item-arrow">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      <!-- Right Detail Stage -->
+      <div class="case-detail-stage">
+        {useCases.map((item, index) => (
+          <div 
+            class={`case-panel ${index === 0 ? 'active' : ''}`}
+            id={`panel-${item.id}`}
+            data-case-id={item.id}
+            role="tabpanel"
+          >
+            <!-- Panel Header -->
+            <div class="panel-header">
+              <div class="panel-meta">
+                <span class="meta-tag">{item.categoryName}</span>
+                <span class="meta-sla">{item.closure.sla}</span>
+              </div>
+              <h3 class="panel-title">{item.title}</h3>
+              <p class="panel-desc">{item.fullDesc}</p>
+            </div>
+
+            <!-- Documents Required Strip -->
+            <div class="docs-strip">
+              <div class="docs-label">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+                <span>Documentación Inicial Requerida:</span>
+              </div>
+              <div class="docs-tags">
+                {item.docs.map(doc => (
+                  <div class="doc-badge">
+                    <span class="doc-badge-name">{doc.name}</span>
+                    <span class="doc-badge-type">{doc.type}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- Interactive Stepper Track -->
+            <div class="workflow-track-wrapper">
+              <h4 class="track-title">Ruta Secuencial de Aprobación por Estaciones</h4>
+              <div class="stepper-grid">
+                {item.stations.map((st, sIndex) => (
+                  <div class="stepper-node">
+                    <div class="node-indicator">
+                      <span class="node-number">{st.step}</span>
+                      {sIndex < item.stations.length - 1 && <div class="node-line"></div>}
+                    </div>
+                    <div class="node-content">
+                      <div class="node-header">
+                        <span class="node-role">{st.role}</span>
+                        <span class="node-badge">{st.badge}</span>
+                      </div>
+                      <div class="node-name">{st.name}</div>
+                      <p class="node-action">{st.action}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- Panel Closure / Output Footer -->
+            <div class="panel-closure">
+              <div class="closure-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+              </div>
+              <div class="closure-content">
+                <div class="closure-heading">
+                  <span class="closure-tag">Cierre del Trámite</span>
+                  <span class="closure-type">{item.closure.type}</span>
+                </div>
+                <p class="closure-summary">{item.closure.summary}</p>
+                <div class="closure-impact">
+                  <strong>Impacto Medible:</strong> {item.closure.benefit}
+                </div>
+                <div class="closure-action-row">
+                  <button class="btn btn-primary btn-sm" data-open-modal="pilot" data-preselect={item.title}>
+                    <span>Probar este proceso en Plan Piloto (15 a 20 Días)</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initUseCases() {
+    const catButtons = document.querySelectorAll<HTMLButtonElement>('.cat-tab');
+    const caseItems = document.querySelectorAll<HTMLButtonElement>('.case-nav-item');
+    const casePanels = document.querySelectorAll<HTMLElement>('.case-panel');
+
+    // Filter by category
+    catButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        catButtons.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+
+        const filterCat = btn.dataset.category;
+        let firstVisible: HTMLButtonElement | null = null;
+
+        caseItems.forEach(item => {
+          const itemCat = item.dataset.category;
+          if (filterCat === 'all' || itemCat === filterCat) {
+            item.style.display = 'flex';
+            if (!firstVisible) firstVisible = item;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        // Activate first visible case in this category
+        if (firstVisible) {
+          activateCase(firstVisible.dataset.caseId!);
+        }
+      });
+    });
+
+    // Select case from list
+    caseItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const caseId = item.dataset.caseId;
+        if (caseId) activateCase(caseId);
+      });
+    });
+
+    function activateCase(id: string) {
+      caseItems.forEach(item => {
+        const isSelected = item.dataset.caseId === id;
+        item.classList.toggle('active', isSelected);
+        item.setAttribute('aria-selected', String(isSelected));
+      });
+
+      casePanels.forEach(panel => {
+        const isMatch = panel.dataset.caseId === id;
+        panel.classList.toggle('active', isMatch);
+      });
+    }
+  }
+
+  // Initialize on load and on view transition if needed
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUseCases);
+  } else {
+    initUseCases();
+  }
+</script>
+
+<style>
+  .use-cases-section {
+    padding-block: 6rem;
+    position: relative;
+    background: var(--bg-main);
+  }
+
+  /* Category Filter Tabs */
+  .category-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 2.5rem;
+    margin-bottom: 3.5rem;
+    flex-wrap: wrap;
+  }
+
+  .cat-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.65rem 1.25rem;
+    border-radius: var(--radius-full);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .cat-tab:hover {
+    background: var(--bg-surface-elevated);
+    color: var(--text-main);
+    border-color: rgba(148, 163, 184, 0.4);
+  }
+
+  .cat-tab.active {
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    border-color: rgba(19, 127, 236, 0.5);
+    box-shadow: 0 0 16px -4px rgba(19, 127, 236, 0.35);
+  }
+
+  .cat-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    font-size: 0.75rem;
+  }
+
+  .cat-tab.active .cat-count {
+    background: var(--color-primary);
+    color: #ffffff;
+  }
+
+  /* Layout: Left Nav + Right Detail */
+  .use-cases-layout {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  /* Left List */
+  .cases-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .case-nav-item {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+  }
+
+  .case-nav-item:hover {
+    background: var(--bg-surface-elevated);
+    border-color: rgba(148, 163, 184, 0.4);
+    transform: translateX(3px);
+  }
+
+  .case-nav-item.active {
+    background: linear-gradient(145deg, #121c28 0%, #172435 100%);
+    border-color: var(--color-primary);
+    box-shadow: 0 8px 24px -6px rgba(19, 127, 236, 0.25), inset 3px 0 0 var(--color-primary);
+  }
+
+  .nav-item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .case-code {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: 0.06em;
+  }
+
+  .case-cat-pill {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-dim);
+  }
+
+  .nav-item-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.3;
+  }
+
+  .nav-item-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .nav-item-arrow {
+    display: flex;
+    align-items: center;
+    color: var(--text-dim);
+    margin-top: 0.25rem;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .case-nav-item.active .nav-item-arrow {
+    color: var(--color-primary);
+    transform: translateX(4px);
+  }
+
+  /* Right Stage */
+  .case-detail-stage {
+    position: relative;
+    min-height: 580px;
+  }
+
+  .case-panel {
+    display: none;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-lg);
+    animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .case-panel.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Panel Header */
+  .panel-header {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.75rem;
+  }
+
+  .panel-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+
+  .meta-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+  }
+
+  .meta-sla {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--accent-amber);
+    background: var(--accent-amber-bg);
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+
+  .panel-title {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 0.75rem;
+  }
+
+  .panel-desc {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* Docs Required Strip */
+  .docs-strip {
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .docs-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-main);
+    margin-bottom: 0.85rem;
+  }
+
+  .docs-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .doc-badge {
+    background: var(--bg-surface-elevated);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-sm);
+    padding: 0.45rem 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.8125rem;
+  }
+
+  .doc-badge-name {
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  .doc-badge-type {
+    font-size: 0.7rem;
+    color: var(--color-primary);
+    background: var(--color-primary-light);
+    padding: 0.15rem 0.45rem;
+    border-radius: var(--radius-full);
+  }
+
+  /* Workflow Track Stepper */
+  .workflow-track-wrapper {
+    margin-bottom: 2.25rem;
+  }
+
+  .track-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    margin-bottom: 1.25rem;
+  }
+
+  .stepper-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .stepper-node {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 1.25rem;
+    position: relative;
+  }
+
+  .node-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  .node-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: #ffffff;
+    font-size: 0.875rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(19, 127, 236, 0.4);
+    z-index: 2;
+  }
+
+  .node-line {
+    position: absolute;
+    top: 32px;
+    bottom: -20px;
+    width: 2px;
+    background: var(--border-color);
+    z-index: 1;
+  }
+
+  .node-content {
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.15rem 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .node-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .node-role {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .node-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-full);
+    background: var(--accent-green-bg);
+    color: var(--accent-green);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+
+  .node-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  .node-action {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* Panel Closure Card */
+  .panel-closure {
+    background: linear-gradient(145deg, #0f1c2b 0%, #142335 100%);
+    border: 1px solid rgba(19, 127, 236, 0.35);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .closure-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--accent-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+
+  .closure-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .closure-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .closure-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-green);
+  }
+
+  .closure-type {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  .closure-summary {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .closure-impact {
+    font-size: 0.8125rem;
+    color: #93c5fd;
+    margin-top: 0.35rem;
+  }
+
+  .closure-action-row {
+    margin-top: 0.85rem;
+  }
+
+  .btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.8125rem;
+    min-height: 36px;
+    border-radius: var(--radius-sm);
+  }
+
+  @media (max-width: 960px) {
+    .use-cases-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .case-panel {
+      padding: 1.75rem;
+    }
+  }
+</style>

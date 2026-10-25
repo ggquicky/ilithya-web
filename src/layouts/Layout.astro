@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import PilotModal from '../components/PilotModal.astro';
 
 interface Props {
   title?: string;
@@ -9,10 +10,10 @@ interface Props {
 }
 
 const {
-  title = "Ilithya Workflow • Intelligent Document Approvals & Signature Workflows",
-  description = "Automate multi-stage PDF approval processes, visual digital signature stamping, real-time SLA tracking, and 30-day cloud archival with enterprise Row-Level Security.",
+  title = "Ilithya Workflow • Agilidad y Claridad para las Decisiones de tu Equipo",
+  description = "Un soporte digital para que los flujos de aprobación de compras, viáticos, vacaciones y contrataciones de tu empresa avancen sin fricción ni desgaste.",
   ogImage = "/brand/darkLogo.png",
-  keywords = "enterprise document approvals, digital signature stamping, PDF approval workflow, SLA tracking engine, document management, cloud archival, enterprise workflow automation"
+  keywords = "flujos de aprobación documental, firmas digitales, sellos de tiempo pdf, aprobaciones empresariales, automatización de compras, gestión de viáticos, ilithya workflow"
 } = Astro.props;
 
 // Canonical and OpenGraph URLs
@@ -34,8 +35,8 @@ const structuredData = {
       },
       "contactPoint": {
         "@type": "ContactPoint",
-        "email": "sales@ilithya.app",
-        "contactType": "Sales & Customer Support"
+        "email": "jlmoralesm08@gmail.com",
+        "contactType": "Atención Corporativa y Ventas"
       }
     },
     {
@@ -67,7 +68,7 @@ const structuredData = {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -113,5 +114,6 @@ const structuredData = {
   </head>
   <body>
     <slot />
+    <PilotModal />
   </body>
 </html>

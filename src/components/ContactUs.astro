@@ -6,13 +6,13 @@ interface Props {
 const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
 ---
 
-<section class="contact-section" id="contact">
+<section class="contact-section" id="contacto">
   <div class="container">
     <div class="section-header text-center">
-      <span class="section-tag">Direct Access</span>
-      <h2 class="section-title">Ready to Streamline Your Approvals?</h2>
+      <span class="section-tag">Acceso Directo</span>
+      <h2 class="section-title">¿Listo para agilizar las aprobaciones de tu equipo?</h2>
       <p class="section-desc">
-        Connect with our solutions architects to set up a personalized pilot, request security compliance documentation, or inquire about custom volume pricing.
+        Conéctese con nuestro equipo para iniciar su Plan de Prueba de 15 a 20 días sin costo ni compromiso, o para resolver dudas sobre seguridad y configuración.
       </p>
     </div>
 
@@ -22,11 +22,11 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
         <div class="info-card">
           <div class="info-badge">
             <span class="dot-live"></span>
-            <span>Enterprise Desk</span>
+            <span>Mesa Corporativa</span>
           </div>
-          <h3 class="info-heading">Talk to an Ilithya Workflow Specialist</h3>
+          <h3 class="info-heading">Hable con un Especialista de Ilithya Workflow</h3>
           <p class="info-text">
-            Get an interactive walkthrough of custom approval chains, multi-tenant RBAC setups, and automated cloud archival.
+            Le ayudamos a modelar su primera ruta de aprobación, definir estaciones y activar recordatorios automáticos en minutos.
           </p>
 
           <div class="contact-channels">
@@ -38,7 +38,7 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
                 </svg>
               </div>
               <div class="channel-meta">
-                <span class="channel-label">Direct Inquiries</span>
+                <span class="channel-label">Consultas Directas</span>
                 <a href={`mailto:${recipientEmail}`} class="channel-val">{recipientEmail}</a>
               </div>
             </div>
@@ -50,8 +50,8 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
                 </svg>
               </div>
               <div class="channel-meta">
-                <span class="channel-label">Security & Compliance</span>
-                <span class="channel-val">SOC2 Type II & GDPR Ready</span>
+                <span class="channel-label">Seguridad y Cumplimiento</span>
+                <span class="channel-val">Aislamiento RLS & Auditoría Criptográfica</span>
               </div>
             </div>
 
@@ -63,8 +63,8 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
                 </svg>
               </div>
               <div class="channel-meta">
-                <span class="channel-label">SLA Response Guarantee</span>
-                <span class="channel-val">&lt; 2-hour response on business days</span>
+                <span class="channel-label">Respuesta Garantizada</span>
+                <span class="channel-val">&lt; 2 horas en días hábiles</span>
               </div>
             </div>
           </div>
@@ -72,13 +72,13 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
 
         <div class="quote-card">
           <p class="quote-text">
-            "Ilithya Workflow replaced weeks of back-and-forth email signature chasing with automated 4-hour approvals and instant audit logs."
+            "Ilithya Workflow reemplazó semanas de persecución de firmas por correo por aprobaciones ágiles de 4 horas y registros inmutables de auditoría."
           </p>
           <div class="quote-author">
             <div class="avatar-placeholder">JM</div>
             <div>
               <div class="author-name">Jorge Morales</div>
-              <div class="author-role">VP of Operations, Global Logistics</div>
+              <div class="author-role">Director de Operaciones & Logística</div>
             </div>
           </div>
         </div>
@@ -94,37 +94,37 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
         >
           <!-- Anti-spam Honeypot -->
           <div class="visually-hidden">
-            <label for="bot-field">Do not fill this out if you are human</label>
+            <label for="bot-field">No llenar este campo</label>
             <input type="text" id="bot-field" name="_honey" tabindex="-1" autocomplete="off" />
           </div>
 
           <!-- FormSubmit Configuration Fields -->
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_subject" id="form-subject" value="New Ilithya Workflow Lead Inquiry" />
+          <input type="hidden" name="_subject" id="form-subject" value="Nueva Solicitud de Plan Piloto Ilithya Workflow" />
 
           <div class="form-row">
             <div class="form-group">
-              <label for="full-name" class="form-label">Full Name <span class="required">*</span></label>
+              <label for="full-name" class="form-label">Nombre Completo <span class="required">*</span></label>
               <input 
                 type="text" 
                 id="full-name" 
                 name="name" 
                 class="form-input" 
-                placeholder="Alex Morgan" 
+                placeholder="Ej. Roberto Gómez" 
                 autocomplete="name" 
                 required 
                 minlength="2"
               />
             </div>
             <div class="form-group">
-              <label for="work-email" class="form-label">Work Email <span class="required">*</span></label>
+              <label for="work-email" class="form-label">Correo Corporativo <span class="required">*</span></label>
               <input 
                 type="email" 
                 id="work-email" 
                 name="email" 
                 class="form-input" 
-                placeholder="alex@company.com" 
+                placeholder="roberto@empresa.com" 
                 autocomplete="email" 
                 required 
               />
@@ -133,25 +133,27 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
 
           <div class="form-row">
             <div class="form-group">
-              <label for="company-name" class="form-label">Company Name <span class="required">*</span></label>
+              <label for="company-name" class="form-label">Empresa / Organización <span class="required">*</span></label>
               <input 
                 type="text" 
                 id="company-name" 
                 name="company" 
                 class="form-input" 
-                placeholder="Acme Corp" 
+                placeholder="Ej. Grupo Industrial S.A." 
                 autocomplete="organization" 
                 required 
               />
             </div>
             <div class="form-group">
-              <label for="team-size" class="form-label">Document Volume / Month</label>
+              <label for="process-select" class="form-label">Proceso que Desea Evaluar</label>
               <div class="select-wrapper">
-                <select id="team-size" name="volume" class="form-select">
-                  <option value="1-50">1 - 50 documents</option>
-                  <option value="50-250">50 - 250 documents</option>
-                  <option value="250-1000">250 - 1,000 documents</option>
-                  <option value="1000+">1,000+ documents (Enterprise)</option>
+                <select id="process-select" name="proceso_a_evaluar" class="form-select">
+                  <option value="Compra o Pago a Proveedores">Compra o Pago a Proveedores (Finanzas)</option>
+                  <option value="Solicitud y Pago de Viáticos">Solicitud y Pago de Viáticos (Movilidad)</option>
+                  <option value="Onboarding y Selección de Candidatos">Selección de Candidatos (RRHH)</option>
+                  <option value="Solicitud de Vacaciones">Vacaciones / Acción de Personal (RRHH)</option>
+                  <option value="Compra de Suministros">Compra de Suministros (Servicios Generales)</option>
+                  <option value="Otro Flujo Personalizado">Otro Flujo Interno Personalizado</option>
                 </select>
                 <div class="select-arrow">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -163,18 +165,18 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
           </div>
 
           <div class="form-group">
-            <label for="message" class="form-label">Tell us about your approval workflow</label>
+            <label for="message" class="form-label">Cuéntanos sobre tu flujo de aprobación actual</label>
             <textarea 
               id="message" 
               name="message" 
               class="form-textarea" 
               rows="4" 
-              placeholder="E.g., We have 4 approval stations for supplier invoices requiring legal and finance signatures..."
+              placeholder="Ej. Tenemos 3 aprobadores para órdenes de compra y queremos probar la reasignación de ausencias y recordatorios automáticos..."
             ></textarea>
           </div>
 
           <button type="submit" class="btn btn-primary btn-submit" id="submit-btn">
-            <span id="btn-text">Submit Request</span>
+            <span id="btn-text">Solicitar Plan Piloto (15 a 20 Días)</span>
             <svg id="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
@@ -182,7 +184,7 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
           </button>
 
           <p class="form-disclaimer">
-            🔒 We respect your privacy. Submissions are delivered directly to executive leadership ({recipientEmail}).
+            🔒 Respetamos tu privacidad. Solicitud enviada directamente al equipo directivo ({recipientEmail}).
           </p>
 
           <!-- Success Alert Banner -->
@@ -191,8 +193,8 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
             <div>
-              <strong>Thank you for contacting Ilithya Workflow!</strong>
-              <p>Your inquiry has been emailed directly to leadership ({recipientEmail}). A workflow specialist will reach out shortly.</p>
+              <strong>¡Gracias por contactar a Ilithya Workflow!</strong>
+              <p>Su solicitud ha sido enviada con éxito. Un especialista en flujos se comunicará a la brevedad para coordinar la prueba de 15 a 20 días.</p>
             </div>
           </div>
 
@@ -204,8 +206,8 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
               <line x1="12" y1="8" x2="12.01" y2="8"></line>
             </svg>
             <div>
-              <strong>Action Required for {recipientEmail}</strong>
-              <p>An initial confirmation email was sent to <strong>{recipientEmail}</strong>. Please check your inbox and click <em>"Activate Form"</em> to start receiving leads automatically!</p>
+              <strong>Acción requerida para {recipientEmail}</strong>
+              <p>Se envió un correo inicial de confirmación a <strong>{recipientEmail}</strong>. Por favor revise su bandeja y haga clic en <em>"Activate Form"</em> para habilitar la recepción de leads.</p>
             </div>
           </div>
 
@@ -217,8 +219,8 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
               <line x1="12" y1="16" x2="12.01" y2="16"></line>
             </svg>
             <div>
-              <strong>Submission error</strong>
-              <p>Unable to send message right now. Please reach out directly to <a href={`mailto:${recipientEmail}`} class="underline-link">{recipientEmail}</a>.</p>
+              <strong>Error al enviar el mensaje</strong>
+              <p>No se pudo enviar en este momento. Por favor escriba directamente a <a href={`mailto:${recipientEmail}`} class="underline-link">{recipientEmail}</a>.</p>
             </div>
           </div>
         </form>

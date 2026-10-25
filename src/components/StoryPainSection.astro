@@ -1,0 +1,370 @@
+---
+// StoryPainSection.astro - Empathy & Solution alignment from Presentation Slides 2 & 3
+---
+
+<section class="story-section" id="desafio">
+  <div class="container">
+    <!-- Header -->
+    <div class="section-header text-center">
+      <span class="section-tag">El Desafío Común</span>
+      <h2 class="section-title">Cuando la operación crece, el seguimiento manual se vuelve complejo</h2>
+      <p class="section-desc">
+        En el día a día, todos los ejecutivos están enfocados en sus metas clave. Sin embargo, al depender del correo o mensajes para autorizar trámites, la fricción es inevitable.
+      </p>
+    </div>
+
+    <!-- Pain Points Grid (Diapositiva 2) -->
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon-wrapper danger">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+        <div class="pain-content">
+          <span class="pain-label">Riesgo Financiero</span>
+          <h3 class="pain-title">Vencimiento de Condiciones</h3>
+          <p class="pain-desc">
+            Una compra importante se retrasa unos días en revisión y, para cuando se aprueba, la cotización del proveedor ha cambiado o expirado, encareciendo la operación.
+          </p>
+        </div>
+      </div>
+
+      <div class="pain-card">
+        <div class="pain-icon-wrapper warning">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+        </div>
+        <div class="pain-content">
+          <span class="pain-label">Sobrecarga Operativa</span>
+          <h3 class="pain-title">Bandejas Saturadas</h3>
+          <p class="pain-desc">
+            Los directores y aprobadores reciben docenas de solicitudes diarias. Una tarea crítica puede quedar sepultada en un mar de emails sin ninguna mala intención.
+          </p>
+        </div>
+      </div>
+
+      <div class="pain-card">
+        <div class="pain-icon-wrapper muted">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <line x1="18" y1="8" x2="23" y2="13"></line>
+            <line x1="23" y1="8" x2="18" y2="13"></line>
+          </svg>
+        </div>
+        <div class="pain-content">
+          <span class="pain-label">Pérdida de Productividad</span>
+          <h3 class="pain-title">Desgaste del Equipo</h3>
+          <p class="pain-desc">
+            Los colaboradores invierten horas valiosas haciendo "arqueología de correos" y preguntando <em>"¿dónde está mi solicitud?"</em>, en lugar de concentrarse en su trabajo principal.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Solution Banner (Diapositiva 3 - Ilithya como Aliado) -->
+    <div class="solution-hero-box" id="solucion">
+      <div class="solution-header">
+        <div class="solution-badge">
+          <span class="pulse-dot"></span>
+          <span>El Papel de Ilithya: Tu Aliado Operativo</span>
+        </div>
+        <h3 class="solution-title">Un sistema que apoya la gestión de tu gente sin imponer nuevas reglas</h3>
+        <p class="solution-subtitle">
+          Ilithya no viene a reemplazar sus procesos ni a imponer burocracia rígida, sino a respaldar a su equipo en su jornada diaria para que las decisiones fluyan con agilidad.
+        </p>
+      </div>
+
+      <div class="solution-pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+          </div>
+          <h4 class="pillar-title">Recordatorios Automáticos</h4>
+          <p class="pillar-desc">
+            Le avisa amablemente al aprobador sobre sus pendientes, liberando al solicitante de tener que "perseguir" firmas o enviar recordatorios incómodos.
+          </p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+          </div>
+          <h4 class="pillar-title">Gestión de Ausencias</h4>
+          <p class="pillar-desc">
+            Si un líder sale de viaje o a una reunión clave, el sistema ayuda a redirigir la tarea temporalmente al suplente para no frenar la continuidad del negocio.
+          </p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+              <path d="M2 12h20"></path>
+            </svg>
+          </div>
+          <h4 class="pillar-title">Visibilidad Compartida</h4>
+          <p class="pillar-desc">
+            Cualquier involucrado puede consultar el estado exacto de una solicitud en segundos con total transparencia: estación actual, responsable y SLA proyectado.
+          </p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </div>
+          <h4 class="pillar-title">Consultas Integradas</h4>
+          <p class="pillar-desc">
+            Permite resolver dudas o solicitar soportes adicionales dentro del mismo flujo sin perder el hilo de la conversación ni dispersar información por chats externos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .story-section {
+    padding-block: 6rem;
+    position: relative;
+    background: linear-gradient(180deg, var(--bg-main) 0%, rgba(16, 25, 34, 0.5) 50%, var(--bg-main) 100%);
+    border-top: 1px solid var(--border-color);
+  }
+
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+    margin-bottom: 5rem;
+  }
+
+  .pain-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pain-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(148, 163, 184, 0.35);
+    box-shadow: var(--shadow-md);
+  }
+
+  .pain-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pain-icon-wrapper.danger {
+    background: rgba(239, 68, 68, 0.12);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.25);
+  }
+
+  .pain-icon-wrapper.warning {
+    background: rgba(245, 158, 11, 0.12);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.25);
+  }
+
+  .pain-icon-wrapper.muted {
+    background: rgba(148, 163, 184, 0.12);
+    color: #94a3b8;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+  }
+
+  .pain-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .pain-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+  }
+
+  .pain-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  .pain-desc {
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .pain-desc em {
+    color: var(--text-main);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  /* Solution Hero Box */
+  .solution-hero-box {
+    background: linear-gradient(145deg, #101c2c 0%, #0d1520 100%);
+    border: 1px solid var(--border-glow);
+    border-radius: var(--radius-xl);
+    padding: 3.5rem;
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .solution-hero-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(19, 127, 236, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .solution-header {
+    max-width: 780px;
+    margin-bottom: 3rem;
+  }
+
+  .solution-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #60a5fa;
+    background: rgba(37, 99, 235, 0.15);
+    border: 1px solid rgba(96, 165, 250, 0.3);
+    margin-bottom: 1.25rem;
+  }
+
+  .pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #60a5fa;
+    box-shadow: 0 0 8px #60a5fa;
+  }
+
+  .solution-title {
+    font-size: clamp(1.6rem, 3vw, 2.25rem);
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.25;
+    margin-bottom: 1rem;
+  }
+
+  .solution-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .solution-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .pillar-card {
+    background: rgba(10, 15, 24, 0.7);
+    border: 1px solid rgba(30, 44, 60, 0.8);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    backdrop-filter: blur(8px);
+  }
+
+  .pillar-card:hover {
+    background: rgba(15, 24, 38, 0.85);
+    border-color: rgba(96, 165, 250, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .pillar-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    border: 1px solid rgba(19, 127, 236, 0.25);
+  }
+
+  .pillar-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  .pillar-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  @media (max-width: 1024px) {
+    .pain-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .solution-pillars-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .solution-hero-box {
+      padding: 2.25rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .solution-pillars-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .story-section {
+      padding-block: 4rem;
+    }
+  }
+</style>
