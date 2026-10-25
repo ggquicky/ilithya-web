@@ -7,7 +7,8 @@ const currentYear = new Date().getFullYear();
     <div class="footer-top">
       <div class="footer-brand">
         <a href="/" class="brand-logo" aria-label="Ilithya Workflow Home">
-          <img src="/brand/darkLogo.png" alt="Ilithya Workflow" class="footer-logo-img" />
+          <img src="/brand/darkLogo.png" alt="Ilithya Workflow" class="footer-logo-img logo-dark" />
+          <img src="/brand/lightLogo.png" alt="Ilithya Workflow" class="footer-logo-img logo-light" />
         </a>
         <p class="brand-slogan">
           Soporte digital para flujos de aprobación documental con firmas de coordenadas exactas, control de SLAs y auto-archivado en la nube.
@@ -100,6 +101,22 @@ const currentYear = new Date().getFullYear();
     object-fit: contain;
     display: block;
     filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+  }
+
+  .logo-dark {
+    display: block;
+  }
+
+  .logo-light {
+    display: none;
+  }
+
+  :global(html.light) .logo-dark {
+    display: none !important;
+  }
+
+  :global(html.light) .logo-light {
+    display: block !important;
   }
 
   .brand-slogan {

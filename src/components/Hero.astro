@@ -607,7 +607,7 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
 
   .canvas-sheet {
     padding: 2.5rem;
-    background: #0f141d;
+    background: var(--bg-canvas);
     position: relative;
     display: flex;
     flex-direction: column;
@@ -624,7 +624,7 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
 
   .skeleton-bar {
     height: 12px;
-    background: #1e2c3c;
+    background: var(--border-color);
     border-radius: 4px;
   }
 
@@ -639,7 +639,7 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
 
   .skeleton-line {
     height: 8px;
-    background: #172230;
+    background: var(--bg-subtle);
     border-radius: 4px;
     width: 90%;
   }
@@ -652,7 +652,7 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
     bottom: 2rem;
     right: 2rem;
     transform: rotate(-3deg);
-    background: rgba(16, 25, 34, 0.94);
+    background: var(--bg-surface-elevated);
     border: 2px dashed #10b981;
     border-radius: var(--radius-sm);
     padding: 0.65rem 0.95rem;

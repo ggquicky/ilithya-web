@@ -1,0 +1,91 @@
+---
+interface Props {
+  id?: string;
+  className?: string;
+}
+
+const { id = "theme-toggle", className = "" } = Astro.props;
+---
+
+<button
+  type="button"
+  id={id}
+  class={`theme-toggle ${className}`}
+  title="Cambiar entre modo claro y oscuro"
+  aria-label="Cambiar tema de color"
+>
+  <!-- Sun icon (shown in dark mode, click switches to light) -->
+  <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+  </svg>
+  <!-- Moon icon (shown in light mode, click switches to dark) -->
+  <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+  </svg>
+</button>
+
+<style>
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  .theme-toggle:hover {
+    color: var(--text-main);
+    background: var(--bg-surface-elevated);
+    border-color: var(--color-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px -2px rgba(19, 127, 236, 0.25);
+  }
+
+  .theme-toggle:active {
+    transform: translateY(0);
+  }
+
+  .sun-icon {
+    display: block;
+    color: #fbbf24;
+    transition: transform 0.3s ease;
+  }
+
+  .moon-icon {
+    display: none;
+    color: #475569;
+    transition: transform 0.3s ease;
+  }
+
+  .theme-toggle:hover .sun-icon {
+    transform: rotate(45deg);
+  }
+
+  :global(html.light) .sun-icon {
+    display: none !important;
+  }
+
+  :global(html.light) .moon-icon {
+    display: block !important;
+  }
+
+  :global(html.light) .theme-toggle:hover .moon-icon {
+    transform: rotate(-15deg);
+  }
+</style>

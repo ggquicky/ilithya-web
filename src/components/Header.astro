@@ -1,4 +1,6 @@
 ---
+import ThemeToggle from './ThemeToggle.astro';
+
 interface Props {
   appUrl?: string;
 }
@@ -9,7 +11,8 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
 <header class="site-header">
   <div class="container header-container">
     <a href="/" class="brand-logo" aria-label="Ilithya Workflow Home">
-      <img src="/brand/darkLogo.png" alt="Ilithya Workflow" class="brand-logo-img" />
+      <img src="/brand/darkLogo.png" alt="Ilithya Workflow" class="brand-logo-img logo-dark" />
+      <img src="/brand/lightLogo.png" alt="Ilithya Workflow" class="brand-logo-img logo-light" />
     </a>
 
     <nav class="nav-links" aria-label="Navegación Principal">
@@ -21,6 +24,7 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
     </nav>
 
     <div class="header-actions">
+      <ThemeToggle id="desktop-theme-toggle" />
       <a href={`${appUrl}/login`} class="btn btn-ghost" id="nav-login">Iniciar Sesión</a>
       <button class="btn btn-primary" data-open-modal="pilot" id="nav-cta">
         <span>Plan Piloto</span>
@@ -45,6 +49,10 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
     <a href="/plataforma" class="mobile-nav-item">Plataforma & TI</a>
     <a href="/plan-piloto" class="mobile-nav-item">Plan Piloto</a>
     <a href="/contacto" class="mobile-nav-item">Contacto</a>
+    <div class="mobile-theme-row">
+      <span class="mobile-theme-label">Tema</span>
+      <ThemeToggle id="mobile-theme-toggle" />
+    </div>
     <div class="mobile-menu-actions">
       <a href={`${appUrl}/login`} class="btn btn-secondary w-full">Iniciar Sesión</a>
       <button class="btn btn-primary w-full" data-open-modal="pilot">Solicitar Plan Piloto</button>
@@ -78,7 +86,7 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(10, 12, 20, 0.85);
+    background: var(--header-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border-color);
@@ -106,6 +114,22 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
     display: block;
     transition: transform 0.2s ease, filter 0.2s ease;
     filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+  }
+
+  .logo-dark {
+    display: block;
+  }
+
+  .logo-light {
+    display: none;
+  }
+
+  :global(html.light) .logo-dark {
+    display: none !important;
+  }
+
+  :global(html.light) .logo-light {
+    display: block !important;
   }
 
   .brand-logo:hover .brand-logo-img {
@@ -155,7 +179,21 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
     font-weight: 600;
     color: var(--text-main);
     padding-block: 0.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .mobile-theme-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .mobile-theme-label {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-muted);
   }
 
   .mobile-menu-actions {

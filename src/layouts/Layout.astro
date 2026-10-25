@@ -115,9 +115,79 @@ const structuredData = {
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
+
+    <!-- Theme Initialization (Inline to prevent FOUC) -->
+    <script is:inline>
+      (function() {
+        try {
+          var saved = localStorage.getItem('flowpilot_theme') || localStorage.getItem('theme');
+          var isLight = saved === 'light';
+          if (isLight) {
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
+            document.documentElement.setAttribute('data-theme', 'light');
+          } else {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+            document.documentElement.setAttribute('data-theme', 'dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <slot />
     <PilotModal />
+
+    <script is:inline>
+      (function() {
+        document.addEventListener('click', function(e) {
+          var btn = e.target && e.target.closest && e.target.closest('.theme-toggle');
+          if (!btn) return;
+          e.preventDefault();
+          var root = document.documentElement;
+          var isCurrentlyLight = root.classList.contains('light');
+          var targetTheme = isCurrentlyLight ? 'dark' : 'light';
+
+          root.classList.add('theme-transitioning');
+
+          if (targetTheme === 'light') {
+            root.classList.add('light');
+            root.classList.remove('dark');
+            root.setAttribute('data-theme', 'light');
+          } else {
+            root.classList.add('dark');
+            root.classList.remove('light');
+            root.setAttribute('data-theme', 'dark');
+          }
+
+          try {
+            localStorage.setItem('flowpilot_theme', targetTheme);
+            localStorage.setItem('theme', targetTheme);
+          } catch (err) {}
+
+          setTimeout(function() {
+            root.classList.remove('theme-transitioning');
+          }, 300);
+        });
+
+        // Cross-tab synchronization
+        window.addEventListener('storage', function(e) {
+          if (e.key === 'flowpilot_theme' || e.key === 'theme') {
+            var newTheme = e.newValue;
+            var root = document.documentElement;
+            if (newTheme === 'light') {
+              root.classList.add('light');
+              root.classList.remove('dark');
+              root.setAttribute('data-theme', 'light');
+            } else if (newTheme === 'dark') {
+              root.classList.add('dark');
+              root.classList.remove('light');
+              root.setAttribute('data-theme', 'dark');
+            }
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
