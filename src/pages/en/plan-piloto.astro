@@ -1,0 +1,178 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import PilotPlan from '../../components/PilotPlan.astro';
+import Footer from '../../components/Footer.astro';
+import { getTranslations } from '../../i18n/ui';
+
+const t = getTranslations('en');
+const faqs = t.faqs;
+---
+
+<Layout 
+  title={t.meta.pilot.title}
+  description={t.meta.pilot.description}
+  lang="en"
+>
+  <Header lang="en" />
+
+  <main>
+    <!-- Page Intro Header -->
+    <section class="page-intro-header">
+      <div class="container text-center">
+        <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+          <a href="/en/">{t.nav.home}</a>
+          <span class="bc-sep">/</span>
+          <span class="bc-current">{t.nav.pilotPlan}</span>
+        </nav>
+        <span class="section-tag">{t.meta.pilot.tag}</span>
+        <h1 class="page-intro-title">{t.meta.pilot.heading}</h1>
+        <p class="page-intro-desc">
+          {t.meta.pilot.intro}
+        </p>
+      </div>
+    </section>
+
+    <!-- Pilot Plan Component -->
+    <PilotPlan lang="en" />
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">Frequently Asked Questions</span>
+          <h2 class="section-title">Everything You Need to Know About the Pilot</h2>
+          <p class="section-desc">
+            Transparent answers so your executive and operational teams can get started with complete peace of mind.
+          </p>
+        </div>
+
+        <div class="faq-grid">
+          {faqs.map((faq) => (
+            <div class="faq-card">
+              <h3 class="faq-q">{faq.q}</h3>
+              <p class="faq-a">{faq.a}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="faq-footer-cta text-center">
+          <button class="btn btn-primary btn-lg" data-open-modal="pilot">
+            <span>Start Your Free Pilot Now</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer lang="en" />
+</Layout>
+
+<style>
+  .page-intro-header {
+    padding-top: 4.5rem;
+    padding-bottom: 2.5rem;
+    background: radial-gradient(ellipse at top, rgba(19, 127, 236, 0.12) 0%, transparent 70%);
+    position: relative;
+  }
+
+  .breadcrumb-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--text-dim);
+    margin-bottom: 1.25rem;
+  }
+
+  .breadcrumb-nav a {
+    color: var(--text-muted);
+    transition: color 0.15s ease;
+  }
+
+  .breadcrumb-nav a:hover {
+    color: var(--color-primary);
+  }
+
+  .bc-sep {
+    opacity: 0.4;
+  }
+
+  .bc-current {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .page-intro-title {
+    font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    letter-spacing: -0.03em;
+  }
+
+  .page-intro-desc {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 720px;
+    margin-inline: auto;
+    line-height: 1.6;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  /* FAQ Section */
+  .faq-section {
+    padding-block: 5.5rem;
+    background: var(--bg-main);
+    border-top: 1px solid var(--border-color);
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .faq-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .faq-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(96, 165, 250, 0.4);
+  }
+
+  .faq-q {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.35;
+  }
+
+  .faq-a {
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .faq-footer-cta {
+    margin-top: 2rem;
+  }
+</style>

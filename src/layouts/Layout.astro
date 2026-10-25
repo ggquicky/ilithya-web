@@ -1,24 +1,34 @@
 ---
 import '../styles/global.css';
 import PilotModal from '../components/PilotModal.astro';
+import { getLocalizedPath, type Language } from '../i18n/ui';
 
 interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
   keywords?: string;
+  lang?: Language;
 }
 
 const {
   title = "Ilithya Workflow • Agilidad y Claridad para las Decisiones de tu Equipo",
   description = "Un soporte digital para que los flujos de aprobación de compras, viáticos, vacaciones y contrataciones de tu empresa avancen sin fricción ni desgaste.",
   ogImage = "/brand/darkLogo.png",
-  keywords = "flujos de aprobación documental, firmas digitales, sellos de tiempo pdf, aprobaciones empresariales, automatización de compras, gestión de viáticos, ilithya workflow"
+  keywords = "flujos de aprobación documental, firmas digitales, sellos de tiempo pdf, aprobaciones empresariales, automatización de compras, gestión de viáticos, ilithya workflow",
+  lang = (Astro.currentLocale || 'es') as Language
 } = Astro.props;
 
-// Canonical and OpenGraph URLs
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://ilithya.app');
-const ogImageURL = new URL(ogImage, Astro.site ?? 'https://ilithya.app');
+// Canonical, Hreflang and OpenGraph URLs
+const siteUrl = Astro.site ?? 'https://ilithya.app';
+const currentPath = Astro.url.pathname;
+const canonicalURL = new URL(currentPath, siteUrl);
+const ogImageURL = new URL(ogImage, siteUrl);
+
+const esPath = getLocalizedPath(currentPath, 'es');
+const enPath = getLocalizedPath(currentPath, 'en');
+const esCanonicalURL = new URL(esPath, siteUrl);
+const enCanonicalURL = new URL(enPath, siteUrl);
 
 // Structured Data (JSON-LD) for Google Rich Snippets
 const structuredData = {
@@ -68,7 +78,7 @@ const structuredData = {
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -86,8 +96,11 @@ const structuredData = {
     <meta name="author" content="Ilithya Workflow Inc." />
     <meta name="generator" content={Astro.generator} />
     
-    <!-- Canonical URL -->
+    <!-- Canonical & Alternate Hreflang URLs -->
     <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="es" href={esCanonicalURL} />
+    <link rel="alternate" hreflang="en" href={enCanonicalURL} />
+    <link rel="alternate" hreflang="x-default" href={esCanonicalURL} />
 
     <!-- Search Engine Directives -->
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -101,6 +114,8 @@ const structuredData = {
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
     <meta property="og:image:alt" content="Ilithya Workflow Platform" />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'es_LA'} />
+    <meta property="og:locale:alternate" content={lang === 'en' ? 'es_LA' : 'en_US'} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -137,7 +152,7 @@ const structuredData = {
   </head>
   <body>
     <slot />
-    <PilotModal />
+    <PilotModal lang={lang} />
 
     <script is:inline>
       (function() {

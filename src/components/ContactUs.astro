@@ -1,18 +1,30 @@
 ---
+import { getTranslations, type Language } from '../i18n/ui';
+
 interface Props {
   recipientEmail?: string;
+  lang?: Language;
 }
 
-const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
+const { 
+  recipientEmail = 'jlmoralesm08@gmail.com',
+  lang = (Astro.currentLocale || 'es') as Language 
+} = Astro.props;
+
+const isEs = lang === 'es';
 ---
 
 <section class="contact-section" id="contacto">
   <div class="container">
     <div class="section-header text-center">
-      <span class="section-tag">Acceso Directo</span>
-      <h2 class="section-title">¿Listo para agilizar las aprobaciones de tu equipo?</h2>
+      <span class="section-tag">{isEs ? 'Acceso Directo' : 'Direct Access'}</span>
+      <h2 class="section-title">
+        {isEs ? '¿Listo para agilizar las aprobaciones de tu equipo?' : 'Ready to accelerate your team’s approvals?'}
+      </h2>
       <p class="section-desc">
-        Conéctese con nuestro equipo para iniciar su Plan de Prueba de 15 a 20 días sin costo ni compromiso, o para resolver dudas sobre seguridad y configuración.
+        {isEs 
+          ? 'Conéctese con nuestro equipo para iniciar su Plan de Prueba de 15 a 20 días sin costo ni compromiso, o para resolver dudas sobre seguridad y configuración.' 
+          : 'Connect with our engineering team to start your 15 to 20-day pilot trial at zero cost, or discuss architecture and security.'}
       </p>
     </div>
 
@@ -22,11 +34,15 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
         <div class="info-card">
           <div class="info-badge">
             <span class="dot-live"></span>
-            <span>Mesa Corporativa</span>
+            <span>{isEs ? 'Mesa Corporativa' : 'Enterprise Desk'}</span>
           </div>
-          <h3 class="info-heading">Hable con un Especialista de Ilithya Workflow</h3>
+          <h3 class="info-heading">
+            {isEs ? 'Hable con un Especialista de Ilithya Workflow' : 'Speak with an Ilithya Workflow Specialist'}
+          </h3>
           <p class="info-text">
-            Le ayudamos a modelar su primera ruta de aprobación, definir estaciones y activar recordatorios automáticos en minutos.
+            {isEs 
+              ? 'Le ayudamos a modelar su primera ruta de aprobación, definir estaciones y activar recordatorios automáticos en minutos.' 
+              : 'We will help you model your first approval route, configure stations, and activate smart reminders in minutes.'}
           </p>
 
           <div class="contact-channels">
@@ -38,7 +54,7 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
                 </svg>
               </div>
               <div class="channel-meta">
-                <span class="channel-label">Consultas Directas</span>
+                <span class="channel-label">{isEs ? 'Consultas Directas' : 'Direct Inquiries'}</span>
                 <a href={`mailto:${recipientEmail}`} class="channel-val">{recipientEmail}</a>
               </div>
             </div>
@@ -50,8 +66,8 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
                 </svg>
               </div>
               <div class="channel-meta">
-                <span class="channel-label">Seguridad y Cumplimiento</span>
-                <span class="channel-val">Aislamiento RLS & Auditoría Criptográfica</span>
+                <span class="channel-label">{isEs ? 'Seguridad y Cumplimiento' : 'Security & Compliance'}</span>
+                <span class="channel-val">{isEs ? 'Aislamiento RLS & Auditoría Criptográfica' : 'RLS Isolation & Cryptographic Audits'}</span>
               </div>
             </div>
 
@@ -63,8 +79,8 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
                 </svg>
               </div>
               <div class="channel-meta">
-                <span class="channel-label">Respuesta Garantizada</span>
-                <span class="channel-val">&lt; 2 horas en días hábiles</span>
+                <span class="channel-label">{isEs ? 'Respuesta Garantizada' : 'Guaranteed Response'}</span>
+                <span class="channel-val">{isEs ? '< 2 horas en días hábiles' : '< 2 hours on business days'}</span>
               </div>
             </div>
           </div>
@@ -72,13 +88,15 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
 
         <div class="quote-card">
           <p class="quote-text">
-            "Ilithya Workflow reemplazó semanas de persecución de firmas por correo por aprobaciones ágiles de 4 horas y registros inmutables de auditoría."
+            {isEs 
+              ? '"Ilithya Workflow reemplazó semanas de persecución de firmas por correo por aprobaciones ágiles de 4 horas y registros inmutables de auditoría."' 
+              : '"Ilithya Workflow replaced weeks of chasing email signatures with 4-hour agile approvals and immutable audit records."'}
           </p>
           <div class="quote-author">
             <div class="avatar-placeholder">JM</div>
             <div>
               <div class="author-name">Jorge Morales</div>
-              <div class="author-role">Director de Operaciones & Logística</div>
+              <div class="author-role">{isEs ? 'Director de Operaciones & Logística' : 'Director of Operations & Logistics'}</div>
             </div>
           </div>
         </div>
@@ -94,37 +112,37 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
         >
           <!-- Anti-spam Honeypot -->
           <div class="visually-hidden">
-            <label for="bot-field">No llenar este campo</label>
+            <label for="bot-field">{isEs ? 'No llenar este campo' : 'Do not fill this field'}</label>
             <input type="text" id="bot-field" name="_honey" tabindex="-1" autocomplete="off" />
           </div>
 
           <!-- FormSubmit Configuration Fields -->
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_subject" id="form-subject" value="Nueva Solicitud de Plan Piloto Ilithya Workflow" />
+          <input type="hidden" name="_subject" id="form-subject" value={isEs ? 'Nueva Solicitud de Plan Piloto Ilithya Workflow' : 'New Ilithya Workflow Pilot Request'} />
 
           <div class="form-row">
             <div class="form-group">
-              <label for="full-name" class="form-label">Nombre Completo <span class="required">*</span></label>
+              <label for="full-name" class="form-label">{isEs ? 'Nombre Completo' : 'Full Name'} <span class="required">*</span></label>
               <input 
                 type="text" 
                 id="full-name" 
                 name="name" 
                 class="form-input" 
-                placeholder="Ej. Roberto Gómez" 
+                placeholder={isEs ? 'Ej. Roberto Gómez' : 'e.g. Robert Gomez'} 
                 autocomplete="name" 
                 required 
                 minlength="2"
               />
             </div>
             <div class="form-group">
-              <label for="work-email" class="form-label">Correo Corporativo <span class="required">*</span></label>
+              <label for="work-email" class="form-label">{isEs ? 'Correo Corporativo' : 'Corporate Email'} <span class="required">*</span></label>
               <input 
                 type="email" 
                 id="work-email" 
                 name="email" 
                 class="form-input" 
-                placeholder="roberto@empresa.com" 
+                placeholder={isEs ? 'roberto@empresa.com' : 'robert@company.com'} 
                 autocomplete="email" 
                 required 
               />
@@ -133,27 +151,27 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
 
           <div class="form-row">
             <div class="form-group">
-              <label for="company-name" class="form-label">Empresa / Organización <span class="required">*</span></label>
+              <label for="company-name" class="form-label">{isEs ? 'Empresa / Organización' : 'Company / Organization'} <span class="required">*</span></label>
               <input 
                 type="text" 
                 id="company-name" 
                 name="company" 
                 class="form-input" 
-                placeholder="Ej. Grupo Industrial S.A." 
+                placeholder={isEs ? 'Ej. Grupo Industrial S.A.' : 'e.g. Acme Industrial Corp'} 
                 autocomplete="organization" 
                 required 
               />
             </div>
             <div class="form-group">
-              <label for="process-select" class="form-label">Proceso que Desea Evaluar</label>
+              <label for="process-select" class="form-label">{isEs ? 'Proceso que Desea Evaluar' : 'Process You Wish to Evaluate'}</label>
               <div class="select-wrapper">
                 <select id="process-select" name="proceso_a_evaluar" class="form-select">
-                  <option value="Compra o Pago a Proveedores">Compra o Pago a Proveedores (Finanzas)</option>
-                  <option value="Solicitud y Pago de Viáticos">Solicitud y Pago de Viáticos (Movilidad)</option>
-                  <option value="Onboarding y Selección de Candidatos">Selección de Candidatos (RRHH)</option>
-                  <option value="Solicitud de Vacaciones">Vacaciones / Acción de Personal (RRHH)</option>
-                  <option value="Compra de Suministros">Compra de Suministros (Servicios Generales)</option>
-                  <option value="Otro Flujo Personalizado">Otro Flujo Interno Personalizado</option>
+                  <option value="Compra o Pago a Proveedores">{isEs ? 'Compra o Pago a Proveedores (Finanzas)' : 'Vendor Procurement & Payments (Finance)'}</option>
+                  <option value="Solicitud y Pago de Viáticos">{isEs ? 'Solicitud y Pago de Viáticos (Movilidad)' : 'Travel Expenses & Per Diems (Mobility)'}</option>
+                  <option value="Onboarding y Selección de Candidatos">{isEs ? 'Selección de Candidatos (RRHH)' : 'Candidate Onboarding (HR)'}</option>
+                  <option value="Solicitud de Vacaciones">{isEs ? 'Vacaciones / Acción de Personal (RRHH)' : 'Vacations & Leave Requests (HR)'}</option>
+                  <option value="Compra de Suministros">{isEs ? 'Compra de Suministros (Servicios Generales)' : 'Facility Supplies & Maintenance (Operations)'}</option>
+                  <option value="Otro Flujo Personalizado">{isEs ? 'Otro Flujo Interno Personalizado' : 'Other Custom Enterprise Workflow'}</option>
                 </select>
                 <div class="select-arrow">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -165,18 +183,18 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
           </div>
 
           <div class="form-group">
-            <label for="message" class="form-label">Cuéntanos sobre tu flujo de aprobación actual</label>
+            <label for="message" class="form-label">{isEs ? 'Cuéntanos sobre tu flujo de aprobación actual' : 'Tell us about your current approval workflow'}</label>
             <textarea 
               id="message" 
               name="message" 
               class="form-textarea" 
               rows="4" 
-              placeholder="Ej. Tenemos 3 aprobadores para órdenes de compra y queremos probar la reasignación de ausencias y recordatorios automáticos..."
+              placeholder={isEs ? 'Ej. Tenemos 3 aprobadores para órdenes de compra y queremos probar la reasignación de ausencias y recordatorios automáticos...' : 'e.g. We have 3 approvers for purchase orders and want to test out-of-office delegation and automated SLA alerts...'}
             ></textarea>
           </div>
 
           <button type="submit" class="btn btn-primary btn-submit" id="submit-btn">
-            <span id="btn-text">Solicitar Plan Piloto (15 a 20 Días)</span>
+            <span id="btn-text">{isEs ? 'Solicitar Plan Piloto (15 a 20 Días)' : 'Request Guided Pilot Trial (15 to 20 Days)'}</span>
             <svg id="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
@@ -184,7 +202,7 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
           </button>
 
           <p class="form-disclaimer">
-            🔒 Respetamos tu privacidad. Solicitud enviada directamente al equipo directivo ({recipientEmail}).
+            {isEs ? `🔒 Respetamos tu privacidad. Solicitud enviada directamente al equipo directivo (${recipientEmail}).` : `🔒 We respect your privacy. Request dispatched directly to executive leadership (${recipientEmail}).`}
           </p>
 
           <!-- Success Alert Banner -->
@@ -193,8 +211,8 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
             <div>
-              <strong>¡Gracias por contactar a Ilithya Workflow!</strong>
-              <p>Su solicitud ha sido enviada con éxito. Un especialista en flujos se comunicará a la brevedad para coordinar la prueba de 15 a 20 días.</p>
+              <strong>{isEs ? '¡Gracias por contactar a Ilithya Workflow!' : 'Thank you for contacting Ilithya Workflow!'}</strong>
+              <p>{isEs ? 'Su solicitud ha sido enviada con éxito. Un especialista en flujos se comunicará a la brevedad para coordinar la prueba de 15 a 20 días.' : 'Your request has been sent successfully. A solutions specialist will reach out shortly to coordinate your 15 to 20-day evaluation.'}</p>
             </div>
           </div>
 
@@ -206,8 +224,8 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
               <line x1="12" y1="8" x2="12.01" y2="8"></line>
             </svg>
             <div>
-              <strong>Acción requerida para {recipientEmail}</strong>
-              <p>Se envió un correo inicial de confirmación a <strong>{recipientEmail}</strong>. Por favor revise su bandeja y haga clic en <em>"Activate Form"</em> para habilitar la recepción de leads.</p>
+              <strong>{isEs ? `Acción requerida para ${recipientEmail}` : `Action required for ${recipientEmail}`}</strong>
+              <p>{isEs ? `Se envió un correo inicial de confirmación a ${recipientEmail}. Por favor revise su bandeja y haga clic en "Activate Form" para habilitar la recepción de leads.` : `An activation email was sent to ${recipientEmail}. Please check your inbox and click "Activate Form" to enable lead routing.`}</p>
             </div>
           </div>
 
@@ -219,8 +237,8 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
               <line x1="12" y1="16" x2="12.01" y2="16"></line>
             </svg>
             <div>
-              <strong>Error al enviar el mensaje</strong>
-              <p>No se pudo enviar en este momento. Por favor escriba directamente a <a href={`mailto:${recipientEmail}`} class="underline-link">{recipientEmail}</a>.</p>
+              <strong>{isEs ? 'Error al enviar el mensaje' : 'Error sending message'}</strong>
+              <p>{isEs ? `No se pudo enviar en este momento. Por favor escriba directamente a ` : `Could not send at this time. Please write directly to `}<a href={`mailto:${recipientEmail}`} class="underline-link">{recipientEmail}</a>.</p>
             </div>
           </div>
         </form>

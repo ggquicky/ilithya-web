@@ -1,10 +1,17 @@
 ---
-// PilotModal.astro - Reusable Modal for requesting the 15-20 Day Pilot
+import { getTranslations, type Language } from '../i18n/ui';
+
 interface Props {
   recipientEmail?: string;
+  lang?: Language;
 }
 
-const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
+const { 
+  recipientEmail = 'jlmoralesm08@gmail.com',
+  lang = (Astro.currentLocale || 'es') as Language 
+} = Astro.props;
+
+const isEs = lang === 'es';
 ---
 
 <div id="pilot-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -12,7 +19,7 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
 
   <div class="modal-container">
     <!-- Close Button -->
-    <button class="modal-close-btn" data-close-modal aria-label="Cerrar ventana">
+    <button class="modal-close-btn" data-close-modal aria-label={isEs ? 'Cerrar ventana' : 'Close window'}>
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -23,11 +30,13 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
     <div class="modal-header">
       <div class="modal-badge">
         <span class="pulse-dot"></span>
-        <span>Acompañamiento 1-a-1 Incluido</span>
+        <span>{isEs ? 'Acompañamiento 1-a-1 Incluido' : '1-on-1 Guidance Included'}</span>
       </div>
-      <h2 id="modal-title" class="modal-title">Solicitar Plan Piloto (15 a 20 Días)</h2>
+      <h2 id="modal-title" class="modal-title">{isEs ? 'Solicitar Plan Piloto (15 a 20 Días)' : 'Request Guided Pilot Trial (15 to 20 Days)'}</h2>
       <p class="modal-desc">
-        Evaluemos juntos el impacto de Ilithya en un proceso real de su empresa. Sin costo ni compromiso.
+        {isEs 
+          ? 'Evaluemos juntos el impacto de Ilithya en un proceso real de su empresa. Sin costo ni compromiso.' 
+          : 'Let’s measure Ilithya’s velocity on a live operational process in your company. Zero cost, no commitment.'}
       </p>
     </div>
 
@@ -40,37 +49,37 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
     >
       <!-- Anti-spam Honeypot -->
       <div class="visually-hidden">
-        <label for="modal-bot-field">No llenar este campo</label>
+        <label for="modal-bot-field">{isEs ? 'No llenar este campo' : 'Do not fill this field'}</label>
         <input type="text" id="modal-bot-field" name="_honey" tabindex="-1" autocomplete="off" />
       </div>
 
       <!-- FormSubmit Config -->
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_subject" value="Nueva Solicitud de Plan Piloto (Modal Web)" />
+      <input type="hidden" name="_subject" value={isEs ? 'Nueva Solicitud de Plan Piloto (Modal Web)' : 'New Pilot Request (Web Modal)'} />
 
       <div class="form-row">
         <div class="form-group">
-          <label for="modal-full-name" class="form-label">Nombre Completo <span class="required">*</span></label>
+          <label for="modal-full-name" class="form-label">{isEs ? 'Nombre Completo' : 'Full Name'} <span class="required">*</span></label>
           <input 
             type="text" 
             id="modal-full-name" 
             name="name" 
             class="form-input" 
-            placeholder="Ej. Roberto Gómez" 
+            placeholder={isEs ? 'Ej. Roberto Gómez' : 'e.g. Robert Gomez'} 
             autocomplete="name" 
             required 
             minlength="2"
           />
         </div>
         <div class="form-group">
-          <label for="modal-work-email" class="form-label">Correo Corporativo <span class="required">*</span></label>
+          <label for="modal-work-email" class="form-label">{isEs ? 'Correo Corporativo' : 'Corporate Email'} <span class="required">*</span></label>
           <input 
             type="email" 
             id="modal-work-email" 
             name="email" 
             class="form-input" 
-            placeholder="roberto@empresa.com" 
+            placeholder={isEs ? 'roberto@empresa.com' : 'robert@company.com'} 
             autocomplete="email" 
             required 
           />
@@ -79,27 +88,27 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
 
       <div class="form-row">
         <div class="form-group">
-          <label for="modal-company-name" class="form-label">Empresa / Organización <span class="required">*</span></label>
+          <label for="modal-company-name" class="form-label">{isEs ? 'Empresa / Organización' : 'Company / Organization'} <span class="required">*</span></label>
           <input 
             type="text" 
             id="modal-company-name" 
             name="company" 
             class="form-input" 
-            placeholder="Ej. Grupo Industrial S.A." 
+            placeholder={isEs ? 'Ej. Grupo Industrial S.A.' : 'e.g. Acme Industrial Corp'} 
             autocomplete="organization" 
             required 
           />
         </div>
         <div class="form-group">
-          <label for="modal-process-select" class="form-label">Proceso que Desea Evaluar</label>
+          <label for="modal-process-select" class="form-label">{isEs ? 'Proceso que Desea Evaluar' : 'Process You Wish to Evaluate'}</label>
           <div class="select-wrapper">
             <select id="modal-process-select" name="proceso_a_evaluar" class="form-select">
-              <option value="Compra o Pago a Proveedores">Compra o Pago a Proveedores (Finanzas)</option>
-              <option value="Solicitud y Pago de Viáticos">Solicitud y Pago de Viáticos (Movilidad)</option>
-              <option value="Onboarding y Selección de Candidatos">Selección de Candidatos (RRHH)</option>
-              <option value="Solicitud de Vacaciones">Vacaciones / Acción de Personal (RRHH)</option>
-              <option value="Compra de Suministros">Compra de Suministros (Servicios Generales)</option>
-              <option value="Otro Flujo Personalizado">Otro Flujo Interno Personalizado</option>
+              <option value="Compra o Pago a Proveedores">{isEs ? 'Compra o Pago a Proveedores (Finanzas)' : 'Vendor Procurement & Payments (Finance)'}</option>
+              <option value="Solicitud y Pago de Viáticos">{isEs ? 'Solicitud y Pago de Viáticos (Movilidad)' : 'Travel Expenses & Per Diems (Mobility)'}</option>
+              <option value="Onboarding y Selección de Candidatos">{isEs ? 'Selección de Candidatos (RRHH)' : 'Candidate Onboarding (HR)'}</option>
+              <option value="Solicitud de Vacaciones">{isEs ? 'Vacaciones / Acción de Personal (RRHH)' : 'Vacations & Leave Requests (HR)'}</option>
+              <option value="Compra de Suministros">{isEs ? 'Compra de Suministros (Servicios Generales)' : 'Facility Supplies & Maintenance (Operations)'}</option>
+              <option value="Otro Flujo Personalizado">{isEs ? 'Otro Flujo Interno Personalizado' : 'Other Custom Enterprise Workflow'}</option>
             </select>
             <div class="select-arrow">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -111,18 +120,18 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
       </div>
 
       <div class="form-group">
-        <label for="modal-message" class="form-label">Detalles del flujo (opcional)</label>
+        <label for="modal-message" class="form-label">{isEs ? 'Detalles del flujo (opcional)' : 'Workflow details (optional)'}</label>
         <textarea 
           id="modal-message" 
           name="message" 
           class="form-textarea" 
           rows="3" 
-          placeholder="Ej. Queremos evaluar las 3 estaciones de aprobación y la alerta de vencimiento de cotizaciones..."
+          placeholder={isEs ? 'Ej. Queremos evaluar las 3 estaciones de aprobación y la alerta de vencimiento de cotizaciones...' : 'e.g. We want to test 3 approval stations and quote expiration alerts...'}
         ></textarea>
       </div>
 
       <button type="submit" class="btn btn-primary btn-submit w-full" id="modal-submit-btn">
-        <span id="modal-btn-text">Iniciar Prueba Piloto Gratuita</span>
+        <span id="modal-btn-text">{isEs ? 'Iniciar Prueba Piloto Gratuita' : 'Start Free Pilot Trial'}</span>
         <svg id="modal-btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <line x1="5" y1="12" x2="19" y2="12"></line>
           <polyline points="12 5 19 12 12 19"></polyline>
@@ -131,11 +140,11 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
 
       <!-- Trust Strip inside Modal -->
       <div class="modal-trust-strip">
-        <span>✓ Sin costo ni compromiso</span>
+        <span>{isEs ? '✓ Sin costo ni compromiso' : '✓ Zero cost or commitment'}</span>
         <span>•</span>
-        <span>✓ Configuración en horas</span>
+        <span>{isEs ? '✓ Configuración en horas' : '✓ Setup in hours'}</span>
         <span>•</span>
-        <span>✓ Soporte 1-a-1</span>
+        <span>{isEs ? '✓ Soporte 1-a-1' : '✓ 1-on-1 support'}</span>
       </div>
 
       <!-- Alerts -->
@@ -144,8 +153,8 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
           <polyline points="20 6 9 17 4 12"></polyline>
         </svg>
         <div>
-          <strong>¡Solicitud enviada con éxito!</strong>
-          <p>Un especialista de Ilithya se comunicará a la brevedad para coordinar la configuración de su prueba.</p>
+          <strong>{isEs ? '¡Solicitud enviada con éxito!' : 'Request submitted successfully!'}</strong>
+          <p>{isEs ? 'Un especialista de Ilithya se comunicará a la brevedad para coordinar la configuración de su prueba.' : 'An Ilithya specialist will reach out shortly to coordinate your trial configuration.'}</p>
         </div>
       </div>
 
@@ -156,8 +165,8 @@ const { recipientEmail = 'jlmoralesm08@gmail.com' } = Astro.props;
           <line x1="12" y1="16" x2="12.01" y2="16"></line>
         </svg>
         <div>
-          <strong>No se pudo enviar la solicitud</strong>
-          <p>Por favor intente nuevamente o escríbanos directamente a <a href={`mailto:${recipientEmail}`}>{recipientEmail}</a>.</p>
+          <strong>{isEs ? 'No se pudo enviar la solicitud' : 'Could not submit request'}</strong>
+          <p>{isEs ? 'Por favor intente nuevamente o escríbanos directamente a ' : 'Please try again or email us directly at '}<a href={`mailto:${recipientEmail}`}>{recipientEmail}</a>.</p>
         </div>
       </div>
     </form>
