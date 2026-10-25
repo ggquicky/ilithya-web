@@ -8,7 +8,7 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
 
 <header class="site-header">
   <div class="container header-container">
-    <a href="#" class="brand-logo" aria-label="Ilithya Workflow Home">
+    <a href="/" class="brand-logo" aria-label="Ilithya Workflow Home">
       <img src="/brand/darkLogo.png" alt="Ilithya Workflow" class="brand-logo-img" />
     </a>
 
@@ -100,17 +100,17 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
   }
 
   .brand-logo-img {
-    height: 70px;
+    height: 50px;
     width: auto;
     object-fit: contain;
     display: block;
     transition: transform 0.2s ease, filter 0.2s ease;
-    filter: drop-shadow(0 2px 8px rgba(19, 127, 236, 0.25));
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
   }
 
   .brand-logo:hover .brand-logo-img {
     transform: translateY(-1px);
-    filter: drop-shadow(0 4px 12px rgba(19, 127, 236, 0.4));
+    filter: drop-shadow(0 3px 12px rgba(16, 185, 129, 0.25));
   }
 
   .nav-links {
@@ -170,6 +170,10 @@ const { appUrl = 'https://home.ilithya.app/' } = Astro.props;
   }
 
   @media (max-width: 860px) {
+    .brand-logo-img {
+      height: 44px;
+    }
+
     .nav-links,
     #nav-login,
     #nav-cta {
