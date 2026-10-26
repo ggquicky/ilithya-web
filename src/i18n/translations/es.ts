@@ -25,11 +25,11 @@ export const es = {
       intro: 'Ilithya Workflow combina un motor de firma y estampa de sellos sobre coordenadas exactas de PDF con aislamiento estricto de base de datos y respaldo en la nube corporativa de su empresa.'
     },
     pilot: {
-      title: 'Plan de Prueba (15 a 20 Días) | Ilithya Workflow',
+      title: 'Plan de Prueba | Ilithya Workflow',
       description: 'Evalúe Ilithya Workflow con un proceso de compra o solicitud representativo de su empresa. Sin costo ni compromiso, con acompañamiento 1-a-1.',
-      keywords: 'plan piloto aprobaciones, prueba gratuita software aprobaciones, evaluacion flujos documental empresa, prueba piloto 15 dias, onboarding flujos corporativos',
+      keywords: 'plan piloto aprobaciones, prueba gratuita software aprobaciones, evaluacion flujos documental empresa, prueba piloto 30 dias, onboarding flujos corporativos',
       tag: 'Garantía Sin Riesgo',
-      heading: 'Plan de Prueba Asistido (15 a 20 Días)',
+      heading: 'Plan de Prueba Asistido',
       intro: 'Ponemos a prueba la agilidad de Ilithya directamente en el terreno de su operación: seleccionamos un flujo representativo, lo configuramos juntos y medimos el tiempo ahorrado.'
     },
     contact: {
