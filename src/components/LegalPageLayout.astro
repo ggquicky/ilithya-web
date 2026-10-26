@@ -1,0 +1,841 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getLocalizedPath, type Language } from '../i18n/ui';
+import type { LegalDocument } from '../i18n/legalData';
+
+interface Props {
+  document: LegalDocument;
+  activeDoc: 'privacy' | 'terms';
+  lang: Language;
+}
+
+const { document: doc, activeDoc, lang } = Astro.props;
+
+const homeHref = getLocalizedPath('/', lang);
+const privacyHref = getLocalizedPath('/privacidad', lang);
+const termsHref = getLocalizedPath('/terminos', lang);
+
+const labelsByLang = {
+  es: {
+    home: 'Inicio',
+    privacyTab: 'Política de Privacidad',
+    termsTab: 'Términos del Servicio',
+    tableTitle: 'Matriz de Transparencia de Datos',
+    tableSubtitle: 'Resumen operativo de qué datos se procesan, cuáles se conservan y su fundamento legal.',
+    contentsTitle: 'Contenido del Documento',
+    quickLinks: 'Índice de Cláusulas'
+  },
+  en: {
+    home: 'Home',
+    privacyTab: 'Privacy Policy',
+    termsTab: 'Terms of Service',
+    tableTitle: 'Data Transparency Matrix',
+    tableSubtitle: 'Operational breakdown of what data is processed, what is retained, and its legal basis.',
+    contentsTitle: 'Document Content',
+    quickLinks: 'Clause Index'
+  },
+  it: {
+    home: 'Home',
+    privacyTab: 'Informativa sulla Privacy',
+    termsTab: 'Termini di Servizio',
+    tableTitle: 'Matrice di Trasparenza dei Dati',
+    tableSubtitle: 'Dettaglio operativo dei dati trattati, di quelli conservati e delle relative basi giuridiche.',
+    contentsTitle: 'Contenuto del Documento',
+    quickLinks: 'Indice delle Clausole'
+  },
+  pt: {
+    home: 'Início',
+    privacyTab: 'Política de Privacidade',
+    termsTab: 'Termos de Serviço',
+    tableTitle: 'Matriz de Transparência de Dados',
+    tableSubtitle: 'Detalhamento operacional sobre quais dados são tratados, retidos e sua fundamentação jurídica.',
+    contentsTitle: 'Conteúdo do Documento',
+    quickLinks: 'Índice de Cláusulas'
+  }
+};
+
+const l = labelsByLang[lang] || labelsByLang.es;
+---
+
+<Layout 
+  title={doc.metaTitle}
+  description={doc.metaDesc}
+  lang={lang}
+>
+  <Header lang={lang} />
+
+  <main class="legal-page-main">
+    <!-- Hero Header -->
+    <section class="legal-hero">
+      <div class="container text-center">
+        <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+          <a href={homeHref}>{l.home}</a>
+          <span class="bc-sep">/</span>
+          <span class="bc-current">{activeDoc === 'privacy' ? l.privacyTab : l.termsTab}</span>
+        </nav>
+
+        <div class="legal-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <span>{doc.badge}</span>
+        </div>
+
+        <h1 class="legal-title">{doc.title}</h1>
+        <p class="legal-subtitle">{doc.subtitle}</p>
+
+        <div class="legal-meta-strip">
+          <span class="last-updated-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>{doc.lastUpdated}</span>
+          </span>
+        </div>
+
+        <!-- Document Switcher Tabs -->
+        <div class="doc-switcher">
+          <a 
+            href={privacyHref} 
+            class={`doc-tab-btn ${activeDoc === 'privacy' ? 'active' : ''}`}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            <span>{l.privacyTab}</span>
+          </a>
+          <a 
+            href={termsHref} 
+            class={`doc-tab-btn ${activeDoc === 'terms' ? 'active' : ''}`}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            <span>{l.termsTab}</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Guarantee Cards Grid -->
+    <section class="summary-cards-section">
+      <div class="container">
+        <div class="summary-grid">
+          {doc.summaryCards.map((card) => (
+            <div class="summary-card">
+              <div class="card-icon-bubble">
+                {card.icon === 'shield' && (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                )}
+                {card.icon === 'database' && (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                  </svg>
+                )}
+                {card.icon === 'lock' && (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                )}
+                {card.icon === 'ban' && (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                  </svg>
+                )}
+                {card.icon === 'file-check' && (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <polyline points="9 15 11 17 15 13"></polyline>
+                  </svg>
+                )}
+                {card.icon === 'alert-triangle' && (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                  </svg>
+                )}
+                {card.icon === 'scale' && (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path>
+                    <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path>
+                    <path d="M7 21h10"></path>
+                    <path d="M12 3v18"></path>
+                    <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path>
+                  </svg>
+                )}
+                {card.icon === 'gavel' && (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="m14 13-7.5 7.5c-.83.83-2.17.83-3 0 0 0 0 0 0 0-.83-.83-.83-2.17 0-3L11 10"></path>
+                    <path d="m16 16 6-6"></path>
+                    <path d="m8 8 6-6"></path>
+                    <path d="m9 7 8 8"></path>
+                    <path d="m21 11-8-8"></path>
+                  </svg>
+                )}
+              </div>
+              <h3 class="summary-title">{card.title}</h3>
+              <p class="summary-desc">{card.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Transparency Matrix Table (Privacy Only) -->
+    {doc.tableData && (
+      <section class="transparency-table-section">
+        <div class="container">
+          <div class="section-header text-center">
+            <span class="section-tag">{l.tableTitle}</span>
+            <h2 class="section-title">{doc.tableData.headerCategory ? l.tableTitle : ''}</h2>
+            <p class="section-desc">{l.tableSubtitle}</p>
+          </div>
+
+          <div class="table-responsive">
+            <table class="transparency-table">
+              <thead>
+                <tr>
+                  <th>{doc.tableData.headerCategory}</th>
+                  <th>{doc.tableData.headerProcessed}</th>
+                  <th>{doc.tableData.headerStored}</th>
+                  <th>{doc.tableData.headerPurpose}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {doc.tableData.rows.map((row) => (
+                  <tr>
+                    <td class="col-category">
+                      <strong>{row.category}</strong>
+                    </td>
+                    <td class="col-processed">{row.processed}</td>
+                    <td class="col-stored">{row.stored}</td>
+                    <td class="col-purpose">
+                      <span class="purpose-pill">{row.purpose}</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Detailed Legal Clauses with Sticky Navigation -->
+    <section class="clauses-section">
+      <div class="container">
+        <div class="clauses-layout">
+          <!-- Sticky Sidebar -->
+          <aside class="clauses-sidebar">
+            <div class="sidebar-card">
+              <h4 class="sidebar-title">{l.quickLinks}</h4>
+              <nav class="sidebar-nav">
+                {doc.sections.map((sec) => (
+                  <a href={`#${sec.id}`} class="sidebar-link">
+                    <span class="sec-dot"></span>
+                    <span class="sec-text">{sec.title}</span>
+                  </a>
+                ))}
+              </nav>
+            </div>
+          </aside>
+
+          <!-- Main Legal Articles -->
+          <div class="clauses-content">
+            {doc.sections.map((sec) => (
+              <article class="clause-card" id={sec.id}>
+                <div class="clause-header">
+                  {sec.badge && <span class="clause-badge">{sec.badge}</span>}
+                  <h2 class="clause-title">{sec.title}</h2>
+                </div>
+
+                <div class="clause-body">
+                  {sec.content.map((p) => (
+                    <p class="clause-paragraph">{p}</p>
+                  ))}
+
+                  {sec.bulletPoints && sec.bulletPoints.length > 0 && (
+                    <ul class="clause-list">
+                      {sec.bulletPoints.map((item) => (
+                        <li>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                          </svg>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {sec.highlightBox && (
+                    <div class="clause-highlight-box">
+                      <div class="highlight-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <line x1="12" y1="16" x2="12" y2="12"></line>
+                          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                      </div>
+                      <div class="highlight-content">
+                        <h4 class="highlight-title">{sec.highlightBox.title}</h4>
+                        <p class="highlight-text">{sec.highlightBox.text}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </article>
+            ))}
+
+            <!-- Contact / Compliance Officer CTA -->
+            <div class="legal-cta-card">
+              <div class="legal-cta-content">
+                <h3 class="cta-title">{doc.contactCta.title}</h3>
+                <p class="cta-desc">{doc.contactCta.desc}</p>
+                <div class="cta-actions">
+                  <a href={`mailto:${doc.contactCta.email}`} class="btn btn-primary">
+                    <span>{doc.contactCta.btnText}</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+                  <span class="cta-email-tag">{doc.contactCta.email}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer lang={lang} />
+</Layout>
+
+<style>
+  .legal-page-main {
+    background: var(--bg-main);
+    color: var(--text-main);
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  /* Hero Section */
+  .legal-hero {
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+    background: radial-gradient(ellipse at top, rgba(19, 127, 236, 0.15) 0%, transparent 70%);
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+  }
+
+  .breadcrumb-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--text-dim);
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumb-nav a {
+    color: var(--text-muted);
+    transition: color 0.15s ease;
+  }
+
+  .breadcrumb-nav a:hover {
+    color: var(--color-primary);
+  }
+
+  .bc-sep {
+    color: var(--text-dim);
+  }
+
+  .bc-current {
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .legal-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.875rem;
+    border-radius: var(--radius-full);
+    background: rgba(19, 127, 236, 0.1);
+    border: 1px solid rgba(19, 127, 236, 0.25);
+    color: var(--color-primary);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+  }
+
+  .legal-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    max-width: 900px;
+    margin-inline: auto;
+  }
+
+  .legal-subtitle {
+    font-size: clamp(1rem, 1.8vw, 1.1875rem);
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 780px;
+    margin-inline: auto;
+    margin-bottom: 1.75rem;
+  }
+
+  .legal-meta-strip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .last-updated-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8125rem;
+    color: var(--text-dim);
+    background: var(--bg-surface);
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-color);
+  }
+
+  /* Document Switcher Tabs */
+  .doc-switcher {
+    display: inline-flex;
+    background: var(--bg-surface);
+    padding: 0.35rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-color);
+    gap: 0.35rem;
+  }
+
+  .doc-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .doc-tab-btn:hover {
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .doc-tab-btn.active {
+    background: var(--color-primary);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(19, 127, 236, 0.35);
+  }
+
+  /* Summary Cards */
+  .summary-cards-section {
+    padding-block: 4rem;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .summary-card {
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .summary-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(19, 127, 236, 0.4);
+    box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.3);
+  }
+
+  .card-icon-bubble {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    background: rgba(19, 127, 236, 0.12);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .summary-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .summary-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  /* Transparency Table */
+  .transparency-table-section {
+    padding-block: 5rem;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-main);
+  }
+
+  .section-header {
+    margin-bottom: 3rem;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: var(--bg-surface);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .transparency-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    text-align: left;
+  }
+
+  .transparency-table th {
+    background: var(--bg-surface-elevated);
+    padding: 1rem 1.25rem;
+    color: var(--text-main);
+    font-weight: 700;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .transparency-table td {
+    padding: 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+
+  .transparency-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .transparency-table tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .col-category {
+    font-weight: 600;
+    color: var(--color-primary);
+    width: 18%;
+  }
+
+  .col-processed {
+    color: var(--text-muted);
+    width: 28%;
+  }
+
+  .col-stored {
+    color: var(--text-main);
+    width: 28%;
+  }
+
+  .col-purpose {
+    width: 26%;
+  }
+
+  .purpose-pill {
+    display: inline-block;
+    padding: 0.35rem 0.65rem;
+    border-radius: var(--radius-sm);
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  /* Clauses Layout */
+  .clauses-section {
+    padding-block: 5rem;
+  }
+
+  .clauses-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 3.5rem;
+    align-items: start;
+  }
+
+  .clauses-sidebar {
+    position: sticky;
+    top: 6rem;
+  }
+
+  .sidebar-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+  }
+
+  .sidebar-title {
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .sidebar-link {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.5rem 0.6rem;
+    border-radius: var(--radius-md);
+    color: var(--text-muted);
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    transition: all 0.15s ease;
+    text-decoration: none;
+  }
+
+  .sidebar-link:hover {
+    color: var(--color-primary);
+    background: rgba(19, 127, 236, 0.08);
+  }
+
+  .sec-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--border-glow);
+    margin-top: 0.35rem;
+    flex-shrink: 0;
+  }
+
+  .sidebar-link:hover .sec-dot {
+    background: var(--color-primary);
+  }
+
+  /* Clauses Content */
+  .clauses-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .clause-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 2.25rem;
+    scroll-margin-top: 6rem;
+    transition: border-color 0.2s ease;
+  }
+
+  .clause-card:hover {
+    border-color: rgba(19, 127, 236, 0.3);
+  }
+
+  .clause-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .clause-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .clause-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .clause-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+
+  .clause-paragraph {
+    margin: 0;
+  }
+
+  .clause-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .clause-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .clause-list li svg {
+    color: var(--color-primary);
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+  }
+
+  .clause-highlight-box {
+    margin-top: 0.75rem;
+    background: rgba(19, 127, 236, 0.06);
+    border: 1px solid rgba(19, 127, 236, 0.2);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .highlight-icon {
+    color: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .highlight-title {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.35rem;
+  }
+
+  .highlight-text {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Legal CTA Card */
+  .legal-cta-card {
+    background: linear-gradient(135deg, rgba(19, 127, 236, 0.15) 0%, rgba(16, 185, 129, 0.1) 100%);
+    border: 1px solid rgba(19, 127, 236, 0.3);
+    border-radius: var(--radius-lg);
+    padding: 2.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .cta-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .cta-desc {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+  }
+
+  .cta-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-email-tag {
+    font-family: monospace;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    background: var(--bg-surface);
+    padding: 0.4rem 0.75rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+  }
+
+  /* Responsive */
+  @media (max-width: 992px) {
+    .clauses-layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .clauses-sidebar {
+      position: static;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .summary-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .doc-switcher {
+      flex-direction: column;
+      border-radius: var(--radius-md);
+      width: 100%;
+    }
+
+    .doc-tab-btn {
+      justify-content: center;
+      border-radius: var(--radius-md);
+    }
+
+    .clause-card {
+      padding: 1.5rem;
+    }
+  }
+</style>

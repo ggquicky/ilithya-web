@@ -11,7 +11,167 @@ const {
   lang = (Astro.currentLocale || 'es') as Language 
 } = Astro.props;
 
-const isEs = lang === 'es';
+const modalI18n: Record<Language, {
+  closeAria: string;
+  badge: string;
+  title: string;
+  desc: string;
+  honeypot: string;
+  subject: string;
+  fullNameLabel: string;
+  fullNamePlaceholder: string;
+  emailLabel: string;
+  emailPlaceholder: string;
+  companyLabel: string;
+  companyPlaceholder: string;
+  processLabel: string;
+  processOptions: { value: string; label: string }[];
+  messageLabel: string;
+  messagePlaceholder: string;
+  submitBtn: string;
+  trustNoCost: string;
+  trustSetup: string;
+  trustSupport: string;
+  successTitle: string;
+  successDesc: string;
+  errorTitle: string;
+  errorDesc: string;
+}> = {
+  es: {
+    closeAria: 'Cerrar ventana',
+    badge: 'Acompañamiento 1-a-1 Incluido',
+    title: 'Solicitar Plan Piloto (15 a 20 Días)',
+    desc: 'Evaluemos juntos el impacto de Ilithya en un proceso real de su empresa. Sin costo ni compromiso.',
+    honeypot: 'No llenar este campo',
+    subject: 'Nueva Solicitud de Plan Piloto (Modal Web)',
+    fullNameLabel: 'Nombre Completo',
+    fullNamePlaceholder: 'Ej. Roberto Gómez',
+    emailLabel: 'Correo Corporativo',
+    emailPlaceholder: 'roberto@empresa.com',
+    companyLabel: 'Empresa / Organización',
+    companyPlaceholder: 'Ej. Grupo Industrial S.A.',
+    processLabel: 'Proceso que Desea Evaluar',
+    processOptions: [
+      { value: 'Compra o Pago a Proveedores', label: 'Compra o Pago a Proveedores (Finanzas)' },
+      { value: 'Solicitud y Pago de Viáticos', label: 'Solicitud y Pago de Viáticos (Movilidad)' },
+      { value: 'Onboarding y Selección de Candidatos', label: 'Selección de Candidatos (RRHH)' },
+      { value: 'Solicitud de Vacaciones', label: 'Vacaciones / Acción de Personal (RRHH)' },
+      { value: 'Compra de Suministros', label: 'Compra de Suministros (Servicios Generales)' },
+      { value: 'Otro Flujo Personalizado', label: 'Otro Flujo Interno Personalizado' }
+    ],
+    messageLabel: 'Detalles del flujo (opcional)',
+    messagePlaceholder: 'Ej. Queremos evaluar las 3 estaciones de aprobación y la alerta de vencimiento de cotizaciones...',
+    submitBtn: 'Iniciar Prueba Piloto Gratuita',
+    trustNoCost: '✓ Sin costo ni compromiso',
+    trustSetup: '✓ Configuración en horas',
+    trustSupport: '✓ Soporte 1-a-1',
+    successTitle: '¡Solicitud enviada con éxito!',
+    successDesc: 'Un especialista de Ilithya se comunicará a la brevedad para coordinar la configuración de su prueba.',
+    errorTitle: 'No se pudo enviar la solicitud',
+    errorDesc: 'Por favor intente nuevamente o escríbanos directamente a '
+  },
+  en: {
+    closeAria: 'Close window',
+    badge: '1-on-1 Guidance Included',
+    title: 'Request Guided Pilot Trial (15 to 20 Days)',
+    desc: 'Let’s measure Ilithya’s velocity on a live operational process in your company. Zero cost, no commitment.',
+    honeypot: 'Do not fill this field',
+    subject: 'New Pilot Request (Web Modal)',
+    fullNameLabel: 'Full Name',
+    fullNamePlaceholder: 'e.g. Robert Gomez',
+    emailLabel: 'Corporate Email',
+    emailPlaceholder: 'robert@company.com',
+    companyLabel: 'Company / Organization',
+    companyPlaceholder: 'e.g. Acme Industrial Corp',
+    processLabel: 'Process You Wish to Evaluate',
+    processOptions: [
+      { value: 'Compra o Pago a Proveedores', label: 'Vendor Procurement & Payments (Finance)' },
+      { value: 'Solicitud y Pago de Viáticos', label: 'Travel Expenses & Per Diems (Mobility)' },
+      { value: 'Onboarding y Selección de Candidatos', label: 'Candidate Onboarding (HR)' },
+      { value: 'Solicitud de Vacaciones', label: 'Vacations & Leave Requests (HR)' },
+      { value: 'Compra de Suministros', label: 'Facility Supplies & Maintenance (Operations)' },
+      { value: 'Otro Flujo Personalizado', label: 'Other Custom Enterprise Workflow' }
+    ],
+    messageLabel: 'Workflow details (optional)',
+    messagePlaceholder: 'e.g. We want to test 3 approval stations and quote expiration alerts...',
+    submitBtn: 'Start Free Pilot Trial',
+    trustNoCost: '✓ Zero cost or commitment',
+    trustSetup: '✓ Setup in hours',
+    trustSupport: '✓ 1-on-1 support',
+    successTitle: 'Request submitted successfully!',
+    successDesc: 'An Ilithya specialist will reach out shortly to coordinate your trial configuration.',
+    errorTitle: 'Could not submit request',
+    errorDesc: 'Please try again or email us directly at '
+  },
+  it: {
+    closeAria: 'Chiudi finestra',
+    badge: 'Supporto 1-a-1 Incluso',
+    title: 'Richiedi Piano Pilota Guidato (15-20 Giorni)',
+    desc: 'Valutiamo insieme l’impatto di Ilithya su un processo reale della tua azienda. Senza costi né impegno.',
+    honeypot: 'Non compilare questo campo',
+    subject: 'Nuova Richiesta Piano Pilota (Modal Web)',
+    fullNameLabel: 'Nome Completo',
+    fullNamePlaceholder: 'Es. Roberto Bianchi',
+    emailLabel: 'Email Aziendale',
+    emailPlaceholder: 'roberto@azienda.it',
+    companyLabel: 'Azienda / Organizzazione',
+    companyPlaceholder: 'Es. Gruppo Industriale SpA',
+    processLabel: 'Processo da Valutare',
+    processOptions: [
+      { value: 'Compra o Pago a Proveedores', label: 'Acquisto o Pagamento Fornitori (Finanza)' },
+      { value: 'Solicitud y Pago de Viáticos', label: 'Richiesta e Rimborso Trasferte (Mobilità)' },
+      { value: 'Onboarding y Selección de Candidatos', label: 'Selezione Candidati (Risorse Umane)' },
+      { value: 'Solicitud de Vacaciones', label: 'Ferie / Permessi del Personale (Risorse Umane)' },
+      { value: 'Compra de Suministros', label: 'Forniture e Manutenzione (Servizi Generali)' },
+      { value: 'Otro Flujo Personalizado', label: 'Altro Flusso Interno Personalizzato' }
+    ],
+    messageLabel: 'Dettagli del flusso (opzionale)',
+    messagePlaceholder: 'Es. Vogliamo testare 3 stazioni di approvazione e avvisi di scadenza preventivi...',
+    submitBtn: 'Inizia Prova Pilota Gratuita',
+    trustNoCost: '✓ Senza costi né impegno',
+    trustSetup: '✓ Configurazione in ore',
+    trustSupport: '✓ Supporto 1-a-1',
+    successTitle: 'Richiesta inviata con successo!',
+    successDesc: 'Uno specialista di Ilithya ti contatterà al più presto per coordinare la configurazione della prova.',
+    errorTitle: 'Impossibile inviare la richiesta',
+    errorDesc: 'Riprova più tardi o scrivi direttamente a '
+  },
+  pt: {
+    closeAria: 'Fechar janela',
+    badge: 'Acompanhamento 1-a-1 Incluso',
+    title: 'Solicitar Plano Piloto Guiado (15 a 20 Dias)',
+    desc: 'Vamos avaliar juntos o impacto do Ilithya em um processo real da sua empresa. Sem custo nem compromisso.',
+    honeypot: 'Não preencher este campo',
+    subject: 'Nova Solicitação de Plano Piloto (Modal Web)',
+    fullNameLabel: 'Nome Completo',
+    fullNamePlaceholder: 'Ex. Roberto Silva',
+    emailLabel: 'E-mail Corporativo',
+    emailPlaceholder: 'roberto@empresa.com',
+    companyLabel: 'Empresa / Organização',
+    companyPlaceholder: 'Ex. Grupo Industrial S.A.',
+    processLabel: 'Processo que Deseja Avaliar',
+    processOptions: [
+      { value: 'Compra o Pago a Proveedores', label: 'Compra ou Pagamento a Fornecedores (Finanças)' },
+      { value: 'Solicitud y Pago de Viáticos', label: 'Solicitação e Pagamento de Diárias (Mobilidade)' },
+      { value: 'Onboarding y Selección de Candidatos', label: 'Seleção de Candidatos (RH)' },
+      { value: 'Solicitud de Vacaciones', label: 'Férias / Solicitação de Pessoal (RH)' },
+      { value: 'Compra de Suministros', label: 'Compra de Suprimentos (Serviços Gerais)' },
+      { value: 'Otro Flujo Personalizado', label: 'Outro Fluxo Interno Personalizado' }
+    ],
+    messageLabel: 'Detalhes do fluxo (opcional)',
+    messagePlaceholder: 'Ex. Queremos avaliar as 3 estações de aprovação e alertas de vencimento de cotações...',
+    submitBtn: 'Iniciar Teste Piloto Gratuito',
+    trustNoCost: '✓ Sem custo nem compromisso',
+    trustSetup: '✓ Configuração em horas',
+    trustSupport: '✓ Suporte 1-a-1',
+    successTitle: 'Solicitação enviada com sucesso!',
+    successDesc: 'Um especialista do Ilithya entrará em contato em breve para coordenar a configuração do teste.',
+    errorTitle: 'Não foi possível enviar a solicitação',
+    errorDesc: 'Tente novamente ou escreva diretamente para '
+  }
+};
+
+const m = modalI18n[lang] || modalI18n.es;
 ---
 
 <div id="pilot-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -19,7 +179,7 @@ const isEs = lang === 'es';
 
   <div class="modal-container">
     <!-- Close Button -->
-    <button class="modal-close-btn" data-close-modal aria-label={isEs ? 'Cerrar ventana' : 'Close window'}>
+    <button class="modal-close-btn" data-close-modal aria-label={m.closeAria}>
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -30,14 +190,10 @@ const isEs = lang === 'es';
     <div class="modal-header">
       <div class="modal-badge">
         <span class="pulse-dot"></span>
-        <span>{isEs ? 'Acompañamiento 1-a-1 Incluido' : '1-on-1 Guidance Included'}</span>
+        <span>{m.badge}</span>
       </div>
-      <h2 id="modal-title" class="modal-title">{isEs ? 'Solicitar Plan Piloto (15 a 20 Días)' : 'Request Guided Pilot Trial (15 to 20 Days)'}</h2>
-      <p class="modal-desc">
-        {isEs 
-          ? 'Evaluemos juntos el impacto de Ilithya en un proceso real de su empresa. Sin costo ni compromiso.' 
-          : 'Let’s measure Ilithya’s velocity on a live operational process in your company. Zero cost, no commitment.'}
-      </p>
+      <h2 id="modal-title" class="modal-title">{m.title}</h2>
+      <p class="modal-desc">{m.desc}</p>
     </div>
 
     <!-- Form -->
@@ -49,37 +205,37 @@ const isEs = lang === 'es';
     >
       <!-- Anti-spam Honeypot -->
       <div class="visually-hidden">
-        <label for="modal-bot-field">{isEs ? 'No llenar este campo' : 'Do not fill this field'}</label>
+        <label for="modal-bot-field">{m.honeypot}</label>
         <input type="text" id="modal-bot-field" name="_honey" tabindex="-1" autocomplete="off" />
       </div>
 
       <!-- FormSubmit Config -->
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_subject" value={isEs ? 'Nueva Solicitud de Plan Piloto (Modal Web)' : 'New Pilot Request (Web Modal)'} />
+      <input type="hidden" name="_subject" value={m.subject} />
 
       <div class="form-row">
         <div class="form-group">
-          <label for="modal-full-name" class="form-label">{isEs ? 'Nombre Completo' : 'Full Name'} <span class="required">*</span></label>
+          <label for="modal-full-name" class="form-label">{m.fullNameLabel} <span class="required">*</span></label>
           <input 
             type="text" 
             id="modal-full-name" 
             name="name" 
             class="form-input" 
-            placeholder={isEs ? 'Ej. Roberto Gómez' : 'e.g. Robert Gomez'} 
+            placeholder={m.fullNamePlaceholder} 
             autocomplete="name" 
             required 
             minlength="2"
           />
         </div>
         <div class="form-group">
-          <label for="modal-work-email" class="form-label">{isEs ? 'Correo Corporativo' : 'Corporate Email'} <span class="required">*</span></label>
+          <label for="modal-work-email" class="form-label">{m.emailLabel} <span class="required">*</span></label>
           <input 
             type="email" 
             id="modal-work-email" 
             name="email" 
             class="form-input" 
-            placeholder={isEs ? 'roberto@empresa.com' : 'robert@company.com'} 
+            placeholder={m.emailPlaceholder} 
             autocomplete="email" 
             required 
           />
@@ -88,27 +244,24 @@ const isEs = lang === 'es';
 
       <div class="form-row">
         <div class="form-group">
-          <label for="modal-company-name" class="form-label">{isEs ? 'Empresa / Organización' : 'Company / Organization'} <span class="required">*</span></label>
+          <label for="modal-company-name" class="form-label">{m.companyLabel} <span class="required">*</span></label>
           <input 
             type="text" 
             id="modal-company-name" 
             name="company" 
             class="form-input" 
-            placeholder={isEs ? 'Ej. Grupo Industrial S.A.' : 'e.g. Acme Industrial Corp'} 
+            placeholder={m.companyPlaceholder} 
             autocomplete="organization" 
             required 
           />
         </div>
         <div class="form-group">
-          <label for="modal-process-select" class="form-label">{isEs ? 'Proceso que Desea Evaluar' : 'Process You Wish to Evaluate'}</label>
+          <label for="modal-process-select" class="form-label">{m.processLabel}</label>
           <div class="select-wrapper">
             <select id="modal-process-select" name="proceso_a_evaluar" class="form-select">
-              <option value="Compra o Pago a Proveedores">{isEs ? 'Compra o Pago a Proveedores (Finanzas)' : 'Vendor Procurement & Payments (Finance)'}</option>
-              <option value="Solicitud y Pago de Viáticos">{isEs ? 'Solicitud y Pago de Viáticos (Movilidad)' : 'Travel Expenses & Per Diems (Mobility)'}</option>
-              <option value="Onboarding y Selección de Candidatos">{isEs ? 'Selección de Candidatos (RRHH)' : 'Candidate Onboarding (HR)'}</option>
-              <option value="Solicitud de Vacaciones">{isEs ? 'Vacaciones / Acción de Personal (RRHH)' : 'Vacations & Leave Requests (HR)'}</option>
-              <option value="Compra de Suministros">{isEs ? 'Compra de Suministros (Servicios Generales)' : 'Facility Supplies & Maintenance (Operations)'}</option>
-              <option value="Otro Flujo Personalizado">{isEs ? 'Otro Flujo Interno Personalizado' : 'Other Custom Enterprise Workflow'}</option>
+              {m.processOptions.map((opt) => (
+                <option value={opt.value}>{opt.label}</option>
+              ))}
             </select>
             <div class="select-arrow">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -120,18 +273,18 @@ const isEs = lang === 'es';
       </div>
 
       <div class="form-group">
-        <label for="modal-message" class="form-label">{isEs ? 'Detalles del flujo (opcional)' : 'Workflow details (optional)'}</label>
+        <label for="modal-message" class="form-label">{m.messageLabel}</label>
         <textarea 
           id="modal-message" 
           name="message" 
           class="form-textarea" 
           rows="3" 
-          placeholder={isEs ? 'Ej. Queremos evaluar las 3 estaciones de aprobación y la alerta de vencimiento de cotizaciones...' : 'e.g. We want to test 3 approval stations and quote expiration alerts...'}
+          placeholder={m.messagePlaceholder}
         ></textarea>
       </div>
 
       <button type="submit" class="btn btn-primary btn-submit w-full" id="modal-submit-btn">
-        <span id="modal-btn-text">{isEs ? 'Iniciar Prueba Piloto Gratuita' : 'Start Free Pilot Trial'}</span>
+        <span id="modal-btn-text">{m.submitBtn}</span>
         <svg id="modal-btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <line x1="5" y1="12" x2="19" y2="12"></line>
           <polyline points="12 5 19 12 12 19"></polyline>
@@ -140,11 +293,11 @@ const isEs = lang === 'es';
 
       <!-- Trust Strip inside Modal -->
       <div class="modal-trust-strip">
-        <span>{isEs ? '✓ Sin costo ni compromiso' : '✓ Zero cost or commitment'}</span>
+        <span>{m.trustNoCost}</span>
         <span>•</span>
-        <span>{isEs ? '✓ Configuración en horas' : '✓ Setup in hours'}</span>
+        <span>{m.trustSetup}</span>
         <span>•</span>
-        <span>{isEs ? '✓ Soporte 1-a-1' : '✓ 1-on-1 support'}</span>
+        <span>{m.trustSupport}</span>
       </div>
 
       <!-- Alerts -->
@@ -153,8 +306,8 @@ const isEs = lang === 'es';
           <polyline points="20 6 9 17 4 12"></polyline>
         </svg>
         <div>
-          <strong>{isEs ? '¡Solicitud enviada con éxito!' : 'Request submitted successfully!'}</strong>
-          <p>{isEs ? 'Un especialista de Ilithya se comunicará a la brevedad para coordinar la configuración de su prueba.' : 'An Ilithya specialist will reach out shortly to coordinate your trial configuration.'}</p>
+          <strong>{m.successTitle}</strong>
+          <p>{m.successDesc}</p>
         </div>
       </div>
 
@@ -165,8 +318,8 @@ const isEs = lang === 'es';
           <line x1="12" y1="16" x2="12.01" y2="16"></line>
         </svg>
         <div>
-          <strong>{isEs ? 'No se pudo enviar la solicitud' : 'Could not submit request'}</strong>
-          <p>{isEs ? 'Por favor intente nuevamente o escríbanos directamente a ' : 'Please try again or email us directly at '}<a href={`mailto:${recipientEmail}`}>{recipientEmail}</a>.</p>
+          <strong>{m.errorTitle}</strong>
+          <p>{m.errorDesc}<a href={`mailto:${recipientEmail}`}>{recipientEmail}</a>.</p>
         </div>
       </div>
     </form>

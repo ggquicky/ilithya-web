@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import StoryPainSection from '../../components/StoryPainSection.astro';
+import CasesPreview from '../../components/CasesPreview.astro';
+import RoleBenefits from '../../components/RoleBenefits.astro';
+import PilotPlan from '../../components/PilotPlan.astro';
+import Footer from '../../components/Footer.astro';
+import { getTranslations } from '../../i18n/ui';
+
+const t = getTranslations('pt');
+---
+
+<Layout 
+  title={t.meta.home.title}
+  description={t.meta.home.description}
+  lang="pt"
+>
+  <Header lang="pt" />
+  <main>
+    <Hero lang="pt" />
+    <StoryPainSection lang="pt" />
+    <CasesPreview lang="pt" />
+    <RoleBenefits lang="pt" />
+    <PilotPlan lang="pt" />
+  </main>
+  <Footer lang="pt" />
+</Layout>

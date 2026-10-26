@@ -11,21 +11,220 @@ const {
   lang = (Astro.currentLocale || 'es') as Language 
 } = Astro.props;
 
-const isEs = lang === 'es';
+const contactI18n: Record<Language, {
+  tag: string;
+  title: string;
+  desc: string;
+  badge: string;
+  infoHeading: string;
+  infoText: string;
+  channel1: string;
+  channel2Label: string;
+  channel2Val: string;
+  channel3Label: string;
+  channel3Val: string;
+  quoteText: string;
+  quoteAuthorRole: string;
+  honeypot: string;
+  subject: string;
+  fullNameLabel: string;
+  fullNamePlaceholder: string;
+  emailLabel: string;
+  emailPlaceholder: string;
+  companyLabel: string;
+  companyPlaceholder: string;
+  processLabel: string;
+  processOptions: { value: string; label: string }[];
+  messageLabel: string;
+  messagePlaceholder: string;
+  submitBtn: string;
+  disclaimer: string;
+  successTitle: string;
+  successDesc: string;
+  activationTitle: string;
+  activationDesc: string;
+  errorTitle: string;
+  errorDescPart1: string;
+}> = {
+  es: {
+    tag: 'Acceso Directo',
+    title: '¿Listo para agilizar las aprobaciones de tu equipo?',
+    desc: 'Conéctese con nuestro equipo para iniciar su Plan de Prueba de 15 a 20 días sin costo ni compromiso, o para resolver dudas sobre seguridad y configuración.',
+    badge: 'Mesa Corporativa',
+    infoHeading: 'Hable con un Especialista de Ilithya Workflow',
+    infoText: 'Le ayudamos a modelar su primera ruta de aprobación, definir estaciones y activar recordatorios automáticos en minutos.',
+    channel1: 'Consultas Directas',
+    channel2Label: 'Seguridad y Cumplimiento',
+    channel2Val: 'Aislamiento RLS & Auditoría Criptográfica',
+    channel3Label: 'Respuesta Garantizada',
+    channel3Val: '< 2 horas en días hábiles',
+    quoteText: '"Ilithya Workflow reemplazó semanas de persecución de firmas por correo por aprobaciones ágiles de 4 horas y registros inmutables de auditoría."',
+    quoteAuthorRole: 'Director de Operaciones & Logística',
+    honeypot: 'No llenar este campo',
+    subject: 'Nueva Solicitud de Plan Piloto Ilithya Workflow',
+    fullNameLabel: 'Nombre Completo',
+    fullNamePlaceholder: 'Ej. Roberto Gómez',
+    emailLabel: 'Correo Corporativo',
+    emailPlaceholder: 'roberto@empresa.com',
+    companyLabel: 'Empresa / Organización',
+    companyPlaceholder: 'Ej. Grupo Industrial S.A.',
+    processLabel: 'Proceso que Desea Evaluar',
+    processOptions: [
+      { value: 'Compra o Pago a Proveedores', label: 'Compra o Pago a Proveedores (Finanzas)' },
+      { value: 'Solicitud y Pago de Viáticos', label: 'Solicitud y Pago de Viáticos (Movilidad)' },
+      { value: 'Onboarding y Selección de Candidatos', label: 'Selección de Candidatos (RRHH)' },
+      { value: 'Solicitud de Vacaciones', label: 'Vacaciones / Acción de Personal (RRHH)' },
+      { value: 'Compra de Suministros', label: 'Compra de Suministros (Servicios Generales)' },
+      { value: 'Otro Flujo Personalizado', label: 'Otro Flujo Interno Personalizado' }
+    ],
+    messageLabel: 'Cuéntanos sobre tu flujo de aprobación actual',
+    messagePlaceholder: 'Ej. Tenemos 3 aprobadores para órdenes de compra y queremos probar la reasignación de ausencias y recordatorios automáticos...',
+    submitBtn: 'Solicitar Plan Piloto (15 a 20 Días)',
+    disclaimer: `🔒 Respetamos tu privacidad. Solicitud enviada directamente al equipo directivo (${recipientEmail}).`,
+    successTitle: '¡Gracias por contactar a Ilithya Workflow!',
+    successDesc: 'Su solicitud ha sido enviada con éxito. Un especialista en flujos se comunicará a la brevedad para coordinar la prueba de 15 a 20 días.',
+    activationTitle: `Acción requerida para ${recipientEmail}`,
+    activationDesc: `Se envió un correo inicial de confirmación a ${recipientEmail}. Por favor revise su bandeja y haga clic en "Activate Form" para habilitar la recepción de leads.`,
+    errorTitle: 'Error al enviar el mensaje',
+    errorDescPart1: 'No se pudo enviar en este momento. Por favor escriba directamente a '
+  },
+  en: {
+    tag: 'Direct Access',
+    title: 'Ready to accelerate your team’s approvals?',
+    desc: 'Connect with our engineering team to start your 15 to 20-day pilot trial at zero cost, or discuss architecture and security.',
+    badge: 'Enterprise Desk',
+    infoHeading: 'Speak with an Ilithya Workflow Specialist',
+    infoText: 'We will help you model your first approval route, configure stations, and activate smart reminders in minutes.',
+    channel1: 'Direct Inquiries',
+    channel2Label: 'Security & Compliance',
+    channel2Val: 'RLS Isolation & Cryptographic Audits',
+    channel3Label: 'Guaranteed Response',
+    channel3Val: '< 2 hours on business days',
+    quoteText: '"Ilithya Workflow replaced weeks of chasing email signatures with 4-hour agile approvals and immutable audit records."',
+    quoteAuthorRole: 'Director of Operations & Logistics',
+    honeypot: 'Do not fill this field',
+    subject: 'New Ilithya Workflow Pilot Request',
+    fullNameLabel: 'Full Name',
+    fullNamePlaceholder: 'e.g. Robert Gomez',
+    emailLabel: 'Corporate Email',
+    emailPlaceholder: 'robert@company.com',
+    companyLabel: 'Company / Organization',
+    companyPlaceholder: 'e.g. Acme Industrial Corp',
+    processLabel: 'Process You Wish to Evaluate',
+    processOptions: [
+      { value: 'Compra o Pago a Proveedores', label: 'Vendor Procurement & Payments (Finance)' },
+      { value: 'Solicitud y Pago de Viáticos', label: 'Travel Expenses & Per Diems (Mobility)' },
+      { value: 'Onboarding y Selección de Candidatos', label: 'Candidate Onboarding (HR)' },
+      { value: 'Solicitud de Vacaciones', label: 'Vacations & Leave Requests (HR)' },
+      { value: 'Compra de Suministros', label: 'Facility Supplies & Maintenance (Operations)' },
+      { value: 'Otro Flujo Personalizado', label: 'Other Custom Enterprise Workflow' }
+    ],
+    messageLabel: 'Tell us about your current approval workflow',
+    messagePlaceholder: 'e.g. We have 3 approvers for purchase orders and want to test out-of-office delegation and automated SLA alerts...',
+    submitBtn: 'Request Guided Pilot Trial (15 to 20 Days)',
+    disclaimer: `🔒 We respect your privacy. Request dispatched directly to executive leadership (${recipientEmail}).`,
+    successTitle: 'Thank you for contacting Ilithya Workflow!',
+    successDesc: 'Your request has been sent successfully. A solutions specialist will reach out shortly to coordinate your 15 to 20-day evaluation.',
+    activationTitle: `Action required for ${recipientEmail}`,
+    activationDesc: `An activation email was sent to ${recipientEmail}. Please check your inbox and click "Activate Form" to enable lead routing.`,
+    errorTitle: 'Error sending message',
+    errorDescPart1: 'Could not send at this time. Please write directly to '
+  },
+  it: {
+    tag: 'Accesso Diretto',
+    title: 'Pronto ad accelerare le approvazioni del tuo team?',
+    desc: 'Contatta il nostro team per avviare il tuo Piano di Prova di 15-20 giorni a costo zero né impegno, o per approfondire architettura e sicurezza.',
+    badge: 'Desk Aziendale',
+    infoHeading: 'Parla con uno Specialista di Ilithya Workflow',
+    infoText: 'Ti aiuteremo a configurare il tuo primo flusso di approvazione, definire le stazioni e attivare promemoria intelligenti in pochi minuti.',
+    channel1: 'Richieste Dirette',
+    channel2Label: 'Sicurezza & Conformità',
+    channel2Val: 'Isolamento RLS & Traccia Crittografica',
+    channel3Label: 'Risposta Garantita',
+    channel3Val: '< 2 ore nei giorni lavorativi',
+    quoteText: '"Ilithya Workflow ha sostituito settimane di inseguimento di firme via email con approvazioni agili in 4 ore e registri di audit immutabili."',
+    quoteAuthorRole: 'Direttore Operativo & Logistica',
+    honeypot: 'Non compilare questo campo',
+    subject: 'Nuova Richiesta Piano Pilota Ilithya Workflow',
+    fullNameLabel: 'Nome Completo',
+    fullNamePlaceholder: 'Es. Roberto Bianchi',
+    emailLabel: 'Email Aziendale',
+    emailPlaceholder: 'roberto@azienda.it',
+    companyLabel: 'Azienda / Organizzazione',
+    companyPlaceholder: 'Es. Gruppo Industriale SpA',
+    processLabel: 'Processo da Valutare',
+    processOptions: [
+      { value: 'Compra o Pago a Proveedores', label: 'Acquisto o Pagamento Fornitori (Finanza)' },
+      { value: 'Solicitud y Pago de Viáticos', label: 'Richiesta e Rimborso Trasferte (Mobilità)' },
+      { value: 'Onboarding y Selección de Candidatos', label: 'Selezione Candidati (Risorse Umane)' },
+      { value: 'Solicitud de Vacaciones', label: 'Ferie / Permessi del Personale (Risorse Umane)' },
+      { value: 'Compra de Suministros', label: 'Forniture e Manutenzione (Servizi Generali)' },
+      { value: 'Otro Flujo Personalizado', label: 'Altro Flusso Interno Personalizzato' }
+    ],
+    messageLabel: 'Raccontaci del tuo flusso di approvazione attuale',
+    messagePlaceholder: 'Es. Abbiamo 3 approvatori per gli ordini d’acquisto e vogliamo testare la delega per assenze e i promemoria automatici...',
+    submitBtn: 'Richiedi Piano Pilota (15-20 Giorni)',
+    disclaimer: `🔒 Rispettiamo la tua privacy. Richiesta inviata direttamente alla direzione (${recipientEmail}).`,
+    successTitle: 'Grazie per aver contattato Ilithya Workflow!',
+    successDesc: 'La tua richiesta è stata inviata con successo. Uno specialista ti contatterà al più presto per coordinare la prova di 15-20 giorni.',
+    activationTitle: `Azione richiesta per ${recipientEmail}`,
+    activationDesc: `È stata inviata un'email iniziale di conferma a ${recipientEmail}. Controlla la tua casella e fai clic su "Activate Form" per abilitare la ricezione.`,
+    errorTitle: 'Errore nell’invio del messaggio',
+    errorDescPart1: 'Impossibile inviare in questo momento. Scrivi direttamente a '
+  },
+  pt: {
+    tag: 'Acesso Direto',
+    title: 'Pronto para agilizar as aprovações da sua equipe?',
+    desc: 'Conecte-se com nossa equipe para iniciar seu Plano Piloto de 15 a 20 dias sem custo nem compromisso, ou esclarecer dúvidas de segurança e implantação.',
+    badge: 'Mesa Corporativa',
+    infoHeading: 'Fale com um Especialista do Ilithya Workflow',
+    infoText: 'Ajudamos você a modelar sua primeira rota de aprovação, definir estações e ativar lembretes inteligentes em minutos.',
+    channel1: 'Consultas Diretas',
+    channel2Label: 'Segurança & Conformidade',
+    channel2Val: 'Isolamento RLS & Auditoria Criptográfica',
+    channel3Label: 'Resposta Garantida',
+    channel3Val: '< 2 horas em dias úteis',
+    quoteText: '"O Ilithya Workflow substituiu semanas de cobrança de assinaturas por e-mail por aprovações ágeis em 4 horas e trilhas de auditoria imutáveis."',
+    quoteAuthorRole: 'Diretor de Operações & Logística',
+    honeypot: 'Não preencher este campo',
+    subject: 'Nova Solicitação de Plano Piloto Ilithya Workflow',
+    fullNameLabel: 'Nome Completo',
+    fullNamePlaceholder: 'Ex. Roberto Silva',
+    emailLabel: 'E-mail Corporativo',
+    emailPlaceholder: 'roberto@empresa.com',
+    companyLabel: 'Empresa / Organização',
+    companyPlaceholder: 'Ex. Grupo Industrial S.A.',
+    processLabel: 'Processo que Deseja Avaliar',
+    processOptions: [
+      { value: 'Compra o Pago a Proveedores', label: 'Compra ou Pagamento a Fornecedores (Finanças)' },
+      { value: 'Solicitud y Pago de Viáticos', label: 'Solicitação e Pagamento de Diárias (Mobilidade)' },
+      { value: 'Onboarding y Selección de Candidatos', label: 'Seleção de Candidatos (RH)' },
+      { value: 'Solicitud de Vacaciones', label: 'Férias / Solicitação de Pessoal (RH)' },
+      { value: 'Compra de Suministros', label: 'Compra de Suprimentos (Serviços Gerais)' },
+      { value: 'Otro Flujo Personalizado', label: 'Outro Fluxo Interno Personalizado' }
+    ],
+    messageLabel: 'Conte-nos sobre o seu fluxo de aprovação atual',
+    messagePlaceholder: 'Ex. Temos 3 aprovadores para ordens de compra e queremos testar a delegação por ausência e lembretes automáticos...',
+    submitBtn: 'Solicitar Plano Piloto (15 a 20 Dias)',
+    disclaimer: `🔒 Respeitamos sua privacidade. Solicitação enviada diretamente à diretoria (${recipientEmail}).`,
+    successTitle: 'Obrigado por entrar em contato com o Ilithya Workflow!',
+    successDesc: 'Sua solicitação foi enviada com sucesso. Um especialista entrará em contato em breve para coordenar o teste de 15 a 20 dias.',
+    activationTitle: `Ação necessária para ${recipientEmail}`,
+    activationDesc: `Um e-mail de ativação foi enviado para ${recipientEmail}. Verifique sua caixa de entrada e clique em "Activate Form" para habilitar o recebimento de leads.`,
+    errorTitle: 'Erro ao enviar a mensagem',
+    errorDescPart1: 'Não foi possível enviar neste momento. Escreva diretamente para '
+  }
+};
+
+const c = contactI18n[lang] || contactI18n.es;
 ---
 
 <section class="contact-section" id="contacto">
   <div class="container">
     <div class="section-header text-center">
-      <span class="section-tag">{isEs ? 'Acceso Directo' : 'Direct Access'}</span>
-      <h2 class="section-title">
-        {isEs ? '¿Listo para agilizar las aprobaciones de tu equipo?' : 'Ready to accelerate your team’s approvals?'}
-      </h2>
-      <p class="section-desc">
-        {isEs 
-          ? 'Conéctese con nuestro equipo para iniciar su Plan de Prueba de 15 a 20 días sin costo ni compromiso, o para resolver dudas sobre seguridad y configuración.' 
-          : 'Connect with our engineering team to start your 15 to 20-day pilot trial at zero cost, or discuss architecture and security.'}
-      </p>
+      <span class="section-tag">{c.tag}</span>
+      <h2 class="section-title">{c.title}</h2>
+      <p class="section-desc">{c.desc}</p>
     </div>
 
     <div class="contact-wrapper">
@@ -34,16 +233,10 @@ const isEs = lang === 'es';
         <div class="info-card">
           <div class="info-badge">
             <span class="dot-live"></span>
-            <span>{isEs ? 'Mesa Corporativa' : 'Enterprise Desk'}</span>
+            <span>{c.badge}</span>
           </div>
-          <h3 class="info-heading">
-            {isEs ? 'Hable con un Especialista de Ilithya Workflow' : 'Speak with an Ilithya Workflow Specialist'}
-          </h3>
-          <p class="info-text">
-            {isEs 
-              ? 'Le ayudamos a modelar su primera ruta de aprobación, definir estaciones y activar recordatorios automáticos en minutos.' 
-              : 'We will help you model your first approval route, configure stations, and activate smart reminders in minutes.'}
-          </p>
+          <h3 class="info-heading">{c.infoHeading}</h3>
+          <p class="info-text">{c.infoText}</p>
 
           <div class="contact-channels">
             <div class="channel-item">
@@ -54,7 +247,7 @@ const isEs = lang === 'es';
                 </svg>
               </div>
               <div class="channel-meta">
-                <span class="channel-label">{isEs ? 'Consultas Directas' : 'Direct Inquiries'}</span>
+                <span class="channel-label">{c.channel1}</span>
                 <a href={`mailto:${recipientEmail}`} class="channel-val">{recipientEmail}</a>
               </div>
             </div>
@@ -66,8 +259,8 @@ const isEs = lang === 'es';
                 </svg>
               </div>
               <div class="channel-meta">
-                <span class="channel-label">{isEs ? 'Seguridad y Cumplimiento' : 'Security & Compliance'}</span>
-                <span class="channel-val">{isEs ? 'Aislamiento RLS & Auditoría Criptográfica' : 'RLS Isolation & Cryptographic Audits'}</span>
+                <span class="channel-label">{c.channel2Label}</span>
+                <span class="channel-val">{c.channel2Val}</span>
               </div>
             </div>
 
@@ -79,24 +272,20 @@ const isEs = lang === 'es';
                 </svg>
               </div>
               <div class="channel-meta">
-                <span class="channel-label">{isEs ? 'Respuesta Garantizada' : 'Guaranteed Response'}</span>
-                <span class="channel-val">{isEs ? '< 2 horas en días hábiles' : '< 2 hours on business days'}</span>
+                <span class="channel-label">{c.channel3Label}</span>
+                <span class="channel-val">{c.channel3Val}</span>
               </div>
             </div>
           </div>
         </div>
 
         <div class="quote-card">
-          <p class="quote-text">
-            {isEs 
-              ? '"Ilithya Workflow reemplazó semanas de persecución de firmas por correo por aprobaciones ágiles de 4 horas y registros inmutables de auditoría."' 
-              : '"Ilithya Workflow replaced weeks of chasing email signatures with 4-hour agile approvals and immutable audit records."'}
-          </p>
+          <p class="quote-text">{c.quoteText}</p>
           <div class="quote-author">
             <div class="avatar-placeholder">JM</div>
             <div>
               <div class="author-name">Jorge Morales</div>
-              <div class="author-role">{isEs ? 'Director de Operaciones & Logística' : 'Director of Operations & Logistics'}</div>
+              <div class="author-role">{c.quoteAuthorRole}</div>
             </div>
           </div>
         </div>
@@ -112,37 +301,37 @@ const isEs = lang === 'es';
         >
           <!-- Anti-spam Honeypot -->
           <div class="visually-hidden">
-            <label for="bot-field">{isEs ? 'No llenar este campo' : 'Do not fill this field'}</label>
+            <label for="bot-field">{c.honeypot}</label>
             <input type="text" id="bot-field" name="_honey" tabindex="-1" autocomplete="off" />
           </div>
 
           <!-- FormSubmit Configuration Fields -->
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_subject" id="form-subject" value={isEs ? 'Nueva Solicitud de Plan Piloto Ilithya Workflow' : 'New Ilithya Workflow Pilot Request'} />
+          <input type="hidden" name="_subject" id="form-subject" value={c.subject} />
 
           <div class="form-row">
             <div class="form-group">
-              <label for="full-name" class="form-label">{isEs ? 'Nombre Completo' : 'Full Name'} <span class="required">*</span></label>
+              <label for="full-name" class="form-label">{c.fullNameLabel} <span class="required">*</span></label>
               <input 
                 type="text" 
                 id="full-name" 
                 name="name" 
                 class="form-input" 
-                placeholder={isEs ? 'Ej. Roberto Gómez' : 'e.g. Robert Gomez'} 
+                placeholder={c.fullNamePlaceholder} 
                 autocomplete="name" 
                 required 
                 minlength="2"
               />
             </div>
             <div class="form-group">
-              <label for="work-email" class="form-label">{isEs ? 'Correo Corporativo' : 'Corporate Email'} <span class="required">*</span></label>
+              <label for="work-email" class="form-label">{c.emailLabel} <span class="required">*</span></label>
               <input 
                 type="email" 
                 id="work-email" 
                 name="email" 
                 class="form-input" 
-                placeholder={isEs ? 'roberto@empresa.com' : 'robert@company.com'} 
+                placeholder={c.emailPlaceholder} 
                 autocomplete="email" 
                 required 
               />
@@ -151,27 +340,24 @@ const isEs = lang === 'es';
 
           <div class="form-row">
             <div class="form-group">
-              <label for="company-name" class="form-label">{isEs ? 'Empresa / Organización' : 'Company / Organization'} <span class="required">*</span></label>
+              <label for="company-name" class="form-label">{c.companyLabel} <span class="required">*</span></label>
               <input 
                 type="text" 
                 id="company-name" 
                 name="company" 
                 class="form-input" 
-                placeholder={isEs ? 'Ej. Grupo Industrial S.A.' : 'e.g. Acme Industrial Corp'} 
+                placeholder={c.companyPlaceholder} 
                 autocomplete="organization" 
                 required 
               />
             </div>
             <div class="form-group">
-              <label for="process-select" class="form-label">{isEs ? 'Proceso que Desea Evaluar' : 'Process You Wish to Evaluate'}</label>
+              <label for="process-select" class="form-label">{c.processLabel}</label>
               <div class="select-wrapper">
                 <select id="process-select" name="proceso_a_evaluar" class="form-select">
-                  <option value="Compra o Pago a Proveedores">{isEs ? 'Compra o Pago a Proveedores (Finanzas)' : 'Vendor Procurement & Payments (Finance)'}</option>
-                  <option value="Solicitud y Pago de Viáticos">{isEs ? 'Solicitud y Pago de Viáticos (Movilidad)' : 'Travel Expenses & Per Diems (Mobility)'}</option>
-                  <option value="Onboarding y Selección de Candidatos">{isEs ? 'Selección de Candidatos (RRHH)' : 'Candidate Onboarding (HR)'}</option>
-                  <option value="Solicitud de Vacaciones">{isEs ? 'Vacaciones / Acción de Personal (RRHH)' : 'Vacations & Leave Requests (HR)'}</option>
-                  <option value="Compra de Suministros">{isEs ? 'Compra de Suministros (Servicios Generales)' : 'Facility Supplies & Maintenance (Operations)'}</option>
-                  <option value="Otro Flujo Personalizado">{isEs ? 'Otro Flujo Interno Personalizado' : 'Other Custom Enterprise Workflow'}</option>
+                  {c.processOptions.map((opt) => (
+                    <option value={opt.value}>{opt.label}</option>
+                  ))}
                 </select>
                 <div class="select-arrow">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -183,18 +369,18 @@ const isEs = lang === 'es';
           </div>
 
           <div class="form-group">
-            <label for="message" class="form-label">{isEs ? 'Cuéntanos sobre tu flujo de aprobación actual' : 'Tell us about your current approval workflow'}</label>
+            <label for="message" class="form-label">{c.messageLabel}</label>
             <textarea 
               id="message" 
               name="message" 
               class="form-textarea" 
               rows="4" 
-              placeholder={isEs ? 'Ej. Tenemos 3 aprobadores para órdenes de compra y queremos probar la reasignación de ausencias y recordatorios automáticos...' : 'e.g. We have 3 approvers for purchase orders and want to test out-of-office delegation and automated SLA alerts...'}
+              placeholder={c.messagePlaceholder}
             ></textarea>
           </div>
 
           <button type="submit" class="btn btn-primary btn-submit" id="submit-btn">
-            <span id="btn-text">{isEs ? 'Solicitar Plan Piloto (15 a 20 Días)' : 'Request Guided Pilot Trial (15 to 20 Days)'}</span>
+            <span id="btn-text">{c.submitBtn}</span>
             <svg id="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
@@ -202,7 +388,7 @@ const isEs = lang === 'es';
           </button>
 
           <p class="form-disclaimer">
-            {isEs ? `🔒 Respetamos tu privacidad. Solicitud enviada directamente al equipo directivo (${recipientEmail}).` : `🔒 We respect your privacy. Request dispatched directly to executive leadership (${recipientEmail}).`}
+            {c.disclaimer}
           </p>
 
           <!-- Success Alert Banner -->
@@ -211,8 +397,8 @@ const isEs = lang === 'es';
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
             <div>
-              <strong>{isEs ? '¡Gracias por contactar a Ilithya Workflow!' : 'Thank you for contacting Ilithya Workflow!'}</strong>
-              <p>{isEs ? 'Su solicitud ha sido enviada con éxito. Un especialista en flujos se comunicará a la brevedad para coordinar la prueba de 15 a 20 días.' : 'Your request has been sent successfully. A solutions specialist will reach out shortly to coordinate your 15 to 20-day evaluation.'}</p>
+              <strong>{c.successTitle}</strong>
+              <p>{c.successDesc}</p>
             </div>
           </div>
 
@@ -224,8 +410,8 @@ const isEs = lang === 'es';
               <line x1="12" y1="8" x2="12.01" y2="8"></line>
             </svg>
             <div>
-              <strong>{isEs ? `Acción requerida para ${recipientEmail}` : `Action required for ${recipientEmail}`}</strong>
-              <p>{isEs ? `Se envió un correo inicial de confirmación a ${recipientEmail}. Por favor revise su bandeja y haga clic en "Activate Form" para habilitar la recepción de leads.` : `An activation email was sent to ${recipientEmail}. Please check your inbox and click "Activate Form" to enable lead routing.`}</p>
+              <strong>{c.activationTitle}</strong>
+              <p>{c.activationDesc}</p>
             </div>
           </div>
 
@@ -237,8 +423,8 @@ const isEs = lang === 'es';
               <line x1="12" y1="16" x2="12.01" y2="16"></line>
             </svg>
             <div>
-              <strong>{isEs ? 'Error al enviar el mensaje' : 'Error sending message'}</strong>
-              <p>{isEs ? `No se pudo enviar en este momento. Por favor escriba directamente a ` : `Could not send at this time. Please write directly to `}<a href={`mailto:${recipientEmail}`} class="underline-link">{recipientEmail}</a>.</p>
+              <strong>{c.errorTitle}</strong>
+              <p>{c.errorDescPart1}<a href={`mailto:${recipientEmail}`} class="underline-link">{recipientEmail}</a>.</p>
             </div>
           </div>
         </form>

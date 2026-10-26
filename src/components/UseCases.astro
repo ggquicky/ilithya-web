@@ -1,5 +1,5 @@
 ---
-import { useCasesEs, useCasesEn } from "../i18n/useCasesData";
+import { useCasesByLang } from "../i18n/useCasesData";
 import type { Language } from "../i18n/ui";
 
 interface Props {
@@ -7,40 +7,114 @@ interface Props {
 }
 
 const { lang = (Astro.currentLocale || "es") as Language } = Astro.props;
-const isEs = lang === "es";
-const useCases = isEs ? useCasesEs : useCasesEn;
+const useCases = useCasesByLang[lang] || useCasesByLang.es;
+
+const i18n = {
+  es: {
+    tag: 'Flujos Reales en Acción',
+    title: 'Casos de Uso Principales: Diseñados para Tu Empresa',
+    desc: 'Ilithya Workflow se adapta a los procesos que ya ejecutas hoy. Explora cómo fluyen las aprobaciones desde la solicitud inicial hasta la firma y el PDF consolidado.',
+    filterAria: 'Filtrar por Área',
+    allCases: 'Todos los Casos',
+    finance: 'Finanzas y Compras',
+    hr: 'Recursos Humanos',
+    ops: 'Operaciones y Servicios',
+    docsLabel: 'Documentación Inicial Requerida:',
+    routeTitle: 'Ruta Secuencial de Aprobación por Estaciones',
+    closureTag: 'Cierre del Trámite',
+    impactLabel: 'Impacto Medible:',
+    pilotBtn: 'Probar este proceso en Plan Piloto (15 a 20 Días)'
+  },
+  en: {
+    tag: 'Real-World Workflows in Action',
+    title: 'Core Enterprise Use Cases: Engineered for Your Business',
+    desc: 'Ilithya Workflow adapts seamlessly to your current business routines. Explore how approvals progress from initial submission to final signature and consolidated PDF.',
+    filterAria: 'Filter by Department',
+    allCases: 'All Cases',
+    finance: 'Finance & Procurement',
+    hr: 'Human Resources',
+    ops: 'Operations & Facilities',
+    docsLabel: 'Required Initial Documentation:',
+    routeTitle: 'Sequential Approval Route by Stations',
+    closureTag: 'Workflow Closure',
+    impactLabel: 'Measurable Impact:',
+    pilotBtn: 'Test this workflow in Pilot Program (15 to 20 Days)'
+  },
+  it: {
+    tag: 'Flussi Reali in Azione',
+    title: 'Casi d\'Uso Principali: Progettati per la Tua Azienda',
+    desc: 'Ilithya Workflow si adatta ai processi che già svolgi quotidianamente. Scopri come procedono le approvazioni dalla richiesta iniziale fino alla firma e al PDF consolidato.',
+    filterAria: 'Filtra per Reparto',
+    allCases: 'Tutti i Casi',
+    finance: 'Finanza e Acquisti',
+    hr: 'Risorse Umane',
+    ops: 'Operazioni e Strutture',
+    docsLabel: 'Documentazione Iniziale Richiesta:',
+    routeTitle: 'Percorso Sequenziale di Approvazione per Stazioni',
+    closureTag: 'Chiusura della Pratica',
+    impactLabel: 'Impatto Misurabile:',
+    pilotBtn: 'Prova questo processo nel Piano Pilota (15-20 Giorni)'
+  },
+  pt: {
+    tag: 'Fluxos Reais em Ação',
+    title: 'Casos de Uso Principais: Desenhados para sua Empresa',
+    desc: 'O Ilithya Workflow se adapta aos processos que você já executa hoje. Explore como as aprovações avançam da solicitação inicial até a assinatura e o PDF consolidado.',
+    filterAria: 'Filtrar por Área',
+    allCases: 'Todos os Casos',
+    finance: 'Finanças e Compras',
+    hr: 'Recursos Humanos',
+    ops: 'Operações e Serviços',
+    docsLabel: 'Documentação Inicial Necessária:',
+    routeTitle: 'Rota Sequencial de Aprovação por Estações',
+    closureTag: 'Encerramento do Processo',
+    impactLabel: 'Impacto Mensurável:',
+    pilotBtn: 'Testar este processo no Plano Piloto (15 a 20 Dias)'
+  }
+}[lang] || {
+  tag: 'Flujos Reales en Acción',
+  title: 'Casos de Uso Principales: Diseñados para Tu Empresa',
+  desc: 'Ilithya Workflow se adapta a los procesos que ya ejecutas hoy.',
+  filterAria: 'Filtrar por Área',
+  allCases: 'Todos los Casos',
+  finance: 'Finanzas y Compras',
+  hr: 'Recursos Humanos',
+  ops: 'Operaciones y Servicios',
+  docsLabel: 'Documentación Inicial Requerida:',
+  routeTitle: 'Ruta Secuencial de Aprobación por Estaciones',
+  closureTag: 'Cierre del Trámite',
+  impactLabel: 'Impacto Medible:',
+  pilotBtn: 'Probar este proceso en Plan Piloto (15 a 20 Días)'
+};
 ---
 
 <section class="use-cases-section" id="casos-de-uso">
   <div class="container">
     <div class="section-header text-center">
-      <span class="section-tag">{isEs ? 'Flujos Reales en Acción' : 'Real-World Workflows in Action'}</span>
+      <span class="section-tag">{i18n.tag}</span>
       <h2 class="section-title">
-        {isEs ? 'Casos de Uso Principales: Diseñados para Tu Empresa' : 'Core Enterprise Use Cases: Engineered for Your Business'}
+        {i18n.title}
       </h2>
       <p class="section-desc">
-        {isEs 
-          ? 'Ilithya Workflow se adapta a los procesos que ya ejecutas hoy. Explora cómo fluyen las aprobaciones desde la solicitud inicial hasta la firma y el PDF consolidado.' 
-          : 'Ilithya Workflow adapts seamlessly to your current business routines. Explore how approvals progress from initial submission to final signature and consolidated PDF.'}
+        {i18n.desc}
       </p>
     </div>
 
     <!-- Category Filter Tabs -->
-    <div class="category-tabs" role="tablist" aria-label={isEs ? 'Filtrar por Área' : 'Filter by Department'}>
+    <div class="category-tabs" role="tablist" aria-label={i18n.filterAria}>
       <button class="cat-tab active" data-category="all" role="tab" aria-selected="true">
-        <span>{isEs ? 'Todos los Casos' : 'All Cases'}</span>
+        <span>{i18n.allCases}</span>
         <span class="cat-count">5</span>
       </button>
       <button class="cat-tab" data-category="finanzas" role="tab" aria-selected="false">
-        <span>{isEs ? 'Finanzas y Compras' : 'Finance & Procurement'}</span>
+        <span>{i18n.finance}</span>
         <span class="cat-count">2</span>
       </button>
       <button class="cat-tab" data-category="rrhh" role="tab" aria-selected="false">
-        <span>{isEs ? 'Recursos Humanos' : 'Human Resources'}</span>
+        <span>{i18n.hr}</span>
         <span class="cat-count">2</span>
       </button>
       <button class="cat-tab" data-category="operaciones" role="tab" aria-selected="false">
-        <span>{isEs ? 'Operaciones y Servicios' : 'Operations & Facilities'}</span>
+        <span>{i18n.ops}</span>
         <span class="cat-count">1</span>
       </button>
     </div>
@@ -98,7 +172,7 @@ const useCases = isEs ? useCasesEs : useCasesEn;
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                   <polyline points="14 2 14 8 20 8"></polyline>
                 </svg>
-                <span>{isEs ? 'Documentación Inicial Requerida:' : 'Required Initial Documentation:'}</span>
+                <span>{i18n.docsLabel}</span>
               </div>
               <div class="docs-tags">
                 {item.docs.map(doc => (
@@ -112,7 +186,7 @@ const useCases = isEs ? useCasesEs : useCasesEn;
 
             <!-- Interactive Stepper Track -->
             <div class="workflow-track-wrapper">
-              <h4 class="track-title">{isEs ? 'Ruta Secuencial de Aprobación por Estaciones' : 'Sequential Approval Route by Stations'}</h4>
+              <h4 class="track-title">{i18n.routeTitle}</h4>
               <div class="stepper-grid">
                 {item.stations.map((st, sIndex) => (
                   <div class="stepper-node">
@@ -143,16 +217,16 @@ const useCases = isEs ? useCasesEs : useCasesEn;
               </div>
               <div class="closure-content">
                 <div class="closure-heading">
-                  <span class="closure-tag">{isEs ? 'Cierre del Trámite' : 'Workflow Closure'}</span>
+                  <span class="closure-tag">{i18n.closureTag}</span>
                   <span class="closure-type">{item.closure.type}</span>
                 </div>
                 <p class="closure-summary">{item.closure.summary}</p>
                 <div class="closure-impact">
-                  <strong>{isEs ? 'Impacto Medible:' : 'Measurable Impact:'}</strong> {item.closure.benefit}
+                  <strong>{i18n.impactLabel}</strong> {item.closure.benefit}
                 </div>
                 <div class="closure-action-row">
                   <button class="btn btn-primary btn-sm" data-open-modal="pilot" data-preselect={item.title}>
-                    <span>{isEs ? 'Probar este proceso en Plan Piloto (15 a 20 Días)' : 'Test this workflow in Pilot Program (15 to 20 Days)'}</span>
+                    <span>{i18n.pilotBtn}</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                       <polyline points="9 18 15 12 9 6"></polyline>
                     </svg>

@@ -6,21 +6,150 @@ interface Props {
 }
 
 const { lang = (Astro.currentLocale || 'es') as Language } = Astro.props;
-const isEs = lang === 'es';
+const roleBenefitsI18n: Record<Language, {
+  tag: string;
+  title: string;
+  desc: string;
+  financeRole: string;
+  financeTitle: string;
+  financeDesc: string;
+  financeItems: string[];
+  opsRole: string;
+  opsTitle: string;
+  opsDesc: string;
+  opsItems: string[];
+  itRole: string;
+  itTitle: string;
+  itDesc: string;
+  itItems: string[];
+}> = {
+  es: {
+    tag: 'Impacto Transversal',
+    title: 'Impulsando el Éxito de Cada Líder en la Organización',
+    desc: 'Ilithya Workflow no solo resuelve los dolores del solicitante, sino que empodera a las gerencias con control, velocidad y cumplimiento sin añadir fricción.',
+    financeRole: 'Para Finanzas & Auditoría',
+    financeTitle: 'Trazabilidad Total y Control Presupuestario',
+    financeDesc: 'Mantenga la gobernanza de cada centavo autorizado con expedientes limpios y organizados para revisiones fiscales y auditorías internas.',
+    financeItems: [
+      'Validación previa de presupuesto antes de emitir cualquier orden.',
+      'Huella criptográfica SHA-256 inmutable por cada firma y sello.',
+      'PDF consolidado listo para contabilidad sin recopilar adjuntos dispersos.'
+    ],
+    opsRole: 'Para Operaciones & Proyectos',
+    opsTitle: 'Cero Cuellos de Botella y Entrega a Tiempo',
+    opsDesc: 'Reduzca radicalmente los tiempos muertos de espera para que compras, mantenimiento e insumos no detengan la operación del negocio.',
+    opsItems: [
+      'Monitoreo de SLAs con avisos tempranos antes de que una tarea venza.',
+      'Reasignación temporal por ausencia de directores para evitar parálisis.',
+      'Consultas en el mismo expediente sin perder el contexto de la decisión.'
+    ],
+    itRole: 'Para Tecnología & TI',
+    itTitle: 'Plataforma Ligera, Segura y Cero Fricción',
+    itDesc: 'Transformación digital inmediata sin desarrollos eternos ni cargas de mantenimiento pesado en infraestructura o servidores propios.',
+    itItems: [
+      'Aislamiento de datos con PostgreSQL Row-Level Security (RLS).',
+      'Descarga automática a 30 días a Google Drive o OneDrive (cero hot storage bloat).',
+      'Autenticación unificada mediante Google Workspace y Microsoft 365.'
+    ]
+  },
+  en: {
+    tag: 'Cross-Functional Impact',
+    title: 'Empowering Success for Every Operational Leader',
+    desc: 'Ilithya Workflow not only alleviates bottlenecks for requesters, but arms management with control, speed, and audit-readiness without friction.',
+    financeRole: 'For Finance & Audit',
+    financeTitle: 'Total Traceability & Budget Control',
+    financeDesc: 'Maintain governance over every dollar authorized with organized digital dossiers for tax reviews and internal audits.',
+    financeItems: [
+      'Pre-approval budget verification before purchase order issuance.',
+      'Immutable SHA-256 cryptographic audit trail for every signature and stamp.',
+      'Consolidated PDF ready for accounting without chasing scattered attachments.'
+    ],
+    opsRole: 'For Operations & Projects',
+    opsTitle: 'Zero Bottlenecks & On-Time Delivery',
+    opsDesc: 'Radically cut idle waiting times so procurement, maintenance, and supplies never stall operational momentum.',
+    opsItems: [
+      'Live SLA tracking with proactive alerts well before deadlines expire.',
+      'Seamless out-of-office delegation to designated deputies preventing gridlock.',
+      'In-thread contextual questions without losing decision history across chats.'
+    ],
+    itRole: 'For Technology & IT',
+    itTitle: 'Lightweight, Secure & Zero IT Friction',
+    itDesc: 'Instant digital modernization without months of custom development or burdensome on-premise infrastructure upkeep.',
+    itItems: [
+      'Multi-tenant database isolation with PostgreSQL Row-Level Security (RLS).',
+      '30-day auto-archiving to Google Drive or OneDrive with zero cloud storage bloat.',
+      'Seamless single sign-on through Google Workspace and Microsoft 365.'
+    ]
+  },
+  it: {
+    tag: 'Impatto Trasversale',
+    title: 'Promuovere il Successo di Ogni Responsabile Operativo',
+    desc: 'Ilithya Workflow non solo elimina i colli di bottiglia per i richiedenti, ma offre ai dirigenti controllo, velocità e conformità senza attriti.',
+    financeRole: 'Per Finanza & Audit',
+    financeTitle: 'Tracciabilità Totale e Controllo del Budget',
+    financeDesc: 'Mantieni la governance su ogni spesa autorizzata con fascicoli digitali organizzati per revisioni fiscali e audit interni.',
+    financeItems: [
+      'Verifica preventiva del budget prima dell\'emissione di qualsiasi ordine d\'acquisto.',
+      'Traccia di audit crittografica SHA-256 immutabile per ogni firma e timbro.',
+      'PDF consolidato pronto per la contabilità senza recuperare allegati sparsi.'
+    ],
+    opsRole: 'Per Operazioni & Progetti',
+    opsTitle: 'Zero Colli di Bottiglia e Consegne nei Tempi',
+    opsDesc: 'Riduci radicalmente i tempi morti di attesa affinché acquisti, manutenzioni e forniture non rallentino mai l\'attività.',
+    opsItems: [
+      'Monitoraggio SLA in tempo reale con avvisi proattivi prima della scadenza dei compiti.',
+      'Delega tempestiva per assenza di dirigenti per prevenire blocchi decisionali.',
+      'Quesiti contestuali all\'interno del fascicolo senza perdere la cronologia nelle chat.'
+    ],
+    itRole: 'Per Tecnologia & IT',
+    itTitle: 'Piattaforma Leggera, Sicura e Senza Attriti',
+    itDesc: 'Digitalizzazione immediata senza mesi di sviluppo personalizzato o gravosi costi di manutenzione sui server locali.',
+    itItems: [
+      'Isolamento del database multi-tenant con PostgreSQL Row-Level Security (RLS).',
+      'Archiviazione automatica a 30 giorni su Google Drive o OneDrive con zero sovraccarico di archiviazione.',
+      'Single Sign-On unificato tramite Google Workspace e Microsoft 365.'
+    ]
+  },
+  pt: {
+    tag: 'Impacto Transversal',
+    title: 'Impulsionando o Sucesso de Cada Líder Operacional',
+    desc: 'O Ilithya Workflow não apenas elimina gargalos para os solicitantes, mas capacita a gestão com controle, agilidade e conformidade sem atrito.',
+    financeRole: 'Para Finanças & Auditoria',
+    financeTitle: 'Rastreabilidade Total e Controle Orçamentário',
+    financeDesc: 'Mantenha a governança de cada valor autorizado com dossiês digitais organizados para revisões fiscais e auditorias internas.',
+    financeItems: [
+      'Validação prévia de orçamento antes da emissão de qualquer ordem de compra.',
+      'Trilha criptográfica SHA-256 imutável para cada assinatura e carimbo digital.',
+      'PDF consolidado pronto para a contabilidade sem coletar anexos dispersos.'
+    ],
+    opsRole: 'Para Operações & Projetos',
+    opsTitle: 'Zero Gargalos e Entregas no Prazo',
+    opsDesc: 'Reduza radicalmente os tempos ociosos de espera para que compras, manutenção e insumos nunca paralisem a operação.',
+    opsItems: [
+      'Monitoramento de SLAs em tempo real com alertas antecipados antes do vencimento.',
+      'Delegação automática por ausência de diretores para evitar paralisações no fluxo.',
+      'Perguntas contextuais no próprio processo sem perder o histórico das decisões.'
+    ],
+    itRole: 'Para Tecnologia & TI',
+    itTitle: 'Plataforma Leve, Segura e Sem Complicação',
+    itDesc: 'Modernização digital imediata sem meses de desenvolvimento ou encargos pesados de manutenção em servidores próprios.',
+    itItems: [
+      'Isolamento multi-inquilino de banco de dados com PostgreSQL Row-Level Security (RLS).',
+      'Arquivamento automático aos 30 dias para Google Drive ou OneDrive sem acúmulo de armazenamento.',
+      'Autenticação corporativa unificada com Google Workspace e Microsoft 365.'
+    ]
+  }
+};
+
+const c = roleBenefitsI18n[lang] || roleBenefitsI18n.es;
 ---
 
 <section class="benefits-section" id="beneficios">
   <div class="container">
     <div class="section-header text-center">
-      <span class="section-tag">{isEs ? 'Impacto Transversal' : 'Cross-Functional Impact'}</span>
-      <h2 class="section-title">
-        {isEs ? 'Impulsando el Éxito de Cada Líder en la Organización' : 'Empowering Success for Every Operational Leader'}
-      </h2>
-      <p class="section-desc">
-        {isEs 
-          ? 'Ilithya Workflow no solo resuelve los dolores del solicitante, sino que empodera a las gerencias con control, velocidad y cumplimiento sin añadir fricción.' 
-          : 'Ilithya Workflow not only alleviates bottlenecks for requesters, but arms management with control, speed, and audit-readiness without friction.'}
-      </p>
+      <span class="section-tag">{c.tag}</span>
+      <h2 class="section-title">{c.title}</h2>
+      <p class="section-desc">{c.desc}</p>
     </div>
 
     <div class="benefits-grid">
@@ -34,27 +163,17 @@ const isEs = lang === 'es';
               <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
             </svg>
           </div>
-          <span class="role-badge">{isEs ? 'Para Finanzas & Auditoría' : 'For Finance & Audit'}</span>
+          <span class="role-badge">{c.financeRole}</span>
         </div>
-        <h3 class="benefit-title">{isEs ? 'Trazabilidad Total y Control Presupuestario' : 'Total Traceability & Budget Control'}</h3>
-        <p class="benefit-desc">
-          {isEs 
-            ? 'Mantenga la gobernanza de cada centavo autorizado con expedientes limpios y organizados para revisiones fiscales y auditorías internas.' 
-            : 'Maintain governance over every dollar authorized with organized digital dossiers for tax reviews and internal audits.'}
-        </p>
+        <h3 class="benefit-title">{c.financeTitle}</h3>
+        <p class="benefit-desc">{c.financeDesc}</p>
         <ul class="benefit-list">
-          <li>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>{isEs ? 'Validación previa de presupuesto antes de emitir cualquier orden.' : 'Pre-approval budget verification before purchase order issuance.'}</span>
-          </li>
-          <li>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>{isEs ? 'Huella criptográfica SHA-256 inmutable por cada firma y sello.' : 'Immutable SHA-256 cryptographic audit trail for every signature and stamp.'}</span>
-          </li>
-          <li>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>{isEs ? 'PDF consolidado listo para contabilidad sin recopilar adjuntos dispersos.' : 'Consolidated PDF ready for accounting without chasing scattered attachments.'}</span>
-          </li>
+          {c.financeItems.map((item) => (
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>{item}</span>
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -68,27 +187,17 @@ const isEs = lang === 'es';
               <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
           </div>
-          <span class="role-badge">{isEs ? 'Para Operaciones & Proyectos' : 'For Operations & Projects'}</span>
+          <span class="role-badge">{c.opsRole}</span>
         </div>
-        <h3 class="benefit-title">{isEs ? 'Cero Cuellos de Botella y Entrega a Tiempo' : 'Zero Bottlenecks & On-Time Delivery'}</h3>
-        <p class="benefit-desc">
-          {isEs 
-            ? 'Reduzca radicalmente los tiempos muertos de espera para que compras, mantenimiento e insumos no detengan la operación del negocio.' 
-            : 'Radically cut idle waiting times so procurement, maintenance, and supplies never stall operational momentum.'}
-        </p>
+        <h3 class="benefit-title">{c.opsTitle}</h3>
+        <p class="benefit-desc">{c.opsDesc}</p>
         <ul class="benefit-list">
-          <li>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>{isEs ? 'Monitoreo de SLAs con avisos tempranos antes de que una tarea venza.' : 'Live SLA tracking with proactive alerts well before deadlines expire.'}</span>
-          </li>
-          <li>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>{isEs ? 'Reasignación temporal por ausencia de directores para evitar parálisis.' : 'Seamless out-of-office delegation to designated deputies preventing gridlock.'}</span>
-          </li>
-          <li>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>{isEs ? 'Consultas en el mismo expediente sin perder el contexto de la decisión.' : 'In-thread contextual questions without losing decision history across chats.'}</span>
-          </li>
+          {c.opsItems.map((item) => (
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>{item}</span>
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -101,27 +210,17 @@ const isEs = lang === 'es';
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
             </svg>
           </div>
-          <span class="role-badge">{isEs ? 'Para Tecnología & TI' : 'For Technology & IT'}</span>
+          <span class="role-badge">{c.itRole}</span>
         </div>
-        <h3 class="benefit-title">{isEs ? 'Plataforma Ligera, Segura y Cero Fricción' : 'Lightweight, Secure & Zero IT Friction'}</h3>
-        <p class="benefit-desc">
-          {isEs 
-            ? 'Transformación digital inmediata sin desarrollos eternos ni cargas de mantenimiento pesado en infraestructura o servidores propios.' 
-            : 'Instant digital modernization without months of custom development or burdensome on-premise infrastructure upkeep.'}
-        </p>
+        <h3 class="benefit-title">{c.itTitle}</h3>
+        <p class="benefit-desc">{c.itDesc}</p>
         <ul class="benefit-list">
-          <li>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>{isEs ? 'Aislamiento de datos con PostgreSQL Row-Level Security (RLS).' : 'Multi-tenant database isolation with PostgreSQL Row-Level Security (RLS).'}</span>
-          </li>
-          <li>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>{isEs ? 'Descarga automática a 30 días a Google Drive o OneDrive (cero hot storage bloat).' : '30-day auto-archiving to Google Drive or OneDrive with zero cloud storage bloat.'}</span>
-          </li>
-          <li>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>{isEs ? 'Autenticación unificada mediante Google Workspace y Microsoft 365.' : 'Seamless single sign-on through Google Workspace and Microsoft 365.'}</span>
-          </li>
+          {c.itItems.map((item) => (
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>{item}</span>
+            </li>
+          ))}
         </ul>
       </div>
     </div>

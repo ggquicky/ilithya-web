@@ -1,0 +1,12 @@
+---
+import LegalPageLayout from '../../components/LegalPageLayout.astro';
+import { legalTranslations } from '../../i18n/legalData';
+
+const doc = legalTranslations.it.privacy;
+---
+
+<LegalPageLayout 
+  document={doc}
+  activeDoc="privacy"
+  lang="it"
+/>

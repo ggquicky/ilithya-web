@@ -21,6 +21,74 @@ const features = t.features.items.map((f, i) => ({
   ...f,
   icon: featureIcons[i % featureIcons.length]
 }));
+const spotlightI18n: Record<Language, {
+  tag: string;
+  title: string;
+  desc: string;
+  item1: string;
+  item2: string;
+  item3: string;
+  cachePill: string;
+  cacheCaption: string;
+  transferText: string;
+  cloudPill: string;
+  cloudCaption: string;
+}> = {
+  es: {
+    tag: 'Cero Costos Excesivos de Nube',
+    title: 'Pipeline de Auto-Archivado a 30 Días',
+    desc: 'Evite pagar tarifas altas de almacenamiento en caliente. Ilithya Workflow transfiere automáticamente los paquetes documentales finalizados directo a los repositorios corporativos de su empresa en Google Workspace o Microsoft 365.',
+    item1: 'Conserva el 100% de los logs de auditoría y hashes de verificación para siempre',
+    item2: 'Integración nativa vía OAuth con Google Drive y OneDrive corporativo',
+    item3: 'Verificación automática diaria que garantiza cero pérdida de expedientes',
+    cachePill: 'Caché Activa Ilithya',
+    cacheCaption: '30 Días en Tránsito',
+    transferText: 'Transferencia Automática',
+    cloudPill: 'Nube Corporativa',
+    cloudCaption: 'Archivo Permanente'
+  },
+  en: {
+    tag: 'Zero Excessive Cloud Costs',
+    title: '30-Day Auto-Archiving Pipeline',
+    desc: 'Avoid paying high hot-storage fees. Ilithya Workflow automatically transfers completed document bundles straight to your company’s corporate repositories in Google Workspace or Microsoft 365.',
+    item1: 'Preserves 100% of audit logs and verification hashes forever',
+    item2: 'Native OAuth integration with enterprise Google Drive and OneDrive',
+    item3: 'Daily automated verification ensuring zero lost dossiers',
+    cachePill: 'Ilithya Hot Cache',
+    cacheCaption: '30 Days In-Transit',
+    transferText: 'Automated Transfer',
+    cloudPill: 'Enterprise Cloud',
+    cloudCaption: 'Permanent Archive'
+  },
+  it: {
+    tag: 'Zero Costi Cloud Eccessivi',
+    title: 'Pipeline di Auto-Archiviazione a 30 Giorni',
+    desc: 'Evita di pagare tariffe elevate di archiviazione attiva. Ilithya Workflow trasferisce automaticamente i fascicoli documentali completati direttamente nei repository aziendali su Google Workspace o Microsoft 365.',
+    item1: 'Conserva per sempre il 100% dei registri di audit e degli hash di verifica',
+    item2: 'Integrazione nativa tramite OAuth con Google Drive e OneDrive aziendale',
+    item3: 'Verifica automatica giornaliera che garantisce zero smarrimento di fascicoli',
+    cachePill: 'Cache Attiva Ilithya',
+    cacheCaption: '30 Giorni in Transito',
+    transferText: 'Trasferimento Automatico',
+    cloudPill: 'Cloud Aziendale',
+    cloudCaption: 'Archivio Permanente'
+  },
+  pt: {
+    tag: 'Zero Custos Excessivos de Nuvem',
+    title: 'Pipeline de Autoarquivamento aos 30 Dias',
+    desc: 'Evite pagar tarifas elevadas de armazenamento quente. O Ilithya Workflow transfere automaticamente os dossiês documentais finalizados diretamente para os repositórios corporativos da sua empresa no Google Workspace ou Microsoft 365.',
+    item1: 'Preserva 100% dos logs de auditoria e hashes de verificação para sempre',
+    item2: 'Integração nativa via OAuth com Google Drive e OneDrive corporativo',
+    item3: 'Verificação diária automatizada que garante zero perda de processos',
+    cachePill: 'Cache Ativa Ilithya',
+    cacheCaption: '30 Dias em Trânsito',
+    transferText: 'Transferência Automática',
+    cloudPill: 'Nuvem Corporativa',
+    cloudCaption: 'Arquivo Permanente'
+  }
+};
+
+const sp = spotlightI18n[lang] || spotlightI18n.es;
 ---
 
 <section class="features-section" id="caracteristicas">
@@ -50,39 +118,39 @@ const features = t.features.items.map((f, i) => ({
     <!-- Feature Spotlight Banner -->
     <div class="spotlight-card">
       <div class="spotlight-content">
-        <span class="section-tag">Cero Costos Excesivos de Nube</span>
-        <h3 class="spotlight-title">Pipeline de Auto-Archivado a 30 Días</h3>
+        <span class="section-tag">{sp.tag}</span>
+        <h3 class="spotlight-title">{sp.title}</h3>
         <p class="spotlight-desc">
-          Evite pagar tarifas altas de almacenamiento en caliente. Ilithya Workflow transfiere automáticamente los paquetes documentales finalizados directo a los repositorios corporativos de su empresa en Google Workspace o Microsoft 365.
+          {sp.desc}
         </p>
         <ul class="spotlight-list">
           <li>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Conserva el 100% de los logs de auditoría y hashes de verificación para siempre</span>
+            <span>{sp.item1}</span>
           </li>
           <li>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Integración nativa vía OAuth con Google Drive y OneDrive corporativo</span>
+            <span>{sp.item2}</span>
           </li>
           <li>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Verificación automática diaria que garantiza cero pérdida de expedientes</span>
+            <span>{sp.item3}</span>
           </li>
         </ul>
       </div>
       <div class="spotlight-visual">
         <div class="flow-box">
           <div class="flow-node">
-            <span class="flow-pill">Caché Activa Ilithya</span>
-            <span class="flow-caption">30 Días en Tránsito</span>
+            <span class="flow-pill">{sp.cachePill}</span>
+            <span class="flow-caption">{sp.cacheCaption}</span>
           </div>
           <div class="flow-arrow">
-            <span>Transferencia Automática</span>
+            <span>{sp.transferText}</span>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </div>
           <div class="flow-node highlight">
-            <span class="flow-pill">Nube Corporativa</span>
-            <span class="flow-caption">Archivo Permanente</span>
+            <span class="flow-pill">{sp.cloudPill}</span>
+            <span class="flow-caption">{sp.cloudCaption}</span>
           </div>
         </div>
       </div>
