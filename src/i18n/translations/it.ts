@@ -11,6 +11,7 @@ export const it = {
     cases: {
       title: 'Casi d\'Uso per Approvazioni Documentali | Ilithya Workflow',
       description: 'Esplora i 5 flussi documentali chiave: acquisti da fornitori, trasferte, selezione del personale, ferie e manutenzione delle strutture.',
+      keywords: 'casi d\'uso flussi approvazione, richieste d\'acquisto fornitori, approvazione rimborsi trasferta, assunzione candidati hr, autorizzazione ferie dipendenti, flussi documentali aziendali',
       tag: 'Catalogo dei Processi',
       heading: 'Approvazioni Aziendali in Azione',
       intro: 'Dalle richieste di acquisto ai fascicoli del personale: scopri come Ilithya Workflow struttura ogni passaggio, garantisce firme digitali e consolida il PDF finale senza interventi manuali.'
@@ -18,6 +19,7 @@ export const it = {
     platform: {
       title: 'Piattaforma e Funzionalità Aziendali | Ilithya Workflow',
       description: 'Architettura multi-tenant sicura con PostgreSQL RLS, timbri digitali millimetrici su PDF, motore SLA e archiviazione automatica a 30 giorni su Google Drive e OneDrive.',
+      keywords: 'architettura saas approvazioni, sicurezza postgresql rls, timbri millimetrici pdf, archiviazione automatica 30 giorni google drive onedrive, motore sla approvazioni, audit trail crittografico sha256',
       tag: 'Architettura & Sicurezza',
       heading: 'Infrastruttura Leggera. Sicurezza Implacabile.',
       intro: 'Ilithya Workflow combina un motore di firma e apposizione di timbri su coordinate esatte di PDF con isolamento rigoroso del database e backup sul cloud aziendale.'
@@ -25,6 +27,7 @@ export const it = {
     pilot: {
       title: 'Piano di Prova Guidato (15-20 Giorni) | Ilithya Workflow',
       description: 'Valuta Ilithya Workflow con un processo di acquisto o richiesta rappresentativo della tua azienda. Senza costi né impegno, con supporto dedicato 1-a-1.',
+      keywords: 'programma pilota approvazioni, prova software approvazioni aziendali, valutazione flussi documentali, prova pilota 15 giorni, onboarding flussi aziendali',
       tag: 'Garanzia Senza Rischi',
       heading: 'Piano di Prova Guidato (15-20 Giorni)',
       intro: 'Mettiamo alla prova l\'agilità di Ilithya direttamente sul campo delle tue operazioni: selezioniamo un flusso rappresentativo, lo configuriamo insieme e misuriamo il tempo risparmiato.'
@@ -32,9 +35,20 @@ export const it = {
     contact: {
       title: 'Contatto e Assistenza Aziendale | Ilithya Workflow',
       description: 'Contatta il nostro team di soluzioni aziendali per avviare la prova pilota, richiedere specifiche tecniche o risolvere dubbi sull\'integrazione.',
+      keywords: 'contatto ilithya workflow, demo approvazione documentale, software firme digitali b2b, consulenza digitalizzazione processi',
       tag: 'Canale Diretto',
       heading: 'Parliamo dei Tuoi Processi',
       intro: 'Siamo pronti ad affiancarti nella digitalizzazione dei tuoi percorsi di approvazione. Inviaci i tuoi dati e uno specialista ti contatterà entro 2 ore.'
+    },
+    privacy: {
+      title: 'Informativa sulla Privacy e Trattamento Dati | Ilithya Workflow',
+      description: 'Scopri quali dati tratta Ilithya Workflow, quali informazioni conserviamo a fini di non ripudio legale e conformità, e le nostre garanzie di riservatezza.',
+      keywords: 'informativa privacy, trattamento dati personali, responsabile del trattamento dati, data processor, non ripudio legale, tracciamento sha256, archiviazione automatica 30 giorni, conformita gdpr'
+    },
+    terms: {
+      title: 'Termini di Servizio e Limitazione di Responsabilità | Ilithya Workflow',
+      description: 'Condizioni generali d\'uso di Ilithya Workflow, validità legale della firma elettronica, delimitazione di responsabilità, limite risarcitorio e arbitrato.',
+      keywords: 'termini di servizio saas, validita legale firma elettronica, regolamento eidas, delimitazione responsabilita contratti, arbitrato commerciale vincolante'
     }
   },
   nav: {

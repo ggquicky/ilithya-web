@@ -4,11 +4,15 @@ import Header from '../components/Header.astro';
 import UseCases from '../components/UseCases.astro';
 import PilotPlan from '../components/PilotPlan.astro';
 import Footer from '../components/Footer.astro';
+import { getTranslations } from '../i18n/ui';
+
+const t = getTranslations('es');
 ---
 
 <Layout 
-  title="Casos de Uso de Aprobación Documental | Ilithya Workflow"
-  description="Explore los 5 flujos documentales clave: compras a proveedores, viáticos, contratación de candidatos, vacaciones y mantenimiento de instalaciones."
+  title={t.meta.cases.title}
+  description={t.meta.cases.description}
+  keywords={t.meta.cases.keywords}
   lang="es"
 >
   <Header lang="es" />

@@ -5,11 +5,15 @@ import Features from '../components/Features.astro';
 import RoleBenefits from '../components/RoleBenefits.astro';
 import PilotPlan from '../components/PilotPlan.astro';
 import Footer from '../components/Footer.astro';
+import { getTranslations } from '../i18n/ui';
+
+const t = getTranslations('es');
 ---
 
 <Layout 
-  title="Plataforma y Capacidades Empresariales | Ilithya Workflow"
-  description="Arquitectura multi-inquilino segura con PostgreSQL RLS, sellos digitales milimétricos en PDF, motor de SLA y auto-archivado a 30 días en Google Drive y OneDrive."
+  title={t.meta.platform.title}
+  description={t.meta.platform.description}
+  keywords={t.meta.platform.keywords}
   lang="es"
 >
   <Header lang="es" />

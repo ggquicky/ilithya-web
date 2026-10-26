@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import PilotModal from '../components/PilotModal.astro';
-import { getLocalizedPath, languages, type Language } from '../i18n/ui';
+import { getLocalizedPath, languages, translations, type Language } from '../i18n/ui';
 
 interface Props {
   title?: string;
@@ -11,13 +11,13 @@ interface Props {
   lang?: Language;
 }
 
-const {
-  title = "Ilithya Workflow • Agilidad y Claridad para las Decisiones de tu Equipo",
-  description = "Un soporte digital para que los flujos de aprobación de compras, viáticos, vacaciones y contrataciones de tu empresa avancen sin fricción ni desgaste.",
-  ogImage = "/brand/darkLogo.png",
-  keywords = "flujos de aprobación documental, firmas digitales, sellos de tiempo pdf, aprobaciones empresariales, automatización de compras, gestión de viáticos, ilithya workflow",
-  lang = (Astro.currentLocale || 'es') as Language
-} = Astro.props;
+const lang = (Astro.props.lang || Astro.currentLocale || 'es') as Language;
+const t = translations[lang] || translations.es;
+
+const title = Astro.props.title || t.meta.home.title;
+const description = Astro.props.description || t.meta.home.description;
+const keywords = Astro.props.keywords || t.meta.home.keywords;
+const ogImage = Astro.props.ogImage || "/brand/darkLogo.png";
 
 // Canonical, Hreflang and OpenGraph URLs
 const siteUrl = Astro.site ?? 'https://ilithya.app';
@@ -37,6 +37,27 @@ const altLangs = (Object.keys(languages) as Language[]).map(code => ({
   url: new URL(getLocalizedPath(currentPath, code), siteUrl)
 }));
 
+// Build BreadcrumbList
+const isHomePage = currentPath === '/' || currentPath === `/${lang}` || currentPath === `/${lang}/`;
+const breadcrumbItems = [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "name": t.nav.home || "Inicio",
+    "item": new URL(getLocalizedPath('/', lang), siteUrl).toString()
+  }
+];
+
+if (!isHomePage) {
+  const pageTitleClean = title.split('•')[0].split('|')[0].trim();
+  breadcrumbItems.push({
+    "@type": "ListItem",
+    "position": 2,
+    "name": pageTitleClean,
+    "item": canonicalURL.toString()
+  });
+}
+
 // Structured Data (JSON-LD) for Google Rich Snippets
 const structuredData = {
   "@context": "https://schema.org",
@@ -48,12 +69,15 @@ const structuredData = {
       "url": "https://ilithya.app",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://ilithya.app/brand/darkLogo.png"
+        "url": "https://ilithya.app/brand/darkLogo.png",
+        "width": "512",
+        "height": "512"
       },
       "contactPoint": {
         "@type": "ContactPoint",
         "email": "jlmoralesm08@gmail.com",
-        "contactType": "Atención Corporativa y Ventas"
+        "contactType": "customer service",
+        "availableLanguage": ["Spanish", "English", "Italian", "Portuguese"]
       }
     },
     {
@@ -62,9 +86,29 @@ const structuredData = {
       "url": "https://ilithya.app",
       "name": "Ilithya Workflow",
       "description": description,
+      "inLanguage": lang,
       "publisher": {
         "@id": "https://ilithya.app/#organization"
       }
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${canonicalURL}#webpage`,
+      "url": canonicalURL.toString(),
+      "name": title,
+      "description": description,
+      "inLanguage": lang,
+      "isPartOf": {
+        "@id": "https://ilithya.app/#website"
+      },
+      "breadcrumb": {
+        "@id": `${canonicalURL}#breadcrumb`
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${canonicalURL}#breadcrumb`,
+      "itemListElement": breadcrumbItems
     },
     {
       "@type": "SoftwareApplication",
@@ -121,8 +165,18 @@ const structuredData = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
-    <meta property="og:image:alt" content="Ilithya Workflow Platform" />
+    <meta property="og:image:secure_url" content={ogImageURL} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
     <meta property="og:locale" content={localeMap[lang] || 'es_LA'} />
+    {(Object.keys(localeMap) as Language[])
+      .filter(l => l !== lang)
+      .map(l => (
+        <meta property="og:locale:alternate" content={localeMap[l]} />
+      ))
+    }
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />

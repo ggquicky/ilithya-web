@@ -7,11 +7,15 @@ import CasesPreview from '../components/CasesPreview.astro';
 import RoleBenefits from '../components/RoleBenefits.astro';
 import PilotPlan from '../components/PilotPlan.astro';
 import Footer from '../components/Footer.astro';
+import { getTranslations } from '../i18n/ui';
+
+const t = getTranslations('es');
 ---
 
 <Layout 
-  title="Ilithya Workflow | Agilidad y Claridad para las Decisiones de tu Equipo"
-  description="ILITHYA — Un soporte digital para que los flujos de aprobación de compras, viáticos, vacaciones y contrataciones de tu empresa avancen sin fricción ni desgaste."
+  title={t.meta.home.title}
+  description={t.meta.home.description}
+  keywords={t.meta.home.keywords}
   lang="es"
 >
   <Header lang="es" />
