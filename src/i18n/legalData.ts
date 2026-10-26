@@ -15,6 +15,7 @@ export interface LegalSection {
 export interface LegalDocument {
   metaTitle: string;
   metaDesc: string;
+  keywords?: string;
   badge: string;
   title: string;
   subtitle: string;
@@ -55,6 +56,7 @@ export const legalTranslations: Record<Language, LegalData> = {
     privacy: {
       metaTitle: 'Política de Privacidad y Tratamiento de Información | Ilithya Workflow',
       metaDesc: 'Conozca qué datos procesa Ilithya Workflow, qué información almacenamos para fines de no repudio y auditoría legal, y nuestras garantías de confidencialidad.',
+      keywords: 'politica de privacidad, tratamiento de datos, encargado del tratamiento, data processor, no repudio legal, log criptografico sha256, autoarchivado 30 dias, proteccion datos personales, rgpd, lgpd',
       badge: 'Gobernanza de Datos & Seguridad Jurídica',
       title: 'Política de Privacidad y Tratamiento de Información',
       subtitle: 'Transparencia total sobre qué información leemos, qué datos almacenamos con fines legales y cómo blindamos la soberanía documental de su empresa.',
@@ -206,6 +208,7 @@ export const legalTranslations: Record<Language, LegalData> = {
     terms: {
       metaTitle: 'Términos del Servicio y Exención de Responsabilidad | Ilithya Workflow',
       metaDesc: 'Términos legales de uso de Ilithya Workflow, validez de la firma digital, delimitación estricta de responsabilidades, cap indemnizatorio y resolución de controversias.',
+      keywords: 'terminos del servicio saas, validez legal firma electronica, ley modelo cnudmi, esign ueta eidas, exencion responsabilidad contratos, arbitraje comercial vinculante',
       badge: 'Condiciones Generales de Contratación SaaS',
       title: 'Términos del Servicio y Exención de Responsabilidad',
       subtitle: 'Contrato de licencia B2B, alcance de la firma electrónica y delimitación estricta de responsabilidades para salvaguarda jurídica recíproca.',
@@ -322,6 +325,7 @@ export const legalTranslations: Record<Language, LegalData> = {
     privacy: {
       metaTitle: 'Privacy Policy & Enterprise Data Processing | Ilithya Workflow',
       metaDesc: 'Learn what data Ilithya Workflow processes, what information we retain for legal non-repudiation and audit purposes, and our zero-AI training guarantees.',
+      keywords: 'privacy policy, data processing agreement, data processor role, legal non-repudiation, sha256 cryptographic audit, 30 day cloud auto archive, personal data protection, gdpr compliance, b2b data security',
       badge: 'Data Governance & Legal Security',
       title: 'Privacy Policy & Data Processing Notice',
       subtitle: 'Complete transparency on the data we process, the forensic records we retain for legal non-repudiation, and how we protect your organization’s documentary sovereignty.',
@@ -473,6 +477,7 @@ export const legalTranslations: Record<Language, LegalData> = {
     terms: {
       metaTitle: 'Terms of Service & Limitation of Liability | Ilithya Workflow',
       metaDesc: 'B2B contractual terms of use, electronic signature legal validity, liability cap, dispute resolution, and mutual safeguards for Ilithya Workflow.',
+      keywords: 'saas terms of service, electronic signature enforceability, uncitral model law, esign act ueta eidas, contract liability disclaimer, binding commercial arbitration',
       badge: 'B2B SaaS Master Terms & Conditions',
       title: 'Terms of Service & Limitation of Liability',
       subtitle: 'B2B subscription contract, legal scope of digital signatures, and strict liability limitations designed for mutual legal defense.',
@@ -589,6 +594,7 @@ export const legalTranslations: Record<Language, LegalData> = {
     privacy: {
       metaTitle: 'Informativa sulla Privacy e Trattamento Dati | Ilithya Workflow',
       metaDesc: 'Scopri quali dati tratta Ilithya Workflow, quali informazioni conserviamo per fini legali di non ripudio e audit, e le nostre garanzie di non utilizzo per l\'IA.',
+      keywords: 'informativa privacy, trattamento dati personali, responsabile del trattamento dati, data processor, non ripudio legale, tracciamento sha256, archiviazione automatica 30 giorni, conformita gdpr',
       badge: 'Governance dei Dati & Sicurezza Giuridica',
       title: 'Informativa sulla Privacy e Trattamento dei Dati',
       subtitle: 'Trasparenza totale su quali informazioni leggiamo, quali dati archiviamo per fini legali e come tuteliamo la sovranità documentale della tua azienda.',
@@ -739,6 +745,7 @@ export const legalTranslations: Record<Language, LegalData> = {
     terms: {
       metaTitle: 'Termini di Servizio e Limitazione di Responsabilità | Ilithya Workflow',
       metaDesc: 'Condizioni contrattuali d\'uso di Ilithya Workflow, validità della firma digitale, limitazione di responsabilità e arbitrato.',
+      keywords: 'termini di servizio saas, validita legale firma elettronica, regolamento eidas, delimitazione responsabilita contratti, arbitrato commerciale vincolante',
       badge: 'Condizioni Generali di Contratto B2B SaaS',
       title: 'Termini di Servizio e Limitazione di Responsabilità',
       subtitle: 'Contratto di licenza B2B, portata della firma elettronica e delimitazione rigorosa delle responsabilità per la tutela reciproca.',
@@ -844,6 +851,7 @@ export const legalTranslations: Record<Language, LegalData> = {
     privacy: {
       metaTitle: 'Política de Privacidade e Tratamento de Dados | Ilithya Workflow',
       metaDesc: 'Saiba quais dados o Ilithya Workflow processa, o que armazenamos para fins legais de não repúdio e auditoria, e nossa garantia de zero IA.',
+      keywords: 'politica de privacidade, tratamento de dados, operador de dados, data processor, nao repudio juridico, log criptografico sha256, autoarquivamento 30 dias, protecao dados lgpd gdpr',
       badge: 'Governança de Dados & Segurança Jurídica',
       title: 'Política de Privacidade e Tratamento de Dados',
       subtitle: 'Transparência total sobre quais informações lemos, o que armazenamos para fins legais e como blindamos a soberania documental da sua empresa.',
@@ -994,6 +1002,7 @@ export const legalTranslations: Record<Language, LegalData> = {
     terms: {
       metaTitle: 'Termos de Serviço e Limitação de Responsabilidade | Ilithya Workflow',
       metaDesc: 'Condições contratuais do Ilithya Workflow, validade da assinatura eletrônica, isenção de responsabilidade sobre negócios e foro arbitral.',
+      keywords: 'termos de servico saas, validade juridica assinatura eletronica, medida provisoria 2200-2, delimitacao responsabilidade contratos, arbitragem comercial vinculante',
       badge: 'Termos Gerais de Contratação B2B SaaS',
       title: 'Termos de Serviço e Limitação de Responsabilidade',
       subtitle: 'Contrato de licença B2B, alcance da assinatura eletrônica e delimitação estrita de responsabilidades para proteção jurídica mútua.',

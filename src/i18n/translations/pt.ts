@@ -11,6 +11,7 @@ export const pt = {
     cases: {
       title: 'Casos de Uso de Aprovação Documental | Ilithya Workflow',
       description: 'Conheça os 5 fluxos documentais essenciais: compras de fornecedores, diárias de viagem, contratação de talentos, férias e manutenção predial.',
+      keywords: 'casos de uso aprovações, requisições de compra fornecedores, prestação contas diárias viagem, contratação candidatos rh, aprovação férias funcionários, fluxos documentais empresariais',
       tag: 'Catálogo de Processos',
       heading: 'Aprovações Corporativas em Ação',
       intro: 'De requisições de compras a dossiês de pessoal: veja como o Ilithya Workflow estrutura cada etapa, garante assinaturas digitais e consolida o PDF final sem intervenção manual.'
@@ -18,6 +19,7 @@ export const pt = {
     platform: {
       title: 'Plataforma e Recursos Corporativos | Ilithya Workflow',
       description: 'Arquitetura multi-inquilino segura com PostgreSQL RLS, carimbos digitais milimétricos em PDF, motor de SLA e arquivamento automático em 30 dias no Google Drive e OneDrive.',
+      keywords: 'arquitetura saas aprovações, segurança postgresql rls, carimbos milimétricos pdf, autoarquivamento 30 dias google drive onedrive, motor sla aprovações, trilha auditoria criptográfica sha256',
       tag: 'Arquitetura & Segurança',
       heading: 'Infraestrutura Leve. Segurança Implacável.',
       intro: 'O Ilithya Workflow combina um motor de assinatura e aplicação de carimbos em coordenadas exatas de PDF com isolamento rigoroso de banco de dados e backup na nuvem da sua empresa.'
@@ -25,6 +27,7 @@ export const pt = {
     pilot: {
       title: 'Plano de Teste Assistido (15 a 20 Dias) | Ilithya Workflow',
       description: 'Avalie o Ilithya Workflow com um processo de compras ou solicitação representativo da sua empresa. Sem custos nem compromisso, com suporte 1-a-1.',
+      keywords: 'plano piloto aprovações, teste gratuito software aprovações, avaliação fluxos documentais, teste piloto 15 dias, implantação fluxos corporativos',
       tag: 'Garantia Sem Riscos',
       heading: 'Plano de Teste Assistido (15 a 20 Dias)',
       intro: 'Colocamos a agilidade do Ilithya à prova diretamente na sua operação: escolhemos um fluxo representativo, configuramos juntos e medimos o tempo economizado.'
@@ -32,9 +35,20 @@ export const pt = {
     contact: {
       title: 'Contato e Atendimento Corporativo | Ilithya Workflow',
       description: 'Conecte-se com nosso time de soluções corporativas para iniciar seu teste piloto, solicitar informações técnicas ou tirar dúvidas de integração.',
+      keywords: 'contato ilithya workflow, demonstração aprovação documental, software assinaturas digitais empresas, consultoria digitalização processos',
       tag: 'Canal Direto',
       heading: 'Vamos Falar sobre seus Processos',
       intro: 'Estamos prontos para apoiar a digitalização das suas rotas de aprovação. Envie seus dados e um especialista entrará em contato em menos de 2 horas.'
+    },
+    privacy: {
+      title: 'Política de Privacidade e Tratamento de Dados | Ilithya Workflow',
+      description: 'Saiba quais dados o Ilithya Workflow processa, quais informações armazenamos para fins de não repúdio e conformidade jurídica, e nossas garantias de sigilo.',
+      keywords: 'politica de privacidade, tratamento de dados, operador de dados, data processor, nao repudio juridico, log criptografico sha256, autoarquivamento 30 dias, protecao dados lgpd gdpr'
+    },
+    terms: {
+      title: 'Termos de Serviço e Limitação de Responsabilidade | Ilithya Workflow',
+      description: 'Termos legais de uso do Ilithya Workflow, validade da assinatura digital, delimitação de responsabilidade civil, limite indenizatório e resolução de controvérsias.',
+      keywords: 'termos de servico saas, validade juridica assinatura eletronica, medida provisoria 2200-2, delimitacao responsabilidade contratos, arbitragem comercial vinculante'
     }
   },
   nav: {

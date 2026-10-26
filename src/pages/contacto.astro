@@ -3,11 +3,15 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import ContactUs from '../components/ContactUs.astro';
 import Footer from '../components/Footer.astro';
+import { getTranslations } from '../i18n/ui';
+
+const t = getTranslations('es');
 ---
 
 <Layout 
-  title="Contacto y Atención Corporativa | Ilithya Workflow"
-  description="Conéctese con nuestro equipo de soluciones corporativas para iniciar su prueba piloto, solicitar información técnica o resolver dudas de integración."
+  title={t.meta.contact.title}
+  description={t.meta.contact.description}
+  keywords={t.meta.contact.keywords}
   lang="es"
 >
   <Header lang="es" />

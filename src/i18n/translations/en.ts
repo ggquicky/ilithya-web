@@ -11,6 +11,7 @@ export const en = {
     cases: {
       title: 'Document Approval Use Cases | Ilithya Workflow',
       description: 'Explore 5 core enterprise workflows: vendor procurement, travel per diems, candidate hiring, time-off requests, and facility supplies.',
+      keywords: 'approval workflow use cases, purchase requisition approvals, per diem travel expenses, hr candidate hiring workflow, employee time-off approval, supply purchase orders, business document workflow',
       tag: 'Process Catalog',
       heading: 'Enterprise Approvals in Action',
       intro: 'From purchase requisitions to HR onboarding files: discover how Ilithya Workflow structures every stage, secures digital signatures, and consolidates the final PDF without manual intervention.'
@@ -18,6 +19,7 @@ export const en = {
     platform: {
       title: 'Platform & Enterprise Capabilities | Ilithya Workflow',
       description: 'Secure multi-tenant architecture with PostgreSQL RLS, precision coordinate PDF stamps, SLA engine, and 30-day auto-archiving to Google Drive and OneDrive.',
+      keywords: 'enterprise saas approvals, postgresql rls security, precision pdf coordinate stamps, 30 day auto archive google drive onedrive, approval sla engine, sha256 cryptographic audit trail',
       tag: 'Architecture & Security',
       heading: 'Lightweight Infrastructure. Uncompromising Security.',
       intro: 'Ilithya Workflow pairs a precision signature & stamp placement engine on exact PDF coordinates with strict database isolation and automatic backup into your company’s cloud storage.'
@@ -25,6 +27,7 @@ export const en = {
     pilot: {
       title: 'Assisted Pilot Program (15 to 20 Days) | Ilithya Workflow',
       description: 'Evaluate Ilithya Workflow with a representative purchasing or request workflow. Zero cost, no commitment, guided 1-on-1 by our engineering team.',
+      keywords: 'approval pilot program, free enterprise approval trial, document workflow evaluation, 15 day pilot trial, corporate approval onboarding',
       tag: 'Risk-Free Guarantee',
       heading: 'Assisted Pilot Program (15 to 20 Days)',
       intro: 'Put Ilithya’s speed to the test directly within your operations: we select a representative workflow together, configure it in hours, and measure the turnaround time saved.'
@@ -32,9 +35,20 @@ export const en = {
     contact: {
       title: 'Direct Contact & Enterprise Support | Ilithya Workflow',
       description: 'Connect with our corporate solutions team to initiate your pilot evaluation, request architectural details, or address compliance questions.',
+      keywords: 'contact ilithya workflow, document approval demo, enterprise digital signature software, workflow automation consulting',
       tag: 'Direct Channel',
       heading: 'Let’s Accelerate Your Approvals',
       intro: 'We are ready to assist you in digitizing your approval routes. Submit your details and an enterprise specialist will respond in under 2 hours.'
+    },
+    privacy: {
+      title: 'Privacy Policy & Data Processing | Ilithya Workflow',
+      description: 'Learn what data Ilithya Workflow processes, what information we retain for legal non-repudiation and compliance, and our strict zero-monetization guarantees.',
+      keywords: 'privacy policy, data processing agreement, data processor role, legal non-repudiation, sha256 cryptographic audit, 30 day cloud auto archive, personal data protection, gdpr compliance, b2b data security'
+    },
+    terms: {
+      title: 'Terms of Service & Disclaimer | Ilithya Workflow',
+      description: 'Legal terms of service for Ilithya Workflow, digital signature enforceability, strict disclaimer of underlying contracts, liability cap, and dispute resolution.',
+      keywords: 'saas terms of service, electronic signature enforceability, uncitral model law, esign act ueta eidas, contract liability disclaimer, binding commercial arbitration'
     }
   },
   nav: {
