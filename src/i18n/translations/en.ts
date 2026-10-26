@@ -25,11 +25,11 @@ export const en = {
       intro: 'Ilithya Workflow pairs a precision signature & stamp placement engine on exact PDF coordinates with strict database isolation and automatic backup into your company’s cloud storage.'
     },
     pilot: {
-      title: 'Assisted Pilot Program (15 to 20 Days) | Ilithya Workflow',
+      title: 'Assisted Pilot Program (1 Month) | Ilithya Workflow',
       description: 'Evaluate Ilithya Workflow with a representative purchasing or request workflow. Zero cost, no commitment, guided 1-on-1 by our engineering team.',
-      keywords: 'approval pilot program, free enterprise approval trial, document workflow evaluation, 15 day pilot trial, corporate approval onboarding',
+      keywords: 'approval pilot program, free enterprise approval trial, document workflow evaluation, 1 month pilot trial, 30 day pilot trial, corporate approval onboarding',
       tag: 'Risk-Free Guarantee',
-      heading: 'Assisted Pilot Program (15 to 20 Days)',
+      heading: 'Assisted Pilot Program (1 Month)',
       intro: 'Put Ilithya’s speed to the test directly within your operations: we select a representative workflow together, configure it in hours, and measure the turnaround time saved.'
     },
     contact: {
@@ -69,7 +69,7 @@ export const en = {
     titleLine1: 'Approvals That Flow',
     titleLine2: 'Without Delays or Red Tape',
     desc: 'Digitize signatures, sequential approval chains, and official stamps directly on millimeter coordinates of your PDF documents. Zero licensing bloat, zero complex software installations.',
-    ctaPilot: 'Start Pilot Trial (15-20 days)',
+    ctaPilot: 'Start Pilot Trial (1 Month)',
     ctaCases: 'Explore Use Cases',
     pills: [
       '100% Cloud-Based',
@@ -260,7 +260,7 @@ export const en = {
   },
   pilotPlan: {
     tag: 'Risk-Free Guarantee',
-    title: 'Assisted Pilot Program (15 to 20 Days)',
+    title: 'Assisted Pilot Program (1 Month)',
     desc: 'Test Ilithya’s velocity directly within your real operations: we pick one representative workflow, configure it together, and measure time saved.',
     steps: [
       {
@@ -286,7 +286,7 @@ export const en = {
   contact: {
     tag: 'Direct Channel',
     title: 'Ready to Accelerate Your Team’s Approvals?',
-    desc: 'Connect with our engineering and solutions team to launch your 15 to 20-day pilot trial at no cost, or to discuss security specifications.',
+    desc: 'Connect with our engineering and solutions team to launch your 1-month pilot trial at no cost, or to discuss security specifications.',
     panelTitle: 'Speak with an Ilithya Workflow Specialist',
     panelDesc: 'We’ll help you model your first approval route, configure approval stations, and activate smart SLA reminders in minutes.',
     channels: {
@@ -324,7 +324,7 @@ export const en = {
   },
   pilotModal: {
     title: 'Request Guided Pilot Program',
-    subtitle: 'Evaluate Ilithya Workflow for 15 to 20 days on a live business process at zero cost.',
+    subtitle: 'Evaluate Ilithya Workflow for 1 month on a live business process at zero cost.',
     step1Tab: '1. Contact',
     step2Tab: '2. Company',
     step3Tab: '3. Workflow',
@@ -368,7 +368,7 @@ export const en = {
   },
   faqs: [
     {
-      q: 'Does the 15 to 20-day Pilot Program involve any cost or purchase commitment?',
+      q: 'Does the 1-month Pilot Program involve any cost or purchase commitment?',
       a: 'Not at all. The pilot is 100% free with no contractual commitment. Our objective is for your leadership team to experience the cycle-time savings and elimination of bottlenecks firsthand before making any decision.'
     },
     {
@@ -380,7 +380,7 @@ export const en = {
       a: 'No. Ilithya Workflow operates 100% in the cloud via any modern web browser (Chrome, Safari, Edge, Firefox), fully responsive on both desktops and mobile devices.'
     },
     {
-      q: 'What happens to our documents and audit records when the 20 days conclude?',
+      q: 'What happens to our documents and audit records when the month concludes?',
       a: 'All files, signatures, and immutable audit logs generated remain the exclusive property of your organization. When the pilot ends, you can export all consolidated PDFs or transition smoothly into a subscription.'
     },
     {
