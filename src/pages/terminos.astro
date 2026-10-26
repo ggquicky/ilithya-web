@@ -1,0 +1,12 @@
+---
+import LegalPageLayout from '../components/LegalPageLayout.astro';
+import { legalTranslations } from '../i18n/legalData';
+
+const doc = legalTranslations.es.terms;
+---
+
+<LegalPageLayout 
+  document={doc}
+  activeDoc="terms"
+  lang="es"
+/>

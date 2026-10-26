@@ -14,6 +14,8 @@ const casesHref = getLocalizedPath('/casos-de-uso', lang);
 const platformHref = getLocalizedPath('/plataforma', lang);
 const pilotHref = getLocalizedPath('/plan-piloto', lang);
 const contactHref = getLocalizedPath('/contacto', lang);
+const privacyHref = getLocalizedPath('/privacidad', lang);
+const termsHref = getLocalizedPath('/terminos', lang);
 const footerLabels: Record<Language, {
   uptime: string;
   privacy: string;
@@ -103,8 +105,8 @@ const fl = footerLabels[lang] || footerLabels.es;
         &copy; {currentYear} Ilithya Workflow Inc. {t.footer.rights}
       </p>
       <div class="legal-links">
-        <a href={contactHref}>{fl.privacy}</a>
-        <a href={contactHref}>{fl.terms}</a>
+        <a href={privacyHref}>{fl.privacy}</a>
+        <a href={termsHref}>{fl.terms}</a>
         <a href={platformHref}>{fl.security}</a>
       </div>
     </div>
