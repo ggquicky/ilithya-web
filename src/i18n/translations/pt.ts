@@ -34,13 +34,13 @@ export const pt = {
         "O Ilithya Workflow combina um motor de assinatura e aplicação de carimbos em coordenadas exatas de PDF com isolamento rigoroso de banco de dados e backup na nuvem da sua empresa.",
     },
     pilot: {
-      title: "Plano de Teste Assistido   | Ilithya Workflow",
+      title: "Plano de Teste Assistido (1 Mês) | Ilithya Workflow",
       description:
         "Avalie o Ilithya Workflow com um processo de compras ou solicitação representativo da sua empresa. Sem custos nem compromisso, com suporte 1-a-1.",
       keywords:
-        "plano piloto aprovações, teste gratuito software aprovações, avaliação fluxos documentais, teste piloto 30 dias, implantação fluxos corporativos",
+        "plano piloto aprovações, teste gratuito software aprovações, avaliação fluxos documentais, teste piloto 30 dias, plano piloto 1 mes, implantação fluxos corporativos",
       tag: "Garantia Sem Riscos",
-      heading: "Plano de Teste Assistido",
+      heading: "Plano de Teste Assistido (1 Mês)",
       intro:
         "Colocamos a agilidade do Ilithya à prova diretamente na sua operação: escolhemos um fluxo representativo, configuramos juntos e medimos o tempo economizado.",
     },
@@ -89,7 +89,7 @@ export const pt = {
     titleLine1: "Aprovações que Fluem",
     titleLine2: "Sem Travas nem Burocracia",
     desc: "Digitalize assinaturas, rotas de aprovação em cadeia e carimbos oficiais em coordenadas exatas dos seus documentos PDF. Zero licenças inflacionadas, zero instalações complexas.",
-    ctaPilot: "Iniciar Teste Piloto (15-20 dias)",
+    ctaPilot: "Iniciar Teste Piloto (1 Mês)",
     ctaCases: "Ver Casos de Uso",
     pills: [
       "100% na Nuvem",
@@ -286,7 +286,7 @@ export const pt = {
   },
   pilotPlan: {
     tag: "Garantia Sem Riscos",
-    title: "Plano de Teste Assistido (15 a 20 Dias)",
+    title: "Plano de Teste Assistido (1 Mês)",
     desc: "Colocamos a agilidade do Ilithya à prova diretamente na sua operação: escolhemos um fluxo representativo, configuramos juntos e medimos o tempo economizado.",
     steps: [
       {
@@ -313,7 +313,7 @@ export const pt = {
   contact: {
     tag: "Acesso Direto",
     title: "Pronto para agilizar as aprovações da sua equipe?",
-    desc: "Conecte-se com nosso time para iniciar seu Plano de Teste de 15 a 20 dias sem custos nem compromisso, ou para tirar dúvidas sobre segurança e implantação.",
+    desc: "Conecte-se com nosso time para iniciar seu Plano de Teste de 1 mês sem custos nem compromisso, ou para tirar dúvidas sobre segurança e implantação.",
     panelTitle: "Fale com um Especialista do Ilithya Workflow",
     panelDesc:
       "Ajudamos a modelar sua primeira rota de aprovação, definir estações e ativar lembretes automáticos em minutos.",
@@ -359,7 +359,7 @@ export const pt = {
   pilotModal: {
     title: "Solicitar Plano de Teste Assistido",
     subtitle:
-      "Experimente o Ilithya Workflow por 15 a 20 dias em um fluxo real da sua empresa sem custos.",
+      "Experimente o Ilithya Workflow por 1 mês em um fluxo real da sua empresa sem custos.",
     step1Tab: "1. Contato",
     step2Tab: "2. Organização",
     step3Tab: "3. Fluxo",
@@ -405,7 +405,7 @@ export const pt = {
   },
   faqs: [
     {
-      q: "O Plano de Teste de 15 a 20 dias tem algum custo ou compromisso de compra?",
+      q: "O Plano de Teste de 1 mês tem algum custo ou compromisso de compra?",
       a: "Não, de forma alguma. É um teste 100% gratuito e sem qualquer vínculo contratual. Nosso objetivo é que sua liderança experimente na prática a economia de tempo e a eliminação de gargalos antes de qualquer decisão.",
     },
     {
@@ -417,7 +417,7 @@ export const pt = {
       a: "Não. O Ilithya Workflow opera 100% na nuvem por meio de qualquer navegador moderno (Chrome, Safari, Edge, Firefox), otimizado tanto para computadores quanto para smartphones.",
     },
     {
-      q: "O que acontece com os documentos e dados ao término dos 20 dias?",
+      q: "O que acontece com os documentos e dados ao término do mês?",
       a: "Todos os processos gerados e suas trilhas imutáveis de auditoria pertencem exclusivamente à sua empresa. Ao finalizar o período, você pode exportar os PDFs consolidados ou mantê-los integrados caso decida continuar com a assinatura.",
     },
     {

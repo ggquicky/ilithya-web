@@ -25,11 +25,11 @@ export const it = {
       intro: 'Ilithya Workflow combina un motore di firma e apposizione di timbri su coordinate esatte di PDF con isolamento rigoroso del database e backup sul cloud aziendale.'
     },
     pilot: {
-      title: 'Piano di Prova Guidato (15-20 Giorni) | Ilithya Workflow',
+      title: 'Piano di Prova Guidato (1 Mese) | Ilithya Workflow',
       description: 'Valuta Ilithya Workflow con un processo di acquisto o richiesta rappresentativo della tua azienda. Senza costi né impegno, con supporto dedicato 1-a-1.',
-      keywords: 'programma pilota approvazioni, prova software approvazioni aziendali, valutazione flussi documentali, prova pilota 15 giorni, onboarding flussi aziendali',
+      keywords: 'programma pilota approvazioni, prova software approvazioni aziendali, valutazione flussi documentali, prova pilota 1 mese, prova pilota 30 giorni, onboarding flussi aziendali',
       tag: 'Garanzia Senza Rischi',
-      heading: 'Piano di Prova Guidato (15-20 Giorni)',
+      heading: 'Piano di Prova Guidato (1 Mese)',
       intro: 'Mettiamo alla prova l\'agilità di Ilithya direttamente sul campo delle tue operazioni: selezioniamo un flusso rappresentativo, lo configuriamo insieme e misuriamo il tempo risparmiato.'
     },
     contact: {
@@ -69,7 +69,7 @@ export const it = {
     titleLine1: 'Approvazioni che Scorrono',
     titleLine2: 'Senza Blocchi né Burocrazia',
     desc: 'Digitalizza firme, percorsi di approvazione a catena e timbri ufficiali su coordinate esatte dei tuoi documenti PDF. Zero licenze gonfiate, zero installazioni complesse.',
-    ctaPilot: 'Inizia Prova Pilota (15-20 giorni)',
+    ctaPilot: 'Inizia Prova Pilota (1 Mese)',
     ctaCases: 'Scopri i Casi d\'Uso',
     pills: [
       '100% nel Cloud',
@@ -260,7 +260,7 @@ export const it = {
   },
   pilotPlan: {
     tag: 'Garanzia Senza Rischi',
-    title: 'Piano di Prova Guidato (15-20 Giorni)',
+    title: 'Piano di Prova Guidato (1 Mese)',
     desc: 'Mettiamo alla prova l\'agilità di Ilithya direttamente sul campo delle tue operazioni: selezioniamo un flusso rappresentativo, lo configuriamo insieme e misuriamo il tempo risparmiato.',
     steps: [
       {
@@ -286,7 +286,7 @@ export const it = {
   contact: {
     tag: 'Accesso Diretto',
     title: 'Pronto a velocizzare le approvazioni del tuo team?',
-    desc: 'Contatta il nostro team per avviare il Piano di Prova di 15-20 giorni senza costi né impegno, o per approfondire aspetti di sicurezza e configurazione.',
+    desc: 'Contatta il nostro team per avviare il Piano di Prova di 1 mese senza costi né impegno, o per approfondire aspetti di sicurezza e configurazione.',
     panelTitle: 'Parla con uno Specialista di Ilithya Workflow',
     panelDesc: 'Ti aiutiamo a modellare il tuo primo percorso di approvazione, definire le stazioni e attivare promemoria automatici in pochi minuti.',
     channels: {
@@ -324,7 +324,7 @@ export const it = {
   },
   pilotModal: {
     title: 'Richiedi Piano di Prova Guidato',
-    subtitle: 'Prova Ilithya Workflow per 15-20 giorni su un flusso reale della tua azienda senza alcun costo.',
+    subtitle: 'Prova Ilithya Workflow per 1 mese su un flusso reale della tua azienda senza alcun costo.',
     step1Tab: '1. Contatto',
     step2Tab: '2. Organizzazione',
     step3Tab: '3. Flusso',
@@ -368,7 +368,7 @@ export const it = {
   },
   faqs: [
     {
-      q: 'Il Piano di Prova di 15-20 giorni comporta costi o vincoli d\'acquisto?',
+      q: 'Il Piano di Prova di 1 mese comporta costi o vincoli d\'acquisto?',
       a: 'Assolutamente no. Si tratta di una prova completamente gratuita e senza alcun vincolo contrattuale. Il nostro obiettivo è permettere al tuo team di sperimentare direttamente il risparmio di tempo e l\'eliminazione dei colli di bottiglia prima di prendere qualsiasi decisione.'
     },
     {
@@ -380,7 +380,7 @@ export const it = {
       a: 'No. Ilithya Workflow opera al 100% nel cloud tramite qualsiasi browser moderno (Chrome, Safari, Edge, Firefox), ottimizzato sia per desktop che per dispositivi mobili.'
     },
     {
-      q: 'Cosa succede ai documenti e ai dati al termine dei 20 giorni?',
+      q: 'Cosa succede ai documenti e ai dati al termine del mese?',
       a: 'Tutti i fascicoli generati e le loro tracce di audit immutabili rimangono di esclusiva proprietà della tua azienda. Al termine del periodo, puoi esportare i PDF consolidati o mantenerli integrati se decidi di attivare l\'abbonamento.'
     },
     {
